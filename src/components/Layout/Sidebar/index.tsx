@@ -2,10 +2,22 @@ import React from 'react'
 import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
+import LoginDialog from './LoginDialog'
 import styles from './style.module.css'
+
+const { useState } = React
 
 const Sidebar = () => {
   const isLogged = true
+  const [showLoginDialog, setShowLoginDialog] = useState(false)
+
+  const handleNameClicke = () => {
+    setShowLoginDialog(true)
+  }
+
+  const handleLoginDialogClose = () => {
+    setShowLoginDialog(false)
+  }
 
   return (
     <div className={styles.root}>
@@ -13,7 +25,7 @@ const Sidebar = () => {
         <div className={styles.avatar}>
           {isLogged ? <Icon icon='person' /> : <img />}
         </div>
-        <div className={styles.name}>
+        <div className={styles.name} onClick={handleNameClicke}>
           <span>momo_Unique</span>
           <Icon icon='play' />
         </div>
@@ -47,6 +59,11 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
+      <LoginDialog
+        isOpen={showLoginDialog}
+        onClose={handleLoginDialogClose}
+      />
     </div>
   )
 }

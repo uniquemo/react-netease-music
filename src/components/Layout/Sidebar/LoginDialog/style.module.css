@@ -1,0 +1,15 @@
+.content {
+  padding: 30px 30px 0;
+
+  > div {
+    margin-bottom: 20px;
+  }
+
+  .loginBtn {
+    text-align: right;
+
+    button {
+      width: 30%;
+    }
+  }
+}
