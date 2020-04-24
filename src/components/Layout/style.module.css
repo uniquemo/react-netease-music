@@ -1,0 +1,15 @@
+.middle {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  /* 减去header和footer的高度 */
+  height: calc(100% - 110px); 
+  margin-top: 50px;
+  margin-bottom: 60px;
+  overflow: scroll;
+}

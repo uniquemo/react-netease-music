@@ -9,7 +9,8 @@ export default (env, argv) => {
       filename: argv.mode === 'production' ? '[name].[chunkhash:8].js' : '[name].[hash:8].js'
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js']
+      extensions: ['.tsx', '.ts', '.jsx', '.js'],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules']
     },
     module: {
       rules: [
@@ -42,9 +43,11 @@ export default (env, argv) => {
                 import: true,
                 modules: {
                   localIdentName: '[path][name]__[local]--[hash:base64:5]'
-                }
+                },
+                importLoaders: 1
               }
-            }
+            },
+            'postcss-loader'
           ],
           include: /src/
         },

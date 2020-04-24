@@ -1,0 +1,64 @@
+.root {
+  width: 220px;
+  height: 100%;
+  padding: 50px 0 60px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(234, 234, 234);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    color: rgb(220, 220, 220);
+  }
+
+  .name {
+    color: rgb(69, 69, 69);
+    cursor: default;
+  }
+}
+
+.tabs {
+  color: rgb(77, 77, 77);
+  cursor: default;
+
+  .tab {
+    padding: 10px 20px;
+
+    span {
+      margin-right: 10px;
+    }
+  }
+
+  .tab:hover {
+    background-color: rgb(227, 227, 227);
+  }
+
+  .enabled {
+    color: rgb(208, 58, 54);
+  }
+}
+
+.block {
+  margin-top: 25px;
+
+  .title {
+    padding-left: 20px;
+    font-size: 0.8em;
+    color: rgb(129, 129, 129);
+  }
+}

@@ -1,13 +1,17 @@
 import React from 'react'
-import { Button } from '@blueprintjs/core'
-import style from './app.module.css'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import Discovery from './Discovery'
+import ROUTES from 'constants/routes'
 
 const App = () => {
   return (
-    <div className={style.app}>
-      HHH
-      <Button>abc</Button>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={ROUTES.ROOT} component={Discovery} />
+        <Route path="*" component={Discovery} />
+      </Switch>
+    </BrowserRouter>
   )
 }
 
