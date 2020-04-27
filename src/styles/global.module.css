@@ -1,7 +1,15 @@
+@value colors: "~styles/colors.module.css";
+@value red from colors;
+
 html {
   font-size: 100px;
 }
 
 button {
   outline: none !important;
+}
+
+/* 设置全局样式 */
+:global(.error) {
+  color: red;
 }

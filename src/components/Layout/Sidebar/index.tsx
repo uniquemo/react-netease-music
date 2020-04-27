@@ -3,32 +3,36 @@ import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import LoginDialog from './LoginDialog'
+import { getSession } from 'helpers/session'
 import styles from './style.module.css'
 
 const { useState } = React
 
 const Sidebar = () => {
-  const isLogged = true
+  const session = getSession()
+  const isLogged = session && session.userId
   const [showLoginDialog, setShowLoginDialog] = useState(false)
 
-  const handleNameClicke = () => {
-    setShowLoginDialog(true)
-  }
-
-  const handleLoginDialogClose = () => {
-    setShowLoginDialog(false)
-  }
+  const handleNameClicke = () => setShowLoginDialog(true)
+  const handleLoginDialogClose = () => setShowLoginDialog(false)
 
   return (
     <div className={styles.root}>
       <div className={styles.user}>
         <div className={styles.avatar}>
-          {isLogged ? <Icon icon='person' /> : <img />}
+          {isLogged ? <img src={session.profile.avatarUrl} /> : <Icon icon='person' />}
         </div>
-        <div className={styles.name} onClick={handleNameClicke}>
-          <span>momo_Unique</span>
-          <Icon icon='play' />
-        </div>
+        {isLogged ? (
+          <div className={styles.name}>
+            <span>{session.profile.nickname}</span>
+            <Icon icon='play' />
+          </div>
+        ) : (
+          <div className={styles.name} onClick={handleNameClicke}>
+            <span>未登录</span>
+            <Icon icon='play' />
+          </div>
+        )}
       </div>
 
       <div className={styles.tabs}>

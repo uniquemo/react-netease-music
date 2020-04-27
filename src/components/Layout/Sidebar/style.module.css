@@ -24,6 +24,12 @@
     background-color: #ccc;
     cursor: pointer;
     color: rgb(220, 220, 220);
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
   }
 
   .name {
