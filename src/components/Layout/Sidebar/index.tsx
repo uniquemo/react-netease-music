@@ -1,20 +1,28 @@
 import React from 'react'
-import { Icon } from '@blueprintjs/core'
+import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import LoginDialog from './LoginDialog'
-import { getSession } from 'helpers/session'
+import { getSession, removeSession } from 'helpers/session'
+import authApis from 'apis/auth'
+import useAsyncFn from 'hooks/useAsyncFn'
 import styles from './style.module.css'
 
-const { useState } = React
+const { useState, useMemo } = React
 
 const Sidebar = () => {
   const session = getSession()
   const isLogged = session && session.userId
   const [showLoginDialog, setShowLoginDialog] = useState(false)
+  const [logoutState, logoutFn] = useAsyncFn(authApis.logout)
 
   const handleNameClicke = () => setShowLoginDialog(true)
   const handleLoginDialogClose = () => setShowLoginDialog(false)
+  const handleLogout = async () => {
+    // TODO: should removeSession after logoutFn()
+    removeSession()
+    await logoutFn()
+  }
 
   return (
     <div className={styles.root}>
@@ -23,10 +31,19 @@ const Sidebar = () => {
           {isLogged ? <img src={session.profile.avatarUrl} /> : <Icon icon='person' />}
         </div>
         {isLogged ? (
-          <div className={styles.name}>
-            <span>{session.profile.nickname}</span>
-            <Icon icon='play' />
-          </div>
+          <Popover
+            content={(
+              <Menu>
+                <MenuItem icon='log-out' text='退出登录' onClick={handleLogout} />
+              </Menu>
+            )}
+            interactionKind='hover'
+          >
+            <div className={styles.name}>
+              <span>{session.profile.nickname}</span>
+              <Icon icon='play' />
+            </div>
+          </Popover>
         ) : (
           <div className={styles.name} onClick={handleNameClicke}>
             <span>未登录</span>

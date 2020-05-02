@@ -14,6 +14,14 @@ const login: LoginFn = ({ phone, password }) => {
   })
 }
 
+const logout = () => {
+  return axios({
+    method: 'post',
+    url: '/logout'
+  })
+}
+
 export default {
-  login
+  login,
+  logout
 }
