@@ -6,7 +6,8 @@ export default (env, argv) => {
     entry: './src/index.tsx',
     output: {
       // 因为开发环境中，chunkhash与HotModuleReplacementPlugin有冲突，所以两个环境分别设置
-      filename: argv.mode === 'production' ? '[name].[chunkhash:8].js' : '[name].[hash:8].js'
+      filename: argv.mode === 'production' ? '[name].[chunkhash:8].js' : '[name].[hash:8].js',
+      publicPath: '/'
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
@@ -63,7 +64,8 @@ export default (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/index.html')
+        template: path.resolve(__dirname, 'src/index.html'),
+        favicon: path.resolve(__dirname, 'favicon.ico')
       })
     ]
   }

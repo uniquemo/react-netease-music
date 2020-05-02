@@ -7,6 +7,7 @@ export default {
   ],
   devServer: {
     // contentBase: './dist',
+    historyApiFallback: true,
     hot: true
   }
 }

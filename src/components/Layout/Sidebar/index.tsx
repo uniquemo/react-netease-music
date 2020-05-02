@@ -1,14 +1,14 @@
 import React from 'react'
 import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
-import cn from 'classnames'
 
+import Menus from './Menus'
 import LoginDialog from './LoginDialog'
 import { getSession, removeSession } from 'helpers/session'
 import authApis from 'apis/auth'
 import useAsyncFn from 'hooks/useAsyncFn'
 import styles from './style.module.css'
 
-const { useState, useMemo } = React
+const { useState } = React
 
 const Sidebar = () => {
   const session = getSession()
@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [showLoginDialog, setShowLoginDialog] = useState(false)
   const [logoutState, logoutFn] = useAsyncFn(authApis.logout)
 
-  const handleNameClicke = () => setShowLoginDialog(true)
+  const handleNameClick = () => setShowLoginDialog(true)
   const handleLoginDialogClose = () => setShowLoginDialog(false)
   const handleLogout = async () => {
     // TODO: should removeSession after logoutFn()
@@ -45,41 +45,14 @@ const Sidebar = () => {
             </div>
           </Popover>
         ) : (
-          <div className={styles.name} onClick={handleNameClicke}>
+          <div className={styles.name} onClick={handleNameClick}>
             <span>未登录</span>
             <Icon icon='play' />
           </div>
         )}
       </div>
 
-      <div className={styles.tabs}>
-        <div className={cn(styles.tab, styles.enabled)}>
-          <Icon icon='music' />
-          发现音乐
-        </div>
-        <div className={styles.tab}>
-          <Icon icon='mobile-video' />
-          视频
-        </div>
-      </div>
-      
-      <div className={styles.block}>
-        <div className={styles.title}>我的音乐</div>
-        <div className={styles.tabs}>
-          <div className={styles.tab}>
-            <Icon icon='import' />
-            下载管理
-          </div>
-          <div className={styles.tab}>
-            <Icon icon='cloud' />
-            我的音乐云盘
-          </div>
-          <div className={styles.tab}>
-            <Icon icon='star-empty' />
-            我的收藏
-          </div>
-        </div>
-      </div>
+      <Menus />
 
       <LoginDialog
         isOpen={showLoginDialog}

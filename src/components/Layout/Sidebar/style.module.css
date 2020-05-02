@@ -40,34 +40,3 @@
     cursor: default;
   }
 }
-
-.tabs {
-  color: rgb(77, 77, 77);
-  cursor: default;
-
-  .tab {
-    padding: 10px 20px;
-
-    span {
-      margin-right: 10px;
-    }
-  }
-
-  .tab:hover {
-    background-color: rgb(227, 227, 227);
-  }
-
-  .enabled {
-    color: rgb(208, 58, 54);
-  }
-}
-
-.block {
-  margin-top: 25px;
-
-  .title {
-    padding-left: 20px;
-    font-size: 0.8em;
-    color: rgb(129, 129, 129);
-  }
-}

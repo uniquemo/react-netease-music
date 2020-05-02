@@ -62,7 +62,7 @@
 .backForward {
   display: flex;
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   right: 10px;
 
   div {
@@ -79,4 +79,12 @@
   div:hover {
     background-color: rgb(232, 232, 232);
   }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - sidebarWidth);
+  padding: 0 20px;
 }
