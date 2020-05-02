@@ -9,6 +9,10 @@ button {
   outline: none !important;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* 设置全局样式 */
 :global(.error) {
   color: red;

@@ -1,7 +1,10 @@
+@value constants: "~styles/constants.module.css";
+@value sidebarWidth, headerHeight, footerHeight from constants;
+
 .root {
-  width: 220px;
+  width: sidebarWidth;
   height: 100%;
-  padding: 50px 0 60px;
+  padding: headerHeight 0 footerHeight;
   display: flex;
   flex-direction: column;
   background-color: rgb(234, 234, 234);

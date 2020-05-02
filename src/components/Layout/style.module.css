@@ -1,3 +1,6 @@
+@value constants: "~styles/constants.module.css";
+@value sidebarWidth, headerHeight, footerHeight from constants;
+
 .middle {
   width: 100%;
   height: 100vh;
@@ -6,10 +9,11 @@
 }
 
 .content {
-  width: 100%;
+  /* 减去sidebar的宽度 */
+  width: calc(100% - sidebarWidth);
   /* 减去header和footer的高度 */
-  height: calc(100% - 110px); 
-  margin-top: 50px;
-  margin-bottom: 60px;
+  height: calc(100% - headerHeight - footerHeight); 
+  margin-top: headerHeight;
+  margin-bottom: footerHeight;
   overflow: scroll;
 }
