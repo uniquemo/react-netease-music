@@ -1,0 +1,9 @@
+@value constants: "~styles/constants.module.css";
+@value contentMaxWidth from constants; 
+
+.root {
+  width: 94%;
+  max-width: contentMaxWidth;
+  margin: 0 auto;
+  background-color: #ccc;
+}

@@ -1,0 +1,7 @@
+.root {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+  cursor: pointer;
+}

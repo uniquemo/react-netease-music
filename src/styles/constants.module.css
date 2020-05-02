@@ -1,3 +1,5 @@
 @value sidebarWidth: 190px;
 @value headerHeight: 50px;
 @value footerHeight: 60px;
+@value bodyMinWidth: 1200px;
+@value contentMaxWidth: 1140px;

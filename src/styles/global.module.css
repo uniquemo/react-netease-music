@@ -1,8 +1,16 @@
 @value colors: "~styles/colors.module.css";
 @value red from colors;
 
+@value constants: "~styles/constants.module.css";
+@value bodyMinWidth from constants;
+
 html {
   font-size: 100px;
+}
+
+body {
+  min-width: bodyMinWidth;
+  overflow: hidden;
 }
 
 button {

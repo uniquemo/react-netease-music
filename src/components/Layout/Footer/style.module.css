@@ -1,10 +1,12 @@
 @value colors: "~styles/colors.module.css";
-@value constants: "~styles/constants.module.css";
 @value red from colors;
-@value footerHeight from constants;
+
+@value constants: "~styles/constants.module.css";
+@value footerHeight, bodyMinWidth from constants;
 
 .root {
   width: 100%;
+  min-width: bodyMinWidth;
   height: footerHeight;
   padding: 10px;
   position: fixed;
