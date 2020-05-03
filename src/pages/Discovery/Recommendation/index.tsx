@@ -1,5 +1,5 @@
 import React from 'react'
-import Slider from './Slider'
+import Banner from './Banner'
 import SongList from './SongList'
 import LatestMusic from './LatestMusic'
 import MV from './MV'
@@ -9,9 +9,7 @@ import styles from './style.module.css'
 const Recommendation = () => {
   return (
     <div className={styles.root}>
-      <div className={styles.block}>
-        <Slider />
-      </div>
+      <Banner />
 
       <div className={styles.block}>
         <SongList />

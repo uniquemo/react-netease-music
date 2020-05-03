@@ -1,9 +1,10 @@
 import axios from 'helpers/axios'
-import { IGetPersonalizedSongListRequest, ISongList, IMusic, IMV } from './types/personalized'
+import { IGetPersonalizedSongListRequest, ISongList, IMusic, IMV, IBanner } from './types/personalized'
 
 type GetPersonalizedSongListFn = (params: IGetPersonalizedSongListRequest) => Promise<ISongList[]>
 type GetPersonalizedNewMusicFn = () => Promise<IMusic[]>
 type GetPersonalizedMVFn = () => Promise<IMV[]>
+type GetBannerFn = () => Promise<IBanner[]>
 
 const getPersonalizedSongList: GetPersonalizedSongListFn = async ({ limit }) => {
   const response = await axios({
@@ -35,8 +36,21 @@ const getPersonalizedMV: GetPersonalizedMVFn = async () => {
   return response.result
 }
 
+const getBanner: GetBannerFn = async () => {
+  const response = await axios({
+    method: 'get',
+    url: '/banner',
+    params: {
+      type: 0
+    }
+  })
+
+  return response.banners
+}
+
 export default {
   getPersonalizedSongList,
   getPersonalizedNewMusic,
-  getPersonalizedMV
+  getPersonalizedMV,
+  getBanner
 }
