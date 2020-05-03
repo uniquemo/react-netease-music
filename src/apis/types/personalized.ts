@@ -38,3 +38,18 @@ export interface IMusic {
     artists: IArtist[]
   }
 }
+
+export interface IMV {
+  alg: string,
+  artistId: number,
+  artistName: string,
+  canDislike: boolean,
+  copywriter: string,
+  duration: number,
+  id: number,
+  name: string,
+  picUrl: string,
+  playCount: number,
+  subed: boolean,
+  type: number
+}

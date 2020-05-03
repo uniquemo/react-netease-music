@@ -1,12 +1,12 @@
 import React from 'react'
-import { Icon } from '@blueprintjs/core'
 
 import PlayIcon from 'components/PlayIcon'
+import PlayCount from 'components/PlayCount'
 import styles from './style.module.css'
 
 interface IProps {
   name: string,
-  playCount?: number,
+  playCount: number,
   picUrl?: string
 }
 
@@ -15,10 +15,7 @@ const SongItem: React.FC<IProps> = ({ name, playCount, picUrl }) => {
     <div className={styles.root}>
       <div className={styles.cover}>
         {picUrl && <img src={picUrl} />}
-        <div className={styles.playCount}>
-          <Icon icon='play' />
-          {playCount}
-        </div>
+        <PlayCount count={playCount} className={styles.playCount} />
         <PlayIcon className={styles.playIcon} />
       </div>
       <div className={styles.name}>{name}</div>
