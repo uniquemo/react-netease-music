@@ -3,8 +3,8 @@ import { Spinner } from '@blueprintjs/core'
 
 import LinkTitle from 'components/LinkTitle'
 import SongItem from './SongItem'
-import ROUTES from 'constants/routes'
 
+import ROUTES from 'constants/routes'
 import useAsyncFn from 'hooks/useAsyncFn'
 import personalizedApis from 'apis/personalized'
 import styles from './style.module.css'
@@ -12,8 +12,8 @@ import styles from './style.module.css'
 const { useEffect } = React
 
 const SongList = () => {
-  const [getPersonalizedSongListState, personalizedSongListFn] = useAsyncFn(personalizedApis.getPersonalizedSongList)
-  const { value: songList = [], loading: isGettingSongList } = getPersonalizedSongListState || {}
+  const [state, personalizedSongListFn] = useAsyncFn(personalizedApis.getPersonalizedSongList)
+  const { value: songList = [], loading: isGettingSongList } = state || {}
 
   useEffect(() => {
     personalizedSongListFn({ limit: 10 })

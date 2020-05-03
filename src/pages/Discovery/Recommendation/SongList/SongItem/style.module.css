@@ -1,5 +1,5 @@
 @value colors: "~styles/colors.module.css";
-@value red from colors;
+@value nameColor from colors;
 
 .root {
   position: relative;
@@ -36,14 +36,6 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    color: red;
     visibility: hidden;
   }
 
@@ -55,5 +47,5 @@
 .name {
   margin-top: 5px;
   font-size: 0.95em;
-  color: #5d5d5d;
+  color: nameColor;
 }

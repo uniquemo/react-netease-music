@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from '@blueprintjs/core'
 
+import PlayIcon from 'components/PlayIcon'
 import styles from './style.module.css'
 
 interface IProps {
@@ -18,9 +19,7 @@ const SongItem: React.FC<IProps> = ({ name, playCount, picUrl }) => {
           <Icon icon='play' />
           {playCount}
         </div>
-        <div className={styles.playIcon}>
-          <Icon icon='play' />
-        </div>
+        <PlayIcon className={styles.playIcon} />
       </div>
       <div className={styles.name}>{name}</div>
     </div>

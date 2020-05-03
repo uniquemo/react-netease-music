@@ -15,3 +15,26 @@ export interface ISongList {
   trackNumberUpdateTime: number,
   type: number
 }
+
+export interface IArtist {
+  albumSize: number,
+  id: number,
+  img1v1Id: number,
+  img1v1Url: string,
+  musicSize: number,
+  name: string,
+  picId: number,
+  picUrl: string,
+  topicPerson: number
+}
+
+export interface IMusic {
+  alg: string,
+  canDislike: boolean,
+  id: number,
+  name: string,
+  picUrl: string,
+  song: {
+    artists: IArtist[]
+  }
+}

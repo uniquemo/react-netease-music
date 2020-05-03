@@ -1,0 +1,66 @@
+@value colors: "~styles/colors.module.css";
+@value nameColor, tipsColor from colors;
+
+.root {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #f5f5f5;
+}
+
+.borderBottom {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+
+  img {
+    border-radius: 5px;
+  }
+
+  .playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.order {
+  margin-right: 10px;
+  font-size: 0.9em;
+  color: tipsColor;
+}
+
+.info {
+  .name {
+    color: nameColor;
+  }
+
+  .singers {
+    display: flex;
+    align-items: center;
+    color: tipsColor;
+  }
+
+  .singer {
+    margin-top: 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+
+    &:hover {
+      color: #797979;
+    }
+  }
+
+  .slash {
+    margin: 0 5px;
+  }
+}

@@ -9,10 +9,21 @@ import styles from './style.module.css'
 const Recommendation = () => {
   return (
     <div className={styles.root}>
-      <Slider />
-      <SongList />
-      <LatestMusic />
-      <MV />
+      <div className={styles.block}>
+        <Slider />
+      </div>
+
+      <div className={styles.block}>
+        <SongList />
+      </div>
+
+      <div className={styles.block}>
+        <LatestMusic />
+      </div>
+
+      <div className={styles.block}>
+        <MV />
+      </div>
     </div>
   )
 }

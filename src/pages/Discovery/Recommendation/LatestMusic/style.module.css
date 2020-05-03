@@ -1,0 +1,8 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.block {
+  width: 48%;
+}
