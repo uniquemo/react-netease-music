@@ -17,9 +17,9 @@
   background-color: #fff;
 }
 
-.progress {
+.progressBar {
   position: absolute;
-  top: -8px;
+  top: -2px;
   left: 0;
   width: 100%;
 }

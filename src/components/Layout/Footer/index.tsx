@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Tooltip } from '@blueprintjs/core'
 
-// import Slider from 'components/Slider'
+import ProgressBar from 'components/ProgressBar'
 import Artists from 'components/Artists'
 import AudioTimer from 'components/AudioTimer'
 import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
@@ -21,7 +21,7 @@ const Footer = () => {
   const audioRef = useRef<HTMLAudioElement>()
 
   useEffect(() => {
-    if (musicId === -1) {
+    if (musicId === 0) {
       return
     }
 
@@ -48,22 +48,14 @@ const Footer = () => {
     dispatch({ type: ACTIONS.TOGGLE_PLAY_STATUS })
   }
 
-  // const [slider, setSlider] = useState(0)
-
-  console.log('audio.duration => ', music?.song.duration)
-
   return (
     <div className={styles.root}>
-      {/* <div className={styles.progress}>
-        <Slider
-          value={slider}
-          max={music?.song.duration}
-          onRelease={(value) => {
-            console.log(value)
-            setSlider(value)
-          }}
-        />
-      </div> */}
+      {musicId ? (
+        <div className={styles.progressBar}>
+          <ProgressBar audio={audio} />
+        </div>
+      ) : null}
+
       <div className={styles.songWrap}>
         <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} />
         <div>

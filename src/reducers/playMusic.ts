@@ -26,7 +26,7 @@ export interface IState {
 }
 
 export const initialState = {
-  musicId: -1,
+  musicId: 0,
   isPlaying: false
 }
 
