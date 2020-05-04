@@ -26,24 +26,28 @@ const LatestMusic = () => {
       {loading ? <Spinner /> : (
         <div className={styles.content}>
           <div className={styles.block}>
-            {music.slice(0, 5).map(({ name, picUrl, song }, index) => (
+            {music.slice(0, 5).map(({ id, name, picUrl, song, ...others }, index) => (
               <MusicItem
                 key={name}
                 index={index}
+                id={id}
                 name={name}
                 picUrl={picUrl}
-                artists={song?.artists}
+                song={song}
+                {...others}
               />
             ))}
           </div>
           <div className={styles.block}>
-            {music.slice(5, 10).map(({ name, picUrl, song }, index) => (
+            {music.slice(5, 10).map(({ id, name, picUrl, song, ...others }, index) => (
               <MusicItem
                 key={name}
                 index={index + 5}
+                id={id}
                 name={name}
                 picUrl={picUrl}
-                artists={song?.artists}
+                song={song}
+                {...others}
               />
             ))}
           </div>

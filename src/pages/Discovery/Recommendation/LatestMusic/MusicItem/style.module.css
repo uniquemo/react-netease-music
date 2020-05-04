@@ -1,5 +1,5 @@
 @value colors: "~styles/colors.module.css";
-@value nameColor, tipsColor, tipsHoverColor, borderColor from colors;
+@value nameColor, tipsColor, tipsHoverColor, borderColor, red from colors;
 
 .root {
   display: flex;
@@ -8,6 +8,10 @@
   border-top: 1px solid borderColor;
 
   &:hover {
+    background-color: borderColor;
+  }
+
+  &.active {
     background-color: borderColor;
   }
 }
@@ -37,6 +41,11 @@
   }
 }
 
+.isPlaying {
+  margin-right: 10px;
+  color: red;
+}
+
 .order {
   margin-right: 10px;
   font-size: 0.9em;
@@ -46,25 +55,5 @@
 .info {
   .name {
     color: nameColor;
-  }
-
-  .singers {
-    display: flex;
-    align-items: center;
-    color: tipsColor;
-  }
-
-  .singer {
-    margin-top: 5px;
-    font-size: 0.9em;
-    cursor: pointer;
-
-    &:hover {
-      color: tipsHoverColor;
-    }
-  }
-
-  .slash {
-    margin: 0 5px;
   }
 }

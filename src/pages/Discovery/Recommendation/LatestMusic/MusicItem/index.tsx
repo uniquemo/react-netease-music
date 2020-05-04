@@ -1,42 +1,62 @@
 import React from 'react'
+import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import PlayIcon from 'components/PlayIcon'
-import { IArtist } from 'apis/types/personalized'
+import Artists from 'components/Artists'
+import { IMusicSong } from 'apis/types/personalized'
 
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
 interface IProps {
+  id: number,
   name: string,
   picUrl: string,
-  artists: IArtist[],
+  song: IMusicSong,
   index: number
 }
 
-const MusicItem: React.FC<IProps> = ({ name, picUrl, artists, index }) => {
+const { useContext } = React
+
+const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
+  const state = useContext(PlayMusicStateContext)
+  const dispatch = useContext(PlayMusicDispatchContext)
+
   const hasBorderBottom = [4, 9].indexOf(index) > -1
 
+  const playMusic = (id: number) => {
+    dispatch({
+      type: ACTIONS.PLAY,
+      payload: {
+        musicId: id,
+        music: { id, name, picUrl, song, ...others }
+      }
+    })
+  }
+
+  const isMusicActive = state.musicId === id
+
   return (
-    <div className={cn(styles.root, hasBorderBottom ? styles.borderBottom : '')}>
-      <div className={styles.pic}>
+    <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
+      <div className={styles.pic} onClick={() => playMusic(id)}>
         <img src={`${picUrl}?param=60y60`} />
         <PlayIcon className={styles.playIcon} />
       </div>
-      <div className={styles.order}>
-        {index < 9 ? `0${index + 1}` : index + 1}
-      </div>
+      {isMusicActive ? (
+        <div className={styles.isPlaying}>
+          <Icon icon={state.isPlaying ? 'volume-up' : 'volume-off'} />
+        </div>
+      ) : (
+        <div className={styles.order}>
+          {index < 9 ? `0${index + 1}` : index + 1}
+        </div>
+      )}
       <div className={styles.info}>
         <div className={styles.name}>
           {name}
         </div>
-        <div className={styles.singers}>
-          {artists?.map(({ name }, index) => 
-            (index !== artists?.length - 1
-              ? <div key={name}><span className={styles.singer}>{name}</span><span className={styles.slash}>/</span></div>
-              : <span key={name} className={styles.singer}>{name}</span>
-            )
-          )}
-        </div>
+        <Artists artists={song?.artists} />
       </div>
     </div>
   )

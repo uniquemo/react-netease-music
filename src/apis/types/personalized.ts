@@ -28,15 +28,18 @@ export interface IArtist {
   topicPerson: number
 }
 
+export interface IMusicSong {
+  artists: IArtist[],
+  duration: number
+}
+
 export interface IMusic {
   alg: string,
   canDislike: boolean,
   id: number,
   name: string,
   picUrl: string,
-  song: {
-    artists: IArtist[]
-  }
+  song: IMusicSong
 }
 
 export interface IMV {

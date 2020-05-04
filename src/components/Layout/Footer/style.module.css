@@ -17,6 +17,13 @@
   background-color: #fff;
 }
 
+.progress {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  width: 100%;
+}
+
 .songWrap {
   display: flex;
   align-items: center;
@@ -30,9 +37,13 @@
     background-color: #ccc;
   }
 
-  & .singer {
-    font-size: 0.8em;
-    color: rgb(127, 127, 127);
+  .info {
+    display: flex;
+    align-items: center;
+
+    .name {
+      margin-right: 5px;
+    }
   }
 
   & .time {
@@ -44,6 +55,10 @@
 .operations {
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   & div {
     cursor: pointer;

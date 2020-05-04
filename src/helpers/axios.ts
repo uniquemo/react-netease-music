@@ -16,10 +16,10 @@ const myAxios = ({
     data,
     ...others
   }).then(result => {
-    console.log('axios origin result => ', result)
+    // console.log('axios origin result => ', result)
     return result.data
   }).catch(error => {
-    console.log('axios origin error => ', error)
+    // console.log('axios origin error => ', error)
     throw error
   })
 }
