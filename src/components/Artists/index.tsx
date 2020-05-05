@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { IArtist } from 'apis/types/personalized'
+import { IArtist } from 'apis/types/business'
 import styles from './style.module.css'
 
 interface IProps {

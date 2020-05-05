@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Icon } from '@blueprintjs/core'
 
 import Navbar from './Navbar'
+import Searcher from './Searcher'
 import styles from './style.module.css'
 
 const Header = () => {
@@ -34,7 +35,9 @@ const Header = () => {
 
       <div className={styles.content}>
         <Navbar />
-        <div>ddd</div>
+        <div>
+          <Searcher />
+        </div>
       </div>
     </div>
   )

@@ -1,0 +1,29 @@
+@value colors: "~styles/colors.module.css";
+@value tipsColor, borderColor from colors;
+
+.root {
+  margin-bottom: 30px;
+  font-size: 0.95em;
+
+  .title {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    color: tipsColor;
+
+    span {
+      transform: scale(0.9);
+      margin-right: 5px;
+    }
+  }
+
+  .item {
+    padding: 10px 20px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: borderColor;
+    }
+  }
+}
