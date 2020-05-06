@@ -1,0 +1,27 @@
+@value colors: "~styles/colors.module.css";
+@value tipsHoverColor, bgColor from colors;
+
+.root {
+  font-size: 0.9em;
+}
+
+.header {
+  display: flex;
+  padding: 10px 0;
+  color: tipsHoverColor;
+}
+
+.content {
+  .row {
+    display: flex;
+    padding: 10px 0;
+  }
+
+  .row:nth-child(2n) {
+    background-color: #fafafa;
+  }
+
+  .row:hover {
+    background-color: bgColor;
+  }
+}

@@ -1,0 +1,28 @@
+@value colors: "~styles/colors.module.css";
+@value tipsColor, tipsHoverColor from colors;
+
+.alias {
+  margin-top: 10px;
+  color: tipsColor;
+}
+
+.operations {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  color: tipsColor;
+
+  .index {
+    width: 40px;
+    margin-right: 6px;
+    text-align: right;
+  }
+
+  span:nth-child(2), span:nth-child(3) {
+    cursor: pointer;
+
+    &:hover {
+      color: tipsHoverColor;
+    }
+  }
+}

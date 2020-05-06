@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon } from '@blueprintjs/core'
+import { useHistory } from 'react-router-dom'
 import cn from 'classnames'
 
 import Words from './Words'
@@ -8,11 +9,13 @@ import useAsyncFn from 'hooks/useAsyncFn'
 import searchApis from 'apis/search'
 import { setSearchHistory, getSearchHistory } from 'helpers/search'
 import { debounce } from 'helpers/fn'
+import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 
 const { useEffect, useState, useMemo } = React
 
 const Searcher = () => {
+  const history = useHistory()
   const [showResult, setShowResult] = useState(false)
   const [keyword, setKeyword] = useState('')
   const [state, searchHotFn] = useAsyncFn(searchApis.searchHot)
@@ -34,6 +37,7 @@ const Searcher = () => {
 
   const handleInputKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      history.push(`${ROUTES.SEARCH}?keyword=${keyword}`)
       setSearchHistory(keyword)
     }
   }

@@ -1,0 +1,45 @@
+@value colors: "~styles/colors.module.css";
+@value borderColor, nameColor, nameHoverColor, tipsHoverColor from colors;
+
+.root {
+}
+
+.header {
+  padding: 20px 30px 10px;
+  border-bottom: 1px solid borderColor;
+
+  .title {
+    margin-bottom: 20px;
+
+    .keyword {
+      font-size: 1.6em;
+    }
+
+    .count {
+      margin-left: 8px;
+      font-size: 0.9em;
+      color: tipsHoverColor;
+    }
+  }
+
+  .tabs {
+    display: flex;
+    color: nameColor;
+
+    .tab {
+      margin-right: 30px;
+      cursor: pointer;
+
+      &:hover {
+        color: nameHoverColor;
+      }
+    }
+
+    .active {
+      color: black;
+    }
+  }
+}
+
+.content {
+}

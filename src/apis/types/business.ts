@@ -42,13 +42,13 @@ export interface IMusic {
   album: IAlbum,
   alias: string[],
   artists: IArtist[],
-  copyrightId: number,
+  copyrightId?: number,
   duration: number,
-  fee: number,
-  ftype: number,
+  fee?: number,
+  ftype?: number,
   id: number,
-  mark: number,
-  mvid: number,
+  mark?: number,
+  mvid?: number,
   name: string,
-  status: number
+  status?: number
 }

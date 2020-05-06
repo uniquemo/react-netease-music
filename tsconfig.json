@@ -1,5 +1,6 @@
 {
   "include": ["src"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */

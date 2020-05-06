@@ -11,6 +11,8 @@ const VIDEOS: string = '/videos'
 const VIDEO: string = `${VIDEOS}/video`
 const MV: string = `${VIDEOS}/mv`
 
+const SEARCH: string = '/search'
+
 const DOWNLOAD: string = '/download'
 const CLOUD: string = '/cloud'
 const COLLECTION: string = '/collection'
@@ -29,6 +31,7 @@ const ROUTES = {
   VIDEOS,
   VIDEO,
   MV,
+  SEARCH,
   DOWNLOAD,
   CLOUD,
   COLLECTION
