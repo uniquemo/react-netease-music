@@ -4,55 +4,29 @@ import { Icon, Tooltip } from '@blueprintjs/core'
 import ProgressBar from 'components/ProgressBar'
 import Artists from 'components/Artists'
 import AudioTimer from 'components/AudioTimer'
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
-import { getMusicUrl } from 'helpers/business'
+import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useEffect, useContext, useRef, useState } = React
+const { useContext } = React
 
 const Footer = () => {
-  const [audio, setAudio] = useState<HTMLAudioElement>()
-  const dispatch = useContext(PlayMusicDispatchContext)
+  const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
-  const { musicId, music, isPlaying } = state
-
-  // useRef doesn’t notify you when its content changes. Mutating the .current property doesn’t cause a re-render.
-  // 所以添加了一个 audio state 来触发变化
-  const audioRef = useRef<HTMLAudioElement>()
-
-  useEffect(() => {
-    if (musicId === 0) {
-      return
-    }
-
-    const musicUrl = getMusicUrl(musicId)
-    if (!audioRef.current) {
-      audioRef.current = new Audio(musicUrl)
-    } else {
-      audioRef.current.src = musicUrl
-      audioRef.current.pause()
-      audioRef.current.currentTime = 0
-    }
-
-    setAudio(audioRef.current)
-    audioRef.current.play()
-  }, [musicId])
+  const { musicId, music } = state
 
   const togglePlayStatus = () => {
-    if (isPlaying) {
-      audioRef.current?.pause()
+    if (audioInfo.state?.paused) {
+      audioInfo.controls?.play()
     } else {
-      audioRef.current?.play()
+      audioInfo.controls?.pause()
     }
-
-    dispatch({ type: ACTIONS.TOGGLE_PLAY_STATUS })
   }
 
   return (
     <div className={styles.root}>
       {musicId ? (
         <div className={styles.progressBar}>
-          <ProgressBar audio={audio} />
+          <ProgressBar />
         </div>
       ) : null}
 
@@ -64,7 +38,7 @@ const Footer = () => {
             <Artists artists={state?.music?.song?.artists} />
           </div>
           <div className={styles.time}>
-            <AudioTimer audio={audio} />
+            <AudioTimer />
           </div>
         </div>
       </div>
@@ -74,7 +48,7 @@ const Footer = () => {
           <Icon icon='step-backward' />
         </div>
         <div className={styles.pause} onClick={togglePlayStatus}>
-          <Icon icon={isPlaying ? 'pause' : 'play'} />
+          <Icon icon={audioInfo.state?.paused ? 'play' : 'pause'} />
         </div>
         <div className={styles.next}>
           <Icon icon='step-forward' />

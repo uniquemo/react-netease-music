@@ -6,7 +6,7 @@ import PlayIcon from 'components/PlayIcon'
 import Artists from 'components/Artists'
 import { IMusicSong } from 'apis/types/personalized'
 
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
 interface IProps {
@@ -20,6 +20,7 @@ interface IProps {
 const { useContext } = React
 
 const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others }) => {
+  const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
 
@@ -45,7 +46,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
       </div>
       {isMusicActive ? (
         <div className={styles.isPlaying}>
-          <Icon icon={state.isPlaying ? 'volume-up' : 'volume-off'} />
+          <Icon icon={audioInfo?.state?.paused ? 'volume-off' : 'volume-up'} />
         </div>
       ) : (
         <div className={styles.order}>

@@ -18,7 +18,7 @@ function Table<RecordType extends object = any>({ columns, data }: IProps<Record
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        {columns.map(({ title, key, width }, index) => {
+        {columns.map(({ title, width }, index) => {
           return <div key={index} style={{ width }}>{title}</div>
         })}
       </div>
@@ -26,7 +26,14 @@ function Table<RecordType extends object = any>({ columns, data }: IProps<Record
         {data?.map((item, index) => {
           return <div className={styles.row} key={index}>
             {columns.map(({ key, width, render }, idx) => {
-              return <div key={idx} style={{ width }}>{render(item[key], item, index)}</div>
+              return (
+                <div
+                  key={idx}
+                  style={{ width }}
+                >
+                  {render(item[key], item, index)}
+                </div>
+              )
             })}
           </div>
         })}

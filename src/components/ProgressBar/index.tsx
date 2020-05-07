@@ -1,66 +1,44 @@
 import React from 'react'
 
-import useInterval from 'hooks/useInterval'
 import { formatTime } from 'helpers/time'
+import { AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useState, useRef } = React
+const { useRef, useContext } = React
 
-interface IProps {
-  audio?: HTMLAudioElement
-}
-
-const ProgressBar: React.FC<IProps> = ({ audio }) => {
-  const [label, setLabel] = useState('')
-  const [donePercent, setDonePercent] = useState(0)
+const ProgressBar = () => {
+  const audioInfo = useContext(AudioContext)
   const barRef = useRef<HTMLDivElement | null>()
-
-  useInterval(() => {
-    const duration = audio?.duration
-    const currentTime = audio?.currentTime || 0
-    const percent = duration ? (currentTime / duration) : 0
-
-    setLabel(formatTime(audio?.currentTime))
-    setDonePercent(percent)
-  }, donePercent < 1 ? 500 : null)
 
   const getPercent = (event: React.MouseEvent<HTMLDivElement>) => {
     const clickX = event.pageX
-    const percent = barRef.current ? clickX / barRef.current.offsetWidth : 0
+    const percent = barRef.current
+      ? clickX / barRef.current.offsetWidth
+      : 0
+
     return percent
   }
 
   const handleBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const percent = getPercent(event)
-
-    // 修改audio的currentTime即可，百分比会在interval中自动重新计算
-    if (audio) {
-      audio.currentTime = audio.duration * percent
-    }
+    audioInfo.controls?.seek((audioInfo.state?.duration || 0) * percent)
   }
 
   // TODO: Fix Drag Interaction
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'link'
-
-    const percent = getPercent(event)
-    setDonePercent(percent)
   }
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault()
-
     const percent = getPercent(event)
-
-    if (audio) {
-      audio.currentTime = audio.duration * percent
-    }
+    audioInfo.controls?.seek((audioInfo.state?.duration || 0) * percent)
   }
 
-  if (!audio) {
-    return null
-  }
+  const donePercent = audioInfo.state?.duration
+    ? (audioInfo.state?.time / audioInfo.state.duration)
+    : 0
 
   return (
     <div
@@ -70,10 +48,15 @@ const ProgressBar: React.FC<IProps> = ({ audio }) => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
-      <div className={styles.doneWrap} style={{ width: `${donePercent * 100}%` }}>
+      <div
+        className={styles.doneWrap}
+        style={{ width: `${donePercent * 100}%` }}
+      >
         <div className={styles.done}></div>
         <div className={styles.controllDot} draggable>
-          <div className={styles.label}>{label}</div>
+          <div className={styles.label}>
+            {formatTime(audioInfo.state?.time)}
+          </div>
         </div>
       </div>
     </div>

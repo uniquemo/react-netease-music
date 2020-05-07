@@ -6,7 +6,7 @@ export default {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    // contentBase: './dist',
+    contentBase: './dist',
     historyApiFallback: true,
     hot: true
   }

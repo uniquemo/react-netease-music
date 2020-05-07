@@ -1,5 +1,7 @@
 import React from 'react'
 import { IMusic } from 'apis/types/personalized'
+import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
+import { getMusicUrl } from 'helpers/business'
 
 // Actions
 export interface IAction {
@@ -10,24 +12,22 @@ export interface IAction {
 }
 
 const PLAY: string = 'PLAY'
-const TOGGLE_PLAY_STATUS: string = 'TOGGLE_PLAY_STATUS'
 
 export const ACTIONS = {
-  PLAY,
-  TOGGLE_PLAY_STATUS
+  PLAY
 }
 
 
 // Reducer
 export interface IState {
   musicId: number,
-  isPlaying?: boolean,
-  music?: IMusic
+  musicUrl: string,
+  music?: IMusic,
 }
 
 export const initialState = {
   musicId: 0,
-  isPlaying: false
+  musicUrl: ''
 }
 
 const playMusicReducer = (state: IState, action: IAction) => {
@@ -36,14 +36,8 @@ const playMusicReducer = (state: IState, action: IAction) => {
       return {
         ...state,
         musicId: action?.payload?.musicId,
-        music: action?.payload?.music,
-        isPlaying: true
-      }
-    }
-    case ACTIONS.TOGGLE_PLAY_STATUS: {
-      return {
-        ...state,
-        isPlaying: !state.isPlaying
+        musicUrl: getMusicUrl(action?.payload?.musicId),
+        music: action?.payload?.music
       }
     }
     default:
@@ -53,7 +47,16 @@ const playMusicReducer = (state: IState, action: IAction) => {
 
 export default playMusicReducer
 
+export interface IAudioContext {
+  audio?: React.ReactElement<any> | undefined,
+  state?: HTMLMediaState,
+  controls?: HTMLMediaControls,
+  ref?: {
+    current: HTMLAudioElement | null
+  }
+}
 
 // Context
 export const PlayMusicStateContext = React.createContext<IState>(initialState)
 export const PlayMusicDispatchContext = React.createContext<React.Dispatch<IAction>>(() => {})
+export const AudioContext = React.createContext<IAudioContext>({})
