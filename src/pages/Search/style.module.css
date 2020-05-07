@@ -37,9 +37,13 @@
 
     .active {
       color: black;
+      font-weight: bold;
     }
   }
 }
 
 .content {
+  .spinner {
+    margin-top: 100px
+  }
 }

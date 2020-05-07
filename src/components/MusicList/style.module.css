@@ -1,5 +1,5 @@
 @value colors: "~styles/colors.module.css";
-@value tipsColor, tipsHoverColor from colors;
+@value tipsColor, tipsHoverColor, red from colors;
 
 .alias {
   margin-top: 10px;
@@ -8,6 +8,7 @@
 
 .operations {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-right: 10px;
   color: tipsColor;
@@ -16,6 +17,13 @@
     width: 40px;
     margin-right: 6px;
     text-align: right;
+  }
+
+  .isPlaying {
+    width: 44px;
+    margin-right: 0;
+    text-align: right;
+    color: red;
   }
 
   span:nth-child(2), span:nth-child(3) {

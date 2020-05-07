@@ -1,9 +1,9 @@
 import React from 'react'
 import { Icon, Tooltip } from '@blueprintjs/core'
 
-import ProgressBar from 'components/ProgressBar'
 import Artists from 'components/Artists'
-import AudioTimer from 'components/AudioTimer'
+import AudioTimer from './AudioTimer'
+import ProgressBar from './ProgressBar'
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 

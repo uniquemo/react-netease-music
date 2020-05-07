@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 
+import { noop } from 'helpers/fn'
 import styles from './style.module.css'
 
 export interface IColumn<RecordType, Key extends keyof RecordType> {
@@ -11,10 +12,15 @@ export interface IColumn<RecordType, Key extends keyof RecordType> {
 
 interface IProps<RecordType> {
   columns: IColumn<RecordType, keyof RecordType>[],
-  data: RecordType[]
+  data: RecordType[],
+  onDoubleClick?: (item: RecordType) => void
 }
 
-function Table<RecordType extends object = any>({ columns, data }: IProps<RecordType>) {
+function Table<RecordType extends object = any>({
+  columns,
+  data,
+  onDoubleClick = noop
+}: IProps<RecordType>) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
@@ -24,18 +30,17 @@ function Table<RecordType extends object = any>({ columns, data }: IProps<Record
       </div>
       <div className={styles.content}>
         {data?.map((item, index) => {
-          return <div className={styles.row} key={index}>
-            {columns.map(({ key, width, render }, idx) => {
-              return (
-                <div
-                  key={idx}
-                  style={{ width }}
-                >
-                  {render(item[key], item, index)}
-                </div>
-              )
-            })}
-          </div>
+          return (
+            <div className={styles.row} key={index} onDoubleClick={() => onDoubleClick(item)}>
+              {columns.map(({ key, width, render }, idx) => {
+                return (
+                  <div key={idx} style={{ width }}>
+                    {render(item[key], item, index)}
+                  </div>
+                )
+              })}
+            </div>
+          )
         })}
       </div>
     </div>

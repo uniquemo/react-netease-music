@@ -3,40 +3,53 @@ import React from 'react'
 import Item from './Item'
 import { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business'
 import { ISearchSuggestResponse } from 'apis/types/search'
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 
 import styles from './style.module.css'
+
+const { useContext } = React
 
 interface IProps {
   data: ISearchSuggestResponse
 }
 
-const config: {
-  [key: string]: any
-} = {
-  songs: {
-    title: '单曲',
-    icon: 'music',
-    renderLabel: (item: IMusic) => `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`
-  },
-  albums: {
-    title: '专辑',
-    icon: 'headset',
-    renderLabel: (item: IAlbum) => `${item.name} - ${item.artist.name}`
-  },
-  artists: {
-    title: '歌手',
-    icon: 'person',
-    renderLabel: (item: IArtist) => `${item.name}`
-  },
-  mvs: {
-    title: '视频',
-    icon: 'mobile-video',
-    renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`
-  }
-}
-
 const SearchResult: React.FC<IProps> = ({ data }) => {
+  const dispatch = useContext(PlayMusicDispatchContext)
   const { order } = data
+
+  const config: {
+    [key: string]: any
+  } = {
+    songs: {
+      title: '单曲',
+      icon: 'music',
+      renderLabel: (item: IMusic) => `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
+      onItemClick: (item: IMusic) => {
+        dispatch({
+          type: ACTIONS.PLAY,
+          payload: {
+            musicId: item.id,
+            music: item
+          }
+        })
+      }
+    },
+    albums: {
+      title: '专辑',
+      icon: 'headset',
+      renderLabel: (item: IAlbum) => `${item.name} - ${item.artist.name}`
+    },
+    artists: {
+      title: '歌手',
+      icon: 'person',
+      renderLabel: (item: IArtist) => `${item.name}`
+    },
+    mvs: {
+      title: '视频',
+      icon: 'mobile-video',
+      renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`
+    }
+  }
 
   return (
     <div>
