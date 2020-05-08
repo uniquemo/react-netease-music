@@ -1,4 +1,9 @@
 export const setSearchHistory = (keyword: string) => {
+  keyword = keyword.trim()
+  if (!keyword) {
+    return
+  }
+
   let data: string[] = getSearchHistory()
   data = data.slice(0, 10)
 

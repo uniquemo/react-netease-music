@@ -1,9 +1,11 @@
 import React from 'react'
 
 import Item from './Item'
+import albumApis from 'apis/album'
 import { IAlbum, IArtist, IMusic, IMV } from 'apis/types/business'
 import { ISearchSuggestResponse } from 'apis/types/search'
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { createMusic } from 'helpers/business'
 
 import styles from './style.module.css'
 
@@ -24,12 +26,23 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
       title: '单曲',
       icon: 'music',
       renderLabel: (item: IMusic) => `${item.name} - ${item.artists.map(({ name }) => name).join(' / ')}`,
-      onItemClick: (item: IMusic) => {
+      onItemClick: async (item: IMusic) => {
+        let { picUrl } = item
+
+        if (!picUrl) {
+          const result = await albumApis.getAlbum(item.album.id)
+          picUrl = result?.album.blurPicUrl
+        }
+
         dispatch({
           type: ACTIONS.PLAY,
           payload: {
             musicId: item.id,
-            music: item
+            music: createMusic({
+              ...item,
+              picUrl,
+              duration: item.duration / 1000
+            })
           }
         })
       }

@@ -40,10 +40,6 @@
   box-shadow: 0 0 5px #fff;
   background-color: #fff;
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translate(0, 0);
-  }
 }
 
 .show {
