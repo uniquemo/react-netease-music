@@ -34,3 +34,7 @@
     }
   }
 }
+
+.active {
+  color: red;
+}

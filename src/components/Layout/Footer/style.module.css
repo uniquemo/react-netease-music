@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
   background-color: #fff;
+  z-index: 10;
 }
 
 .progressBar {

@@ -14,14 +14,20 @@ export interface IArtist {
 
 export interface IAlbum {
   artist: IArtist,
-  copyrightId: number,
+  artists?: IArtist[],
+  blurPicUrl?: string,
+  copyrightId?: number,
+  description?: string,
   id: number,
   mark: number,
   name: string,
   picId: number,
+  picUrl: string,
   publishTime: number,
   size: number,
-  status: number
+  status: number,
+  subType: string,
+  type: string
 }
 
 export interface IMV {
@@ -50,5 +56,15 @@ export interface IMusic {
   mark?: number,
   mvid?: number,
   name: string,
-  status?: number
+  status?: number,
+  picUrl?: string
+}
+
+export interface IMyMusic {
+  id: number,
+  name: string,
+  artists: IArtist[],
+  duration: number,
+  picUrl?: string,
+  [key: string]: any
 }

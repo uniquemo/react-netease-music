@@ -1,9 +1,12 @@
 import React from 'react'
 import { Icon } from '@blueprintjs/core'
+import cn from 'classnames'
 
 import Table, { IColumn } from 'components/Table'
 import { IMusic, IArtist, IAlbum } from 'apis/types/business'
+import albumApis from 'apis/album'
 import { formatTime } from 'helpers/time'
+import { createMusic } from 'helpers/business'
 import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
@@ -45,10 +48,10 @@ const MusicList: React.FC<IProps> = ({ data }) => {
       title: '音乐标题',
       key: 'name',
       width: '45%',
-      render: (name: string, { alias }: IMusic) => {
+      render: (name: string, { alias, id }: IMusic) => {
         return (
           <>
-            <div>{name}</div>
+            <div className={cn(styles.name, state.musicId === id && styles.active)}>{name}</div>
             {alias?.length ? <div className={styles.alias}>{alias.join(' ')}</div> : null}
           </>
         )
@@ -74,12 +77,23 @@ const MusicList: React.FC<IProps> = ({ data }) => {
     }
   ]
 
-  const handleDoubleClick = (item: IMusic) => {
+  const handleDoubleClick = async (item: IMusic) => {
+    let { picUrl } = item
+
+    if (!picUrl) {
+      const result = await albumApis.getAlbum(item.album.id)
+      picUrl = result?.album.blurPicUrl
+    }
+
     dispatch({
       type: ACTIONS.PLAY,
       payload: {
         musicId: item.id,
-        music: item
+        music: createMusic({
+          ...item,
+          picUrl,
+          duration: item.duration / 1000
+        })
       }
     })
   }

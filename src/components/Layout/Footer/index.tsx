@@ -4,12 +4,15 @@ import { Icon, Tooltip } from '@blueprintjs/core'
 import Artists from 'components/Artists'
 import AudioTimer from './AudioTimer'
 import ProgressBar from './ProgressBar'
+import PlayRecord from './PlayRecord'
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useContext } = React
+const { useContext, useState } = React
 
 const Footer = () => {
+  const [showPlayRecord, setShowPlayRecord] = useState(false)
+
   const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
   const { musicId, music } = state
@@ -21,6 +24,8 @@ const Footer = () => {
       audioInfo.controls?.pause()
     }
   }
+
+  const togglePlayRecord = () => setShowPlayRecord(!showPlayRecord)
 
   return (
     <div className={styles.root}>
@@ -35,7 +40,7 @@ const Footer = () => {
         <div>
           <div className={styles.info}>
             <div className={styles.name}>{`${music?.name || '--'} -`}</div>
-            <Artists artists={state?.music?.song?.artists} />
+            <Artists artists={state?.music?.artists} />
           </div>
           <div className={styles.time}>
             <AudioTimer />
@@ -61,9 +66,9 @@ const Footer = () => {
             <Icon icon='swap-horizontal' />
           </Tooltip>
         </div>
-        <div>
+        <div onClick={togglePlayRecord}>
           <Tooltip content='打开播放列表'>
-            <Icon icon='menu-closed' />
+            <Icon icon='menu-closed' className={showPlayRecord ? 'active': ''} />
           </Tooltip>
         </div>
         <div>
@@ -73,6 +78,11 @@ const Footer = () => {
         </div>
         <div><Icon icon='volume-off' /></div>
       </div>
+
+      <PlayRecord
+        show={showPlayRecord}
+        onClickAway={() => setShowPlayRecord(false)}
+      />
     </div>
   )
 }

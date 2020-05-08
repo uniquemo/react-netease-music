@@ -7,6 +7,7 @@ import Artists from 'components/Artists'
 import { IMusicSong } from 'apis/types/personalized'
 
 import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext } from 'reducers/playMusic'
+import { createMusic } from 'helpers/business'
 import styles from './style.module.css'
 
 interface IProps {
@@ -31,7 +32,14 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
       type: ACTIONS.PLAY,
       payload: {
         musicId: id,
-        music: { id, name, picUrl, song, ...others }
+        music: createMusic({
+          id,
+          name,
+          picUrl,
+          artists: song.artists,
+          duration: song.duration / 1000,
+          ...others
+        })
       }
     })
   }

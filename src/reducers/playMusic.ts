@@ -1,7 +1,8 @@
 import React from 'react'
-import { IMusic } from 'apis/types/personalized'
+import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
+import { setPlayHistory } from 'helpers/play'
 
 // Actions
 export interface IAction {
@@ -22,7 +23,7 @@ export const ACTIONS = {
 export interface IState {
   musicId: number,
   musicUrl: string,
-  music?: IMusic,
+  music?: IMyMusic
 }
 
 export const initialState = {
@@ -33,6 +34,10 @@ export const initialState = {
 const playMusicReducer = (state: IState, action: IAction) => {
   switch (action.type) {
     case ACTIONS.PLAY: {
+      if (!action.payload?.keepOrder) {
+        setPlayHistory(action?.payload?.music)
+      }
+
       return {
         ...state,
         musicId: action?.payload?.musicId,

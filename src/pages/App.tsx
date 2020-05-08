@@ -21,8 +21,6 @@ const App = () => {
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
   const [audio, audioState, audioControls, audioRef] = useAudio({ src: state.musicUrl, autoPlay: true })
 
-  console.log('state => ', state)
-
   const audioInfo = useMemo(() => {
     return {
       audio,

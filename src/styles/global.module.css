@@ -25,3 +25,7 @@ button {
 :global(.error) {
   color: red;
 }
+
+:global(.active) {
+  color: red;
+}

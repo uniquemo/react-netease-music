@@ -11,38 +11,46 @@ export interface IColumn<RecordType, Key extends keyof RecordType> {
 }
 
 interface IProps<RecordType> {
+  showHeader?: boolean,
   columns: IColumn<RecordType, keyof RecordType>[],
   data: RecordType[],
   onDoubleClick?: (item: RecordType) => void
 }
 
 function Table<RecordType extends object = any>({
+  showHeader = true,
   columns,
   data,
   onDoubleClick = noop
 }: IProps<RecordType>) {
   return (
     <div className={styles.root}>
-      <div className={styles.header}>
+      {showHeader && <div className={styles.header}>
         {columns.map(({ title, width }, index) => {
           return <div key={index} style={{ width }}>{title}</div>
         })}
-      </div>
-      <div className={styles.content}>
-        {data?.map((item, index) => {
-          return (
-            <div className={styles.row} key={index} onDoubleClick={() => onDoubleClick(item)}>
-              {columns.map(({ key, width, render }, idx) => {
-                return (
-                  <div key={idx} style={{ width }}>
-                    {render(item[key], item, index)}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
+      </div>}
+      {
+        data?.length ? (
+          <div className={styles.content}>
+            {data?.map((item, index) => {
+              return (
+                <div className={styles.row} key={index} onDoubleClick={() => onDoubleClick(item)}>
+                  {columns.map(({ key, width, render }, idx) => {
+                    return (
+                      <div key={idx} style={{ width }}>
+                        {render(item[key], item, index)}
+                      </div>
+                    )
+                  })}
+                </div>
+              )
+            })}
+          </div>
+        ) : (
+          <div className={styles.empty}>暂无数据喔</div>
+        )
+      }
     </div>
   )
 }
