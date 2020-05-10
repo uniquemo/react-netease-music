@@ -11,23 +11,24 @@ import styles from './style.module.css'
 
 const { useEffect } = React
 
-const SongList = () => {
-  const [state, personalizedSongListFn] = useAsyncFn(personalizedApis.getPersonalizedSongList)
-  const { value: songList = [], loading: isGettingSongList } = state || {}
+const Songlist = () => {
+  const [state, personalizedSonglistFn] = useAsyncFn(personalizedApis.getPersonalizedSonglist)
+  const { value: songlist = [], loading: isGettingSonglist } = state || {}
 
   useEffect(() => {
-    personalizedSongListFn({ limit: 10 })
+    personalizedSonglistFn({ limit: 10 })
   }, [])
 
   return (
     <div className={styles.root}>
       <LinkTitle title='推荐歌单' route={ROUTES.SONG_LIST} />
-      {isGettingSongList ? <Spinner /> : (
+      {isGettingSonglist ? <Spinner /> : (
         <div className={styles.songsWrap}>
-          {songList.map(({ name, playCount, picUrl }, index) => {
+          {songlist.map(({ id, name, playCount, picUrl }, index) => {
             return (
               <SongItem
                 key={index}
+                id={id}
                 name={name}
                 playCount={playCount}
                 picUrl={picUrl}
@@ -40,4 +41,4 @@ const SongList = () => {
   )
 }
 
-export default SongList
+export default Songlist

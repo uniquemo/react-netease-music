@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SongList = () => {
+const Songlist = () => {
   return (
-    <div>SongList</div>
+    <div>Songlist</div>
   )
 }
 
-export default SongList
+export default Songlist

@@ -68,3 +68,52 @@ export interface IMyMusic {
   picUrl?: string,
   [key: string]: any
 }
+
+export interface ISonglist {
+  adType: number,
+  backgroundCoverId: number,
+  cloudTrackCount: number,
+  commentCount: number,
+  coverImgUrl: string,
+  createTime: number,
+  creator: {
+    avatarUrl: string,
+    nickname: string,
+  },
+  description: string,
+  highQuality: boolean,
+  id: number,
+  name: string,
+  newImported: boolean,
+  opRecommend: boolean,
+  ordered: boolean,
+  playCount: number,
+  privacy: number,
+  shareCount: number,
+  specialType: number,
+  status: number,
+  subscribed: boolean,
+  subscribedCount: number,
+  subscribers: [],
+  tags: string[],
+  trackCount: number,
+  trackIds: [],
+  trackNumberUpdateTime: number,
+  trackUpdateTime: number,
+  tracks: ITrackMusic[],
+  updateTime: number,
+  userId: number
+}
+
+export interface ITrackMusic {
+  al: {
+    id: number,
+    name: string,
+    picUrl: string
+  },
+  ar: IArtist[],
+  dt: number,
+  id: number,
+  name: string,
+  publishTime: number
+}

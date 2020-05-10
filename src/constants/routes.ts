@@ -13,6 +13,9 @@ const MV: string = `${VIDEOS}/mv`
 
 const SEARCH: string = '/search'
 
+const SONG_LISTS: string = '/songlists'
+const SONG_LIST_DETAIL: string = `${SONG_LISTS}/:id`
+
 const DOWNLOAD: string = '/download'
 const CLOUD: string = '/cloud'
 const COLLECTION: string = '/collection'
@@ -32,6 +35,8 @@ const ROUTES = {
   VIDEO,
   MV,
   SEARCH,
+  SONG_LISTS,
+  SONG_LIST_DETAIL,
   DOWNLOAD,
   CLOUD,
   COLLECTION

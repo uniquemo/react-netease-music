@@ -1,10 +1,10 @@
 import { IArtist } from './business'
 
-export interface IGetPersonalizedSongListRequest {
+export interface IGetPersonalizedSonglistRequest {
   limit?: number
 }
 
-export interface ISongList {
+export interface ISonglist {
   alg: string,
   canDislike: boolean,
   copywriter: string,

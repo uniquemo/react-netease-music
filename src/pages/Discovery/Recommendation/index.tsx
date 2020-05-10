@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from './Banner'
-import SongList from './SongList'
+import Songlist from './Songlist'
 import LatestMusic from './LatestMusic'
 import MV from './MV'
 
@@ -12,7 +12,7 @@ const Recommendation = () => {
       <Banner />
 
       <div className={styles.block}>
-        <SongList />
+        <Songlist />
       </div>
 
       <div className={styles.block}>

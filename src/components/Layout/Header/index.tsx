@@ -34,7 +34,9 @@ const Header = () => {
       </div>
 
       <div className={styles.content}>
-        <Navbar />
+        <div>
+          <Navbar />
+        </div>
         <div>
           <Searcher />
         </div>

@@ -1,0 +1,97 @@
+@value colors: "~styles/colors.module.css";
+@value red, grey, nameColor from colors;
+
+.root {
+  display: flex;
+  padding: 15px 30px 30px;
+}
+
+.pic {
+  width: 200px;
+  height: 200px;
+  margin-right: 30px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.info {
+  flex: 1;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    .tag {
+      padding: 1px 4px;
+      margin-right: 10px;
+      border: 1px solid red;
+      border-radius: 3px;
+      color: red;
+      font-size: 0.95em;
+    }
+
+    .name {
+      font-size: 1.5em;
+    }
+  }
+
+  .creator {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    color: grey;
+
+    .avatar {
+      width: 25px;
+      height: 25px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.5);
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .name {
+      color: #769acb;
+      margin-right: 10px;
+    }
+  }
+
+  .operations {
+    display: flex;
+    margin-bottom: 15px;
+
+    .btn {
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.95em;
+      color: #fff;
+      background-color: #f43;
+      cursor: pointer;
+
+      &:hover {
+        background-color: red;
+      }
+    }
+  }
+
+  .detail {
+    font-size: 0.9em;
+    color: grey;
+
+    .label {
+      color: nameColor;
+    }
+
+    div {
+      margin-bottom: 8px;
+    }
+
+    div:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

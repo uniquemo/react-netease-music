@@ -44,7 +44,12 @@ const Navbar = () => {
   const history = useHistory()
   const { pathname } = useLocation()
 
-  const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key)) || ROUTES.DISCOVERY
+  const matchPathPrefix = Object.keys(NAVBAR).find((key) => pathname.startsWith(key))
+
+  if (!matchPathPrefix) {
+    return null
+  }
+
   const items = NAVBAR[matchPathPrefix]
 
   const hasMatchRoute = items.find(({ route }) => route === pathname)

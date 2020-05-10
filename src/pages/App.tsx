@@ -5,6 +5,7 @@ import Layout from 'components/Layout'
 import Discovery from './Discovery'
 import Videos from './Videos'
 import Search from './Search'
+import SonglistDetail from './SonglistDetail'
 
 import useAudio from 'hooks/useAudio'
 import ROUTES from 'constants/routes'
@@ -41,6 +42,7 @@ const App = () => {
                 <Route path={ROUTES.DISCOVERY} component={Discovery} />
                 <Route path={ROUTES.VIDEOS} component={Videos} />
                 <Route exact path={ROUTES.SEARCH} component={Search} />
+                <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
                 <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
               </Switch>
             </Layout>

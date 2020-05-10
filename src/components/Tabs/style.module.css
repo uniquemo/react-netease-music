@@ -1,0 +1,28 @@
+@value colors: "~styles/colors.module.css";
+@value nameColor, nameHoverColor, red, borderColor from colors;
+
+.root {
+  display: flex;
+  border-bottom: 1px solid borderColor;
+}
+
+.tab {
+  margin-right: 30px;
+  margin-bottom: -1px;
+  padding-bottom: 5px;
+  cursor: default;
+  color: nameColor;
+
+  &:hover {
+    color: nameHoverColor;
+  }
+}
+
+.active {
+  border-bottom: 2px solid red;
+  color: red;
+
+  &:hover {
+    color: red;
+  }
+}

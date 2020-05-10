@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Recommendation from './Recommendation'
-import SongList from './SongList'
+import Songlist from './Songlist'
 import LeaderBoard from './LeaderBoard'
 import Singers from './Singers'
 import LatestMusic from './LatestMusic'
@@ -15,7 +15,7 @@ const Discovery = () => {
     <div className={styles.root}>
       <Switch>
         <Route exact path={ROUTES.RECOMMENDATION} component={Recommendation} />
-        <Route exact path={ROUTES.SONG_LIST} component={SongList} />
+        <Route exact path={ROUTES.SONG_LIST} component={Songlist} />
         <Route exact path={ROUTES.LEADER_BOARD} component={LeaderBoard} />
         <Route exact path={ROUTES.SINGERS} component={Singers} />
         <Route exact path={ROUTES.LATEST_MUSIC} component={LatestMusic} />
