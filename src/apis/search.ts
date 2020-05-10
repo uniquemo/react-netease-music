@@ -1,5 +1,6 @@
 import axios from 'helpers/axios'
 import { ISearchHot, ISearchSuggestRequest, ISearchSuggestResponse, ISearchRequest, SEARCH_TYPE } from './types/search'
+import { PAGE_SIZE } from 'constants/pagination'
 
 type SearchHotFn = () => Promise<ISearchHot[]>
 type SearchSuggestFn = (params: ISearchSuggestRequest) => Promise<ISearchSuggestResponse>
@@ -26,7 +27,7 @@ const searchSuggest: SearchSuggestFn = async ({ keywords }) => {
   return response.result
 }
 
-const search: SearchFn = async ({ keywords, type = SEARCH_TYPE.MUSIC, limit = 30, offset = 0 }) => {
+const search: SearchFn = async ({ keywords, type = SEARCH_TYPE.MUSIC, limit = PAGE_SIZE, offset = 0 }) => {
   const response = await axios({
     method: 'get',
     url: '/search',

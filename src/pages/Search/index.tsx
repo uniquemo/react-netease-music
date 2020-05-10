@@ -2,12 +2,14 @@ import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
-import MusicList from './MusicList'
+import MusicList from 'components/MusicList'
+import Pagination from 'components/Pagination'
 
 import useQuery from 'hooks/useQuery'
 import useAsyncFn from 'hooks/useAsyncFn'
 import searchApis from 'apis/search'
 import { SEARCH_TYPE } from 'apis/types/search'
+import { PAGE_SIZE, PAGE } from 'constants/pagination'
 import styles from './style.module.css'
 
 const { useEffect, useState } = React
@@ -60,6 +62,7 @@ const TABS: IDictionary<ITab> = {
 
 const Search = () => {
   const { keyword } = useQuery()
+  const [page, setPage] = useState(PAGE)
   const [activeTab, setActiveTab] = useState(TABS.MUSIC.tabKey)
   const { unit, key, tab, searchType } = TABS[activeTab]
 
@@ -77,12 +80,23 @@ const Search = () => {
     searchFn({ keywords: keyword, type: searchType })
   }
 
+  const handlePageChange = (page: number) => {
+    setPage(page)
+    searchFn({
+      keywords: keyword,
+      type: searchType,
+      offset: (page - 1) * PAGE_SIZE
+    })
+  }
+
+  const total = result?.[`${key}Count`] || 0
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
         <div className={styles.title}>
           <span className={styles.keyword}>{keyword}</span>
-          <span className={styles.count}>找到 {result?.[`${key}Count`] || 0} {unit}{tab}</span>
+          <span className={styles.count}>找到 {total} {unit}{tab}</span>
         </div>
         <div className={styles.tabs}>
           {Object.keys(TABS).map(key => {
@@ -101,12 +115,21 @@ const Search = () => {
 
       <div className={styles.content}>
         {loading ? <Spinner className={styles.spinner} /> : (
-          activeTab === TABS.MUSIC.tabKey && (
-            <MusicList
-              data={result?.songs}
-              total={result?.songCount}
-            />
-          )
+          <div>
+            {activeTab === TABS.MUSIC.tabKey && (
+              <MusicList
+                data={result?.songs}
+              />
+            )}
+
+            <div className='pagination'>
+              <Pagination
+                page={page}
+                total={total}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>

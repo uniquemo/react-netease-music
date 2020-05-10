@@ -50,7 +50,7 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
     albums: {
       title: '专辑',
       icon: 'headset',
-      renderLabel: (item: IAlbum) => `${item.name} - ${item.artist.name}`
+      renderLabel: (item: IAlbum) => `${item.name} - ${item?.artist?.name}`
     },
     artists: {
       title: '歌手',

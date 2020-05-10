@@ -1,0 +1,43 @@
+@value colors: "~styles/colors.module.css";
+@value red, tipsColor, nameColor, bgColor from colors;
+
+.root {
+  display: flex;
+  font-size: 0.9em;
+}
+
+.pages {
+  display: flex;
+}
+
+.item {
+  padding: 5px 0;
+  width: 30px;
+  margin-right: 3px;
+  border-radius: 3px;
+  border: 1px solid tipsColor;
+  color: nameColor;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: bgColor;
+  }
+}
+
+.active {
+  border: 1px solid red;
+  background-color: red;
+  color: #fff;
+  &:hover {
+    background-color: red;
+  }
+}
+
+.disabled {
+  color: tipsColor;
+  cursor: default;
+  &:hover {
+    background-color: #fff;
+  }
+}

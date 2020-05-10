@@ -2,6 +2,8 @@
 @value borderColor, nameColor, nameHoverColor, tipsHoverColor from colors;
 
 .root {
+  height: 100%;
+  overflow: hidden;
 }
 
 .header {
@@ -43,6 +45,9 @@
 }
 
 .content {
+  height: calc(100% - 96px);
+  overflow: scroll;
+
   .spinner {
     margin-top: 100px
   }

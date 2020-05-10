@@ -19,7 +19,8 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
       name: item.name,
       picUrl: item.al.picUrl,
       artists: item.ar,
-      duration: item.dt
+      duration: item.dt,
+      album: item.al
     })
   })
 

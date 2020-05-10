@@ -39,3 +39,9 @@ button {
 :global(.spinner) {
   margin-top: 100px
 }
+
+:global(.pagination) {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
