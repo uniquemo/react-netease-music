@@ -7,7 +7,7 @@ import { PAGE, PAGE_SIZE, TOTAL } from 'constants/pagination'
 import styles from './style.module.css'
 
 interface IProps {
-  total: number,
+  total?: number,
   page?: number,
   pageSize?: number,
   onPageChange: (page: number) => void

@@ -12,7 +12,7 @@ interface IProps {
 const BannerItem: React.FC<IProps> = ({ typeTitle, imageUrl, className }) => {
   return (
     <div className={cn(styles.root, className)}>
-      <img src={imageUrl} />
+      <img src={imageUrl} loading='lazy' />
       <div className={styles.type}>
         {typeTitle}
       </div>

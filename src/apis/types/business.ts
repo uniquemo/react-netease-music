@@ -76,7 +76,9 @@ export interface ISonglist {
   cloudTrackCount: number,
   commentCount: number,
   coverImgUrl: string,
+  picUrl?: string,
   createTime: number,
+  copywriter?: string,
   creator: {
     avatarUrl: string,
     nickname: string,

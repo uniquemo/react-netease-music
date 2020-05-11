@@ -2,7 +2,7 @@ import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 
 import LinkTitle from 'components/LinkTitle'
-import SongItem from './SongItem'
+import Songlists from 'components/Songlists'
 
 import ROUTES from 'constants/routes'
 import useAsyncFn from 'hooks/useAsyncFn'
@@ -22,21 +22,7 @@ const Songlist = () => {
   return (
     <div className={styles.root}>
       <LinkTitle title='推荐歌单' route={ROUTES.SONG_LIST} />
-      {isGettingSonglist ? <Spinner /> : (
-        <div className={styles.songsWrap}>
-          {songlist.map(({ id, name, playCount, picUrl }, index) => {
-            return (
-              <SongItem
-                key={index}
-                id={id}
-                name={name}
-                playCount={playCount}
-                picUrl={picUrl}
-              />
-            )
-          })}
-        </div>
-      )}
+      {isGettingSonglist ? <Spinner /> : <Songlists data={songlist} />}
     </div>
   )
 }

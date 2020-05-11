@@ -13,7 +13,7 @@ interface IProps {
   picUrl?: string
 }
 
-const SongItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
+const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   const history = useHistory()
 
   const handleItemClick = () => {
@@ -23,7 +23,7 @@ const SongItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   return (
     <div className={styles.root} onClick={handleItemClick}>
       <div className={styles.cover}>
-        {picUrl && <img src={picUrl} />}
+        {picUrl && <img src={picUrl} loading='lazy' />}
         <PlayCount count={playCount} className={styles.playCount} />
         <PlayIcon className={styles.playIcon} />
       </div>
@@ -32,4 +32,4 @@ const SongItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   )
 }
 
-export default SongItem
+export default SonglistItem

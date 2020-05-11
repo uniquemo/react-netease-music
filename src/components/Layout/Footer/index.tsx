@@ -36,7 +36,7 @@ const Footer = () => {
       ) : null}
 
       <div className={styles.songWrap}>
-        <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} />
+        <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
         <div>
           <div className={styles.info}>
             <div className={styles.name}>{`${music?.name || '--'} -`}</div>

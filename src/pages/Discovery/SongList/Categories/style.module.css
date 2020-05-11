@@ -1,0 +1,73 @@
+@value colors: "~styles/colors.module.css";
+@value nameColor, nameHoverColor, red, borderColor, tipsColor from colors;
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cats {
+  .catsBtn {
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 20px;
+    border: 1px solid tipsColor;
+    font-size: 0.95em;
+    &:hover {
+      background-color: borderColor;
+    }
+  }
+}
+
+.popover {
+  width: 500px;
+  padding: 15px 20px 10px;
+
+  .all {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid borderColor;
+    cursor: default;
+
+    span:hover {
+      color: red;
+    }
+  }
+
+  .catBlock {
+    display: flex;
+    margin-bottom: 30px;
+
+    .label {
+      width: 50px;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+  }
+}
+
+.hotCats {
+  display: flex;
+}
+
+.tag {
+  margin: 0 10px 5px 0;
+  padding: 2px 10px;
+  border-radius: 20px;
+  cursor: default;
+  color: nameColor;
+  font-size: 0.9em;
+  &:hover {
+    color: nameHoverColor;
+  }
+}
+
+.active, .active:hover {
+  color: red;
+  background-color: #fdf5f4;
+}

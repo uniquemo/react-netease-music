@@ -1,5 +1,6 @@
 import axios from 'helpers/axios'
-import { IGetPersonalizedSonglistRequest, ISonglist, IMusic, IMV, IBanner } from './types/personalized'
+import { IGetPersonalizedSonglistRequest, IMusic, IMV, IBanner } from './types/personalized'
+import { ISonglist } from './types/business'
 
 type GetPersonalizedSonglistFn = (params: IGetPersonalizedSonglistRequest) => Promise<ISonglist[]>
 type GetPersonalizedNewMusicFn = () => Promise<IMusic[]>

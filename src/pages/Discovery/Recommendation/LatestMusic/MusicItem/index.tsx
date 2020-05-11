@@ -49,7 +49,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
   return (
     <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
       <div className={styles.pic} onClick={() => playMusic(id)}>
-        <img src={`${picUrl}?param=60y60`} />
+        <img src={`${picUrl}?param=60y60`} loading='lazy' />
         <PlayIcon className={styles.playIcon} />
       </div>
       {isMusicActive ? (

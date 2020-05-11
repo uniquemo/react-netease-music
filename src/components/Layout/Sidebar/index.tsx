@@ -28,7 +28,7 @@ const Sidebar = () => {
     <div className={styles.root}>
       <div className={styles.user}>
         <div className={styles.avatar}>
-          {isLogged ? <img src={session.profile.avatarUrl} /> : <Icon icon='person' />}
+          {isLogged ? <img src={session.profile.avatarUrl} loading='lazy' /> : <Icon icon='person' />}
         </div>
         {isLogged ? (
           <Popover

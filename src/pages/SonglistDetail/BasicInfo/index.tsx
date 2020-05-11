@@ -13,7 +13,7 @@ const BasicInfo: React.FC<IProps> = ({ data }) => {
   return (
     <div className={styles.root}>
       <div className={styles.pic}>
-        {data?.coverImgUrl && <img src={data?.coverImgUrl} className='cover' />}
+        {data?.coverImgUrl && <img src={data?.coverImgUrl} className='cover' loading='lazy' />}
       </div>
 
       <div className={styles.info}>
@@ -24,7 +24,7 @@ const BasicInfo: React.FC<IProps> = ({ data }) => {
 
         <div className={styles.creator}>
           <div className={styles.avatar}>
-            {data?.creator?.avatarUrl && <img src={`${data?.creator?.avatarUrl}?param=25y25`} />}
+            {data?.creator?.avatarUrl && <img src={`${data?.creator?.avatarUrl}?param=25y25`} loading='lazy' />}
           </div>
           <div className={styles.name}>{data?.creator.nickname}</div>
           <div>{formatDatetime(data?.createTime)}创建</div>
