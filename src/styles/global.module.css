@@ -23,11 +23,11 @@ button {
 
 /* 设置全局样式 */
 :global(.error) {
-  color: red;
+  color: red !important;
 }
 
 :global(.active) {
-  color: red;
+  color: red !important;
 }
 
 :global(.cover) {

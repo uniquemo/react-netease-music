@@ -1,0 +1,59 @@
+@value colors: "~styles/colors.module.css";
+@value borderColor, tipsHoverColor, nameHoverColor from colors;
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 0.95em;
+  color: tipsHoverColor;
+  cursor: default;
+
+  &:nth-child(2n + 1) {
+    background-color: borderColor;
+  }
+}
+
+.index {
+  width: 60px;
+  padding-right: 20px;
+  text-align: right;
+}
+
+.musicInfo {
+  width: 45%;
+  display: flex;
+  align-items: center;
+
+  .name {
+    color: nameHoverColor;
+  }
+
+  .pic {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  .playIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.artists {
+  width: 17%;
+}
+
+.album {
+  width: 22%;
+}
+
+.duration {
+  width: 8%;
+}

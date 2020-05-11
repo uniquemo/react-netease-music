@@ -1,0 +1,40 @@
+@value colors: "~styles/colors.module.css";
+@value nameColor, nameHoverColor, red from colors;
+
+.root {
+  padding: 20px 0 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  .playAll {
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: #f33;
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: red;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+
+  .tab {
+    margin-right: 25px;
+    color: nameColor;
+    cursor: default;
+    &:hover {
+      color: nameHoverColor;
+    }
+  }
+
+  .active, .active:hover {
+    color: red;
+  }
+}
