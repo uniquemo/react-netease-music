@@ -3,13 +3,14 @@ import { Dialog, InputGroup, Button, IDialogProps } from '@blueprintjs/core'
 
 import authApis from 'apis/auth'
 import useAsyncFn from 'hooks/useAsyncFn'
-import { setSession } from 'helpers/session'
 import { noop } from 'helpers/fn'
+import { LogDispatchContext, ACTIONS } from 'reducers/log'
 import styles from './style.module.css'
 
-const { useState } = React
+const { useState, useContext } = React
 
 const LoginDialog: React.FC<IDialogProps> = ({ isOpen, onClose = noop }) => {
+  const dispatch = useContext(LogDispatchContext)
   const [phone, setPhone] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [loginState, loginFn] = useAsyncFn(authApis.login)
@@ -18,7 +19,15 @@ const LoginDialog: React.FC<IDialogProps> = ({ isOpen, onClose = noop }) => {
   const handleLogin = async () => {
     const result = await loginFn({ phone, password })
     if (result) {
-      setSession({ ...result, userId: result.profile.userId })
+      dispatch({
+        type: ACTIONS.LOGIN,
+        payload: {
+          user: {
+            ...result,
+            userId: result.profile.userId
+          }
+        }
+      })
       onClose()
     }
   }

@@ -6,8 +6,8 @@ import songApis from 'apis/song'
 import useAsyncFn from 'hooks/useAsyncFn'
 import { getDay, getWeekday } from 'helpers/time'
 import { createMusic } from 'helpers/business'
-import { getSession } from 'helpers/session'
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { LogStateContext } from 'reducers/log'
 import { IMusic } from 'apis/types/business'
 import styles from './style.module.css'
 
@@ -15,9 +15,10 @@ const { useEffect, useContext } = React
 
 const RecommendDaily = () => {
   const dispatch = useContext(PlayMusicDispatchContext)
+  const logState = useContext(LogStateContext)
+
   const [state, getRecommendSongsFn] = useAsyncFn(songApis.getRecommendSongs)
-  const session = getSession()
-  const isLogined = !!session.userId
+  const { isLogined } = logState
 
   useEffect(() => {
     if (isLogined) {

@@ -4,13 +4,9 @@ import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHo
 import { getMusicUrl } from 'helpers/business'
 import { setPlayList, removePlayList } from 'helpers/play'
 import { setPlayHistory } from 'helpers/play'
+import { IAction } from './types'
 
 // Actions
-export interface IAction {
-  type: string,
-  payload?: IDictionary<any>
-}
-
 const PLAY: string = 'PLAY'
 const SET_PLAY_LIST: string = 'SET_PLAY_LIST'
 const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'

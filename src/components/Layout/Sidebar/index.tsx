@@ -3,34 +3,35 @@ import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
 
 import Menus from './Menus'
 import LoginDialog from './LoginDialog'
-import { getSession, removeSession } from 'helpers/session'
 import authApis from 'apis/auth'
 import useAsyncFn from 'hooks/useAsyncFn'
+import { LogStateContext, LogDispatchContext, ACTIONS } from 'reducers/log'
 import styles from './style.module.css'
 
-const { useState } = React
+const { useState, useContext } = React
 
 const Sidebar = () => {
-  const session = getSession()
-  const isLogged = session && session.userId
+  const dispatch = useContext(LogDispatchContext)
+  const logState = useContext(LogStateContext)
+  const { isLogined, user } = logState
   const [showLoginDialog, setShowLoginDialog] = useState(false)
   const [logoutState, logoutFn] = useAsyncFn(authApis.logout)
 
   const handleNameClick = () => setShowLoginDialog(true)
   const handleLoginDialogClose = () => setShowLoginDialog(false)
+
   const handleLogout = async () => {
-    // TODO: should removeSession after logoutFn()
-    removeSession()
     await logoutFn()
+    dispatch({ type: ACTIONS.LOGOUT })
   }
 
   return (
     <div className={styles.root}>
       <div className={styles.user}>
         <div className={styles.avatar}>
-          {isLogged ? <img src={session.profile.avatarUrl} loading='lazy' /> : <Icon icon='person' />}
+          {isLogined ? <img src={user.profile.avatarUrl} loading='lazy' /> : <Icon icon='person' />}
         </div>
-        {isLogged ? (
+        {isLogined ? (
           <Popover
             content={(
               <Menu>
@@ -40,7 +41,7 @@ const Sidebar = () => {
             interactionKind='hover'
           >
             <div className={styles.name}>
-              <span>{session.profile.nickname}</span>
+              <span>{user.profile.nickname}</span>
               <Icon icon='play' />
             </div>
           </Popover>

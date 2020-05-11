@@ -5,6 +5,7 @@ export interface ILoginRequest {
 
 export interface ILoginResult {
   token: string,
+  userId: number,
   profile: {
     userId: number,
     vipType: number,
