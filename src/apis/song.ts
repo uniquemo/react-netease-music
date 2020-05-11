@@ -1,5 +1,5 @@
 import axios from 'helpers/axios'
-import { IMyMusic } from 'apis/types/business'
+import { IMyMusic, IMusic } from 'apis/types/business'
 
 export enum SONG_TYPE {
   ALL = 0,
@@ -11,6 +11,7 @@ export enum SONG_TYPE {
 
 type GetSongDetailFn = (ids: number[]) => Promise<any>
 type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>
+type GetRecommendSongsFn = () => Promise<IMusic[]>
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
@@ -36,7 +37,17 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
   return response.data
 }
 
+const getRecommendSongs: GetRecommendSongsFn = async () => {
+  const response = await axios({
+    method: 'get',
+    url: '/recommend/songs'
+  })
+
+  return response.recommend
+}
+
 export default {
   getSongDetail,
-  getTopSongs
+  getTopSongs,
+  getRecommendSongs
 }

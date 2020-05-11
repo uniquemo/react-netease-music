@@ -46,7 +46,7 @@ export interface IMV {
 
 export interface IMusic {
   album: IAlbum,
-  alias: string[],
+  alias?: string[],
   artists: IArtist[],
   copyrightId?: number,
   duration: number,

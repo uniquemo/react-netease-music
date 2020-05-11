@@ -45,3 +45,14 @@ button {
   display: flex;
   justify-content: center;
 }
+
+:global(.playAll) {
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-color: #f53;
+  color: #fff;
+  cursor: pointer;
+}
+:global(.playAll:hover) {
+  background-color: red;
+}

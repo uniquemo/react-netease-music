@@ -14,6 +14,7 @@ const myAxios = ({
     method,
     params,
     data,
+    withCredentials: true,
     ...others
   }).then(result => {
     // console.log('axios origin result => ', result)

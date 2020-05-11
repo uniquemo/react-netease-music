@@ -6,6 +6,7 @@ const SONG_LIST: string = `${DISCOVERY}/songlist`
 const LEADER_BOARD: string = `${DISCOVERY}/leaderboard`
 const SINGERS: string = `${DISCOVERY}/singers`
 const LATEST_MUSIC: string = `${DISCOVERY}/latestmusic`
+const RECOMMEND_DAILY: string = `${DISCOVERY}/recommend_daily`
 
 const VIDEOS: string = '/videos'
 const VIDEO: string = `${VIDEOS}/video`
@@ -31,6 +32,7 @@ const ROUTES = {
   LEADER_BOARD,
   SINGERS,
   LATEST_MUSIC,
+  RECOMMEND_DAILY,
   VIDEOS,
   VIDEO,
   MV,

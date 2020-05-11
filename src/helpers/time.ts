@@ -30,3 +30,14 @@ export const formatDatetime = (t?: string | number, detailed?: boolean) => {
     ? `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`
     : `${year}-${month}-${date}`
 }
+
+export const getDay = (t: number = Date.now()) => {
+  const time = new Date(t || 0)
+  return formatNum(time.getDate())
+}
+
+export const DAYS = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+export const getWeekday = (t: number = Date.now()) => {
+  const time = new Date(t || 0)
+  return DAYS[time.getDay()]
+}

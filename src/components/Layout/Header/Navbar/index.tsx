@@ -12,6 +12,10 @@ const NAVBAR = {
       route: ROUTES.RECOMMENDATION
     },
     {
+      label: '每日歌曲推荐',
+      route: ROUTES.RECOMMEND_DAILY
+    },
+    {
       label: '歌单',
       route: ROUTES.SONG_LIST
     },
