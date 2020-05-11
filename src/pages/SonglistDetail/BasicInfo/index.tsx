@@ -6,10 +6,11 @@ import { formatNum } from 'helpers/num'
 import styles from './style.module.css'
 
 interface IProps {
-  data?: ISonglist
+  data?: ISonglist,
+  onPlayAll: (autoPlay?: boolean) => void
 }
 
-const BasicInfo: React.FC<IProps> = ({ data }) => {
+const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
   return (
     <div className={styles.root}>
       <div className={styles.pic}>
@@ -31,7 +32,7 @@ const BasicInfo: React.FC<IProps> = ({ data }) => {
         </div>
 
         <div className={styles.operations}>
-          <div className={styles.btn}>播放全部</div>
+          <div className={styles.btn} onClick={() => onPlayAll(true)}>播放全部</div>
         </div>
 
         <div className={styles.detail}>

@@ -11,12 +11,13 @@ import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS 
 import styles from './style.module.css'
 
 interface IProps {
-  data: IMusic[]
+  data: IMusic[],
+  onPlayAll?: (autoPlay?: boolean) => void
 }
 
 const { useContext } = React
 
-const MusicList: React.FC<IProps> = ({ data }) => {
+const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
   const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
   const audioInfo = useContext(AudioContext)
@@ -96,6 +97,8 @@ const MusicList: React.FC<IProps> = ({ data }) => {
         })
       }
     })
+
+    onPlayAll && onPlayAll()
   }
 
   return (

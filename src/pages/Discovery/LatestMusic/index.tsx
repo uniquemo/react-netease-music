@@ -5,9 +5,10 @@ import cn from 'classnames'
 import Content from './Content'
 import songApis, { SONG_TYPE } from 'apis/song'
 import useAsyncFn from 'hooks/useAsyncFn'
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useEffect, useState } = React
+const { useEffect, useState, useContext } = React
 
 const TABS = [
   {
@@ -33,6 +34,7 @@ const TABS = [
 ]
 
 const LatestMusic = () => {
+  const dispatch = useContext(PlayMusicDispatchContext)
   const [selectedType, setSelectedType] = useState(SONG_TYPE.ALL)
   const [state, getTopSongsFn] = useAsyncFn(songApis.getTopSongs)
 
@@ -43,6 +45,25 @@ const LatestMusic = () => {
   const handleTypeChange = (type: SONG_TYPE) => {
     setSelectedType(type)
     getTopSongsFn(type)
+  }
+
+  const playAll = (autoPlay?: boolean) => {
+    dispatch({
+      type: ACTIONS.SET_PLAY_LIST,
+      payload: {
+        playList: state.value
+      }
+    })
+
+    if (autoPlay) {
+      dispatch({
+        type: ACTIONS.PLAY,
+        payload: {
+          musicId: state.value?.[0].id,
+          music: state.value?.[0]
+        }
+      })
+    }
   }
 
   return (
@@ -63,14 +84,14 @@ const LatestMusic = () => {
         </div>
 
         <div className={styles.operations}>
-          <div className={styles.playAll}>播放全部</div>
+          <div className={styles.playAll} onClick={() => playAll(true)}>播放全部</div>
         </div>
       </div>
 
       <div className={styles.content}>
         {state.loading
           ? <Spinner className='spinner' />
-          : <Content data={state.value} />}
+          : <Content data={state.value} onDoubleClick={() => playAll(false)} />}
       </div>
     </div>
   )

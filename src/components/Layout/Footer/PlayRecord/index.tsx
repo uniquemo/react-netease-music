@@ -1,6 +1,7 @@
 import React from 'react'
 import cn from 'classnames'
 
+import PlayList from './PlayList'
 import PlayHistory from './PlayHistory'
 import useClickAway from 'hooks/useClickAway'
 import styles from './style.module.css'
@@ -51,11 +52,7 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
       </div>
 
       <div className={styles.content}>
-        {activeTab === TABS.PLAY_LIST.tabKey ? (
-          <div>play list</div>
-        ) : (
-          <PlayHistory />
-        )}
+        {activeTab === TABS.PLAY_LIST.tabKey ? <PlayList /> : <PlayHistory />}
       </div>
     </div>
   )

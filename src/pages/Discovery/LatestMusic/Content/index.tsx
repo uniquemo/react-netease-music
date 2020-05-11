@@ -10,12 +10,13 @@ import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext 
 import styles from './style.module.css'
 
 interface IProps {
-  data?: IMyMusic[]
+  data?: IMyMusic[],
+  onDoubleClick: () => void
 }
 
 const { useContext } = React
 
-const Content: React.FC<IProps> = ({ data }) => {
+const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
   const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
   const audioInfo = useContext(AudioContext)
@@ -34,6 +35,8 @@ const Content: React.FC<IProps> = ({ data }) => {
         })
       }
     })
+
+    onDoubleClick()
   }
 
   return (

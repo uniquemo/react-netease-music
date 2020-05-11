@@ -2,20 +2,23 @@ import React from 'react'
 import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
+import { setPlayList, removePlayList } from 'helpers/play'
 import { setPlayHistory } from 'helpers/play'
 
 // Actions
 export interface IAction {
   type: string,
-  payload?: {
-    [key: string]: any
-  }
+  payload?: IDictionary<any>
 }
 
 const PLAY: string = 'PLAY'
+const SET_PLAY_LIST: string = 'SET_PLAY_LIST'
+const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'
 
 export const ACTIONS = {
-  PLAY
+  PLAY,
+  SET_PLAY_LIST,
+  CLEAR_PLAY_LIST
 }
 
 
@@ -23,12 +26,14 @@ export const ACTIONS = {
 export interface IState {
   musicId: number,
   musicUrl: string,
-  music?: IMyMusic
+  music?: IMyMusic,
+  playList: IMyMusic[]
 }
 
 export const initialState = {
   musicId: 0,
-  musicUrl: ''
+  musicUrl: '',
+  playList: []
 }
 
 const playMusicReducer = (state: IState, action: IAction) => {
@@ -43,6 +48,23 @@ const playMusicReducer = (state: IState, action: IAction) => {
         musicId: action?.payload?.musicId,
         musicUrl: getMusicUrl(action?.payload?.musicId),
         music: action?.payload?.music
+      }
+    }
+    case ACTIONS.SET_PLAY_LIST: {
+      const playList = action.payload?.playList || []
+      setPlayList(playList)
+
+      return {
+        ...state,
+        playList
+      }
+    }
+    case ACTIONS.CLEAR_PLAY_LIST: {
+      removePlayList()
+
+      return {
+        ...state,
+        playList: []
       }
     }
     default:
