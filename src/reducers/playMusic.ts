@@ -2,7 +2,7 @@ import React from 'react'
 import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
-import { setPlayList, removePlayList } from 'helpers/play'
+import { setPlayList, getPlayList, removePlayList, MODE, getPlayMode, setPlayMode } from 'helpers/play'
 import { setPlayHistory } from 'helpers/play'
 import { IAction } from './types'
 
@@ -10,11 +10,13 @@ import { IAction } from './types'
 const PLAY: string = 'PLAY'
 const SET_PLAY_LIST: string = 'SET_PLAY_LIST'
 const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'
+const SET_PLAY_MODE: string = 'SET_PLAY_MODE'
 
 export const ACTIONS = {
   PLAY,
   SET_PLAY_LIST,
-  CLEAR_PLAY_LIST
+  CLEAR_PLAY_LIST,
+  SET_PLAY_MODE
 }
 
 
@@ -23,31 +25,33 @@ export interface IState {
   musicId: number,
   musicUrl: string,
   music?: IMyMusic,
-  playList: IMyMusic[]
+  playList: IMyMusic[],
+  playMode: MODE
 }
 
 export const initialState = {
   musicId: 0,
   musicUrl: '',
-  playList: []
+  playList: getPlayList(),
+  playMode: getPlayMode()
 }
 
-const playMusicReducer = (state: IState, action: IAction) => {
-  switch (action.type) {
+const playMusicReducer = (state: IState, { type, payload }: IAction) => {
+  switch (type) {
     case ACTIONS.PLAY: {
-      if (!action.payload?.keepOrder) {
-        setPlayHistory(action?.payload?.music)
+      if (!payload?.keepOrder) {
+        setPlayHistory(payload?.music)
       }
 
       return {
         ...state,
-        musicId: action?.payload?.musicId,
-        musicUrl: getMusicUrl(action?.payload?.musicId),
-        music: action?.payload?.music
+        musicId: payload?.musicId,
+        musicUrl: getMusicUrl(payload?.musicId),
+        music: payload?.music
       }
     }
     case ACTIONS.SET_PLAY_LIST: {
-      const playList = action.payload?.playList || []
+      const playList = payload?.playList || []
       setPlayList(playList)
 
       return {
@@ -61,6 +65,14 @@ const playMusicReducer = (state: IState, action: IAction) => {
       return {
         ...state,
         playList: []
+      }
+    }
+    case ACTIONS.SET_PLAY_MODE: {
+      setPlayMode(payload?.playMode)
+
+      return {
+        ...state,
+        playMode: payload?.playMode || MODE.PLAY_IN_ORDER
       }
     }
     default:
