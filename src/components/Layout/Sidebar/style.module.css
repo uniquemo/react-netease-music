@@ -3,11 +3,17 @@
 
 .root {
   width: sidebarWidth;
-  height: 100%;
-  padding: headerHeight 0 footerHeight;
+  height: calc(100% - footerHeight);
+  padding-top: headerHeight;
   display: flex;
   flex-direction: column;
-  background-color: rgb(234, 234, 234);
+  background-color: #eaeaea;
+  overflow: hidden;
+}
+
+.content {
+  height: 100%;
+  overflow: scroll;
 }
 
 .user {
@@ -39,4 +45,8 @@
     color: rgb(69, 69, 69);
     cursor: default;
   }
+}
+
+.block {
+  margin-bottom: 20px;
 }

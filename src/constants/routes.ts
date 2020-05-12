@@ -15,7 +15,7 @@ const MV: string = `${VIDEOS}/mv`
 const SEARCH: string = '/search'
 
 const SONG_LISTS: string = '/songlists'
-const SONG_LIST_DETAIL: string = `${SONG_LISTS}/:id`
+const SONG_LIST_DETAIL: string = `${SONG_LISTS}/:songlistId`
 
 const DOWNLOAD: string = '/download'
 const CLOUD: string = '/cloud'

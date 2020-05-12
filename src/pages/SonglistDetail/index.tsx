@@ -28,14 +28,16 @@ const TABS = [
 const SonglistDetail = () => {
   const dispatch = useContext(PlayMusicDispatchContext)
   const params = useParams<IDictionary<string>>()
+  const { songlistId } = params
+
   const [state, getSonglistDetailFn] = useAsyncFn(songlistApis.getSonglistDetail)
   const { value: result, loading } = state
 
   const songs = result?.songs as IMusic[]
 
   useEffect(() => {
-    getSonglistDetailFn(Number(params.id))
-  }, [])
+    getSonglistDetailFn(Number(songlistId))
+  }, [songlistId])
 
   const playAll = (autoPlay?: boolean) => {
     const list = songs.map((item) => {

@@ -8,6 +8,7 @@ type GetSonglistsFn = (params: IGetSonglistsRequest) => Promise<{ playlists: ISo
 type GetSonglistCatsFn = () => Promise<IGetSonglistCatsResponse>
 type GetSonglistHotCatsFn = () => Promise<ICategory[]>
 type GetHighQualitySonglistFn = (cat?: string) => Promise<ISonglist>
+type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[], collect: ISonglist[] }>
 
 const getSonglistDetail: GetSonglistDetailFn = async (id) => {
   const response = await axios({
@@ -82,10 +83,31 @@ const getHighQualitySonglist: GetHighQualitySonglistFn = async (cat = '全部') 
   return response?.playlists?.[0]
 }
 
+const getUserSonglist: GetUserSonglistFn = async (uid) => {
+  const response = await axios({
+    method: 'get',
+    url: '/user/playlist',
+    params: {
+      uid,
+      limit: PAGE_SIZE
+    }
+  })
+
+  const playlist: ISonglist[] = response.playlist || []
+  const create = playlist.filter(({ creator }) => uid === creator.userId)
+  const collect = playlist.filter(({ creator }) => uid !== creator.userId)
+
+  return {
+    create,
+    collect
+  }
+}
+
 export default {
   getSonglistDetail,
   getSonglists,
   getSonglistCats,
   getSonglistHotCats,
-  getHighQualitySonglist
+  getHighQualitySonglist,
+  getUserSonglist
 }

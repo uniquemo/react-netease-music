@@ -38,7 +38,7 @@ const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
         <div className={styles.detail}>
           <div>
             <span className={styles.label}>标签: </span>
-            {data?.tags.join(' / ')}
+            {data?.tags.join(' / ') || '--'}
           </div>
           <div>
             <span className={styles.label}>歌曲数: </span>{data?.trackCount}&nbsp;&nbsp;
@@ -46,7 +46,7 @@ const BasicInfo: React.FC<IProps> = ({ data, onPlayAll }) => {
           </div>
           <div>
             <span className={styles.label}>简介: </span>
-            {data?.description}
+            {data?.description || '--'}
           </div>
         </div>
       </div>

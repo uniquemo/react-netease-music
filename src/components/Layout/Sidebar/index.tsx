@@ -2,20 +2,30 @@ import React from 'react'
 import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
 
 import Menus from './Menus'
+import Songlist from './Songlist'
 import LoginDialog from './LoginDialog'
 import authApis from 'apis/auth'
+import songlistApis from 'apis/songlist'
 import useAsyncFn from 'hooks/useAsyncFn'
 import { LogStateContext, LogDispatchContext, ACTIONS } from 'reducers/log'
 import styles from './style.module.css'
 
-const { useState, useContext } = React
+const { useState, useContext, useEffect } = React
 
 const Sidebar = () => {
   const dispatch = useContext(LogDispatchContext)
   const logState = useContext(LogStateContext)
   const { isLogined, user } = logState
+
   const [showLoginDialog, setShowLoginDialog] = useState(false)
   const [logoutState, logoutFn] = useAsyncFn(authApis.logout)
+  const [songlistState, getUserSonglistFn] = useAsyncFn(songlistApis.getUserSonglist)
+
+  useEffect(() => {
+    if (isLogined) {
+      getUserSonglistFn(logState.user.userId)
+    }
+  }, [isLogined])
 
   const handleNameClick = () => setShowLoginDialog(true)
   const handleLoginDialogClose = () => setShowLoginDialog(false)
@@ -53,7 +63,20 @@ const Sidebar = () => {
         )}
       </div>
 
-      <Menus />
+      <div className={styles.content}>
+        <Menus />
+        {!songlistState.loading && isLogined && (
+          <>
+            <div className={styles.block}>
+              <Songlist title='创建的歌单' data={songlistState.value?.create} />
+            </div>
+
+            <div className={styles.block}>
+              <Songlist title='收藏的歌单' data={songlistState.value?.collect} />
+            </div>
+          </>
+        )}
+      </div>
 
       <LoginDialog
         isOpen={showLoginDialog}

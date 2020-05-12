@@ -1,5 +1,5 @@
 @value colors: "~styles/colors.module.css";
-@value grey from colors;
+@value grey, red from colors;
 
 .tabs {
   color: rgb(77, 77, 77);
@@ -14,11 +14,11 @@
   }
 
   .tab:hover {
-    background-color: rgb(227, 227, 227);
+    background-color: #e3e3e3;
   }
 
   .active {
-    color: rgb(208, 58, 54);
+    color: red;
   }
 }
 

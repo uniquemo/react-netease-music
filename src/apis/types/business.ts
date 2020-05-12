@@ -82,6 +82,7 @@ export interface ISonglist {
   creator: {
     avatarUrl: string,
     nickname: string,
+    userId: number
   },
   description: string,
   highQuality: boolean,
