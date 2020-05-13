@@ -33,7 +33,7 @@ type GetRecommendSongsFn = () => Promise<IMusic[]>
 type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>
 type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>
 type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>
-type GetgetLyricFn = (id: number) => Promise<any>
+type GetgetLyricFn = (id: number) => Promise<{ lyric: string, offset: number, version: number }>
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
@@ -119,7 +119,7 @@ const getLyric: GetgetLyricFn = async (id) => {
     }
   })
 
-  return response
+  return response.lrc
 }
 
 export default {

@@ -32,7 +32,7 @@
 }
 
 .music, .relatedInfo {
-  width: contentMaxWidth;
+  width: 1000px;
   margin: 0 auto;
 }
 
@@ -41,7 +41,7 @@
   margin-bottom: 50px;
 
   .cdWrap {
-    padding: 0 60px;
+    padding: 0 100px 0 150px;
   }
 
   .cd {
@@ -118,6 +118,10 @@
       span {
         color: blue;
       }
+    }
+
+    .lrc {
+      height: 350px;
     }
   }
 }

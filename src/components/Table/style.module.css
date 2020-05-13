@@ -17,7 +17,7 @@
     padding: 10px 0;
   }
 
-  .row:nth-child(2n) {
+  .row:nth-child(2n + 1) {
     background-color: #fafafa;
   }
 

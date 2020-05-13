@@ -1,0 +1,27 @@
+@value colors: "~styles/colors.module.css";
+@value tipsHoverColor, black from colors;
+
+.root {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  white-space: nowrap;
+  color: tipsHoverColor;
+  font-size: 0.95em;
+}
+
+.line {
+  height: 30px;
+  line-height: 30px;
+}
+
+.active {
+  font-size: 1.2em;
+  color: black;
+}
+
+/* make scrollbar transparent */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
+import Lyric from './Lyric'
 import Comments from './Comments'
 import Songlists from './Songlists'
 import SimiSongs from './SimiSongs'
@@ -23,17 +24,13 @@ const MusicDetail = () => {
 
   const [songlistState, getSimiSonglistFn] = useAsyncFn(songApis.getSimiSonglist)
   const [simiSongState, getSimiSongFn] = useAsyncFn(songApis.getSimiSong)
-  const [lyricState, getLyricFn] = useAsyncFn(songApis.getLyric)
 
   useEffect(() => {
     if (musicId && showLyric) {
       getSimiSonglistFn({ id: musicId })
       getSimiSongFn({ id: musicId })
-      getLyricFn(musicId)
     }
   }, [musicId, showLyric])
-
-  console.log('lyricState => ', lyricState)
 
   return (
     <div className={cn(styles.root, showLyric && styles.show)}>
@@ -58,7 +55,9 @@ const MusicDetail = () => {
             歌手：
             <span>{music?.artists.map(({ name }) => name).join(' / ')}</span>
           </div>
-          <div>歌词</div>
+          <div className={styles.lrc}>
+            <Lyric />
+          </div>
         </div>
       </div>
 
