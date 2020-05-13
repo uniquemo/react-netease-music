@@ -106,6 +106,7 @@
 
   .lyric {
     flex: 1;
+    overflow: hidden;
 
     .name {
       padding: 30px 0 10px;

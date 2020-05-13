@@ -8,6 +8,10 @@
   white-space: nowrap;
   color: tipsHoverColor;
   font-size: 0.95em;
+  /* For hide scrollbar */
+  padding-right: 17px;
+  box-sizing: content-box;
+  box-shadow: 0 1px 5px #fff;
 }
 
 .line {
@@ -18,10 +22,4 @@
 .active {
   font-size: 1.2em;
   color: black;
-}
-
-/* make scrollbar transparent */
-::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
 }

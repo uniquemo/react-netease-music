@@ -41,8 +41,8 @@ const App = () => {
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
         const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)
-        if (idx > -1 && playList.length) {
-          const nextIdx = (idx + 1) % playList.length
+        if (playList.length) {
+          const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0
           dispatch({
             type: ACTIONS.PLAY,
             payload: {
