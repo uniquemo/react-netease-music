@@ -22,7 +22,7 @@ const Searcher = () => {
   const searchRef = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [showResult, setShowResult] = useState(false)
-  const [keyword, setKeyword] = useState(query.keyword)
+  const [keyword, setKeyword] = useState(query.keyword || '')
 
   const [state, searchHotFn] = useAsyncFn(searchApis.searchHot)
   const [searchState, searchSuggestFn] = useAsyncFn(searchApis.searchSuggest)
