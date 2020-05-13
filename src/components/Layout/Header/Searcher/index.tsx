@@ -25,7 +25,7 @@ const Searcher = () => {
   const [keyword, setKeyword] = useState(query.keyword)
 
   const [state, searchHotFn] = useAsyncFn(searchApis.searchHot)
-  const [searchState, searchSuggestFn] = useAsyncFn(searchApis.searchSuggest, [keyword])
+  const [searchState, searchSuggestFn] = useAsyncFn(searchApis.searchSuggest)
   const { value: searchResult } = searchState
 
   useEffect(() => {

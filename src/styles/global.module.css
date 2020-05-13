@@ -17,6 +17,10 @@ button {
   outline: none !important;
 }
 
+img {
+  border-radius: 5px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -55,4 +59,19 @@ button {
 }
 :global(.playAll:hover) {
   background-color: red;
+}
+
+:global(.smallCover) {
+  width: 55px;
+  height: 55px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+:global(.singleLineEllipsis) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

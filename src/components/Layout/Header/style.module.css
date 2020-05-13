@@ -5,7 +5,7 @@
   width: 100%;
   min-width: bodyMinWidth;
   height: headerHeight;
-  background-color: rgb(248, 248, 248, 0.8);
+  background-color: #f8f8f8;
   position: fixed;
   top: 0;
   display: flex;
@@ -24,7 +24,7 @@
   top: 10px;
   left: 8px;
 
-  & div {
+  .circle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,25 +39,30 @@
     }
   }
 
-  & div:nth-child(1) {
-    background-color: rgb(255, 86, 82);
+  .circle:nth-child(1) {
+    background-color: #ff5652;
   }
 
-  & div:nth-child(2) {
-    background-color: rgb(255, 182, 60);
+  .circle:nth-child(2) {
+    background-color: #ffb63c;
   }
 
-  & div:nth-child(3) {
-    background-color: rgb(0, 195, 67);
+  .circle:nth-child(3) {
+    background-color: #00c343;
   }
 
-  & svg {
-    width: 8px;
-    height: 8px;
-  }
-
-  & div:hover svg {
+  .circle:hover svg {
     display: block;
+  }
+
+  .down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-left: 15px;
+    cursor: pointer;
   }
 }
 
@@ -75,11 +80,11 @@
     height: 20px;
     margin-left: 8px;
     border-radius: 50%;
-    color: rgb(164, 164, 164);
+    color: #383838;
   }
 
   div:hover {
-    background-color: rgb(232, 232, 232);
+    background-color: #e8e8e8;
   }
 }
 

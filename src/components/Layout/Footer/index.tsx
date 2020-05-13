@@ -1,5 +1,6 @@
 import React from 'react'
 import { Icon, Tooltip } from '@blueprintjs/core'
+import cn from 'classnames'
 
 import Artists from 'components/Artists'
 import AudioTimer from './AudioTimer'
@@ -8,17 +9,30 @@ import PlayRecord from './PlayRecord'
 import PlayMode from './PlayMode'
 import PlayOperations from './PlayOperations'
 import PlayVolume from './PlayVolume'
-import { PlayMusicStateContext } from 'reducers/playMusic'
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
 const { useContext, useState } = React
 
 const Footer = () => {
   const [showPlayRecord, setShowPlayRecord] = useState(false)
+  const dispatch = useContext(PlayMusicDispatchContext)
   const state = useContext(PlayMusicStateContext)
-  const { musicId, music } = state
+  const { musicId, music, showLyric } = state
 
   const togglePlayRecord = () => setShowPlayRecord(!showPlayRecord)
+
+  const handleShowLyric = () => {
+    dispatch({
+      type: ACTIONS.SHOW_LYRIC
+    })
+  }
+
+  const handleHideLyric = () => {
+    dispatch({
+      type: ACTIONS.HIDE_LYRIC
+    })
+  }
 
   return (
     <div className={styles.root}>
@@ -29,7 +43,15 @@ const Footer = () => {
       ) : null}
 
       <div className={styles.songWrap}>
-        <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
+        <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
+          <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
+          {!showLyric && <div className={styles.mask} onClick={handleShowLyric}>
+            <Icon icon='double-chevron-up' />
+          </div>}
+          {showLyric && <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
+            <Icon icon='double-chevron-down' />
+          </div>}
+        </div>
         <div>
           <div className={styles.info}>
             <div className={styles.name}>{`${music?.name || '--'} -`}</div>

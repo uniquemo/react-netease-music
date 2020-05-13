@@ -1,0 +1,147 @@
+@value colors: "~styles/colors.module.css";
+@value red, blue from colors;
+
+@value constants: "~styles/constants.module.css";
+@value footerHeight, headerHeight, contentMaxWidth from constants;
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.root {
+  width: 100%;
+  height: calc(100% - headerHeight - footerHeight);
+  background-color: #f9f9f9;
+  position: fixed;
+  top: 100%;
+  left: 0;
+  transition: all 0.5s ease;
+  overflow: scroll;
+}
+
+.show {
+  top: headerHeight;
+}
+
+.music, .relatedInfo {
+  width: contentMaxWidth;
+  margin: 0 auto;
+}
+
+.music {
+  display: flex;
+  margin-bottom: 50px;
+
+  .cdWrap {
+    padding: 0 60px;
+  }
+
+  .cd {
+    position: relative;
+  }
+
+  .bar {
+    width: 110px;
+    height: 160px;
+    position: relative;
+    left: 50%;
+    transform: translate(-15px, 0);
+
+    .playBar {
+      width: 100px;
+      height: auto;
+      margin: 10px 0 0 8px;
+    }
+
+    .pause {
+      transform: rotate(-35deg);
+      transform-origin: 0 0;
+    }
+
+    .playCd {
+      width: 25px;
+      height: auto;
+      position: absolute;
+      top: -5px;
+      left: 0;
+    }
+  }
+
+  .circle {
+    width: 300px;
+    height: 300px;
+    margin-top: -75px;
+    border-radius: 50%;
+    background-color: #1c1d20;
+    border: 10px solid #e4e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .cover {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid black;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: rotate 20s linear infinite;
+      animation-play-state: paused;
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .rotate {
+      animation-play-state: running;
+    }
+  }
+
+  .lyric {
+    flex: 1;
+
+    .name {
+      padding: 30px 0 10px;
+      font-size: 1.6em;
+    }
+
+    .artists {
+      margin-bottom: 15px;
+      font-size: 0.95em;
+      span {
+        color: blue;
+      }
+    }
+  }
+}
+
+.relatedInfo {
+  display: flex;
+  justify-content: space-between;
+
+  .comment {
+    flex: 1;
+    margin-right: 50px;
+  }
+
+  .relatedDetail {
+    width: 300px;
+
+    .block {
+      margin-bottom: 35px;
+
+      .title {
+        padding-bottom: 15px;
+        font-size: 1.1em;
+        font-weight: bold;
+      }
+    }
+  }
+}

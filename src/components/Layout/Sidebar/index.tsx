@@ -4,6 +4,7 @@ import { Icon, Popover, Menu, MenuItem } from '@blueprintjs/core'
 import Menus from './Menus'
 import Songlist from './Songlist'
 import LoginDialog from './LoginDialog'
+import MusicDetail from './MusicDetail'
 import authApis from 'apis/auth'
 import songlistApis from 'apis/songlist'
 import useAsyncFn from 'hooks/useAsyncFn'
@@ -82,6 +83,7 @@ const Sidebar = () => {
         isOpen={showLoginDialog}
         onClose={handleLoginDialogClose}
       />
+      <MusicDetail />
     </div>
   )
 }

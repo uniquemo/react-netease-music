@@ -25,6 +25,10 @@
   }
 }
 
+.dotItem {
+  cursor: default;
+}
+
 .active {
   border: 1px solid red;
   background-color: red;

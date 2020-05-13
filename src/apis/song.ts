@@ -1,5 +1,6 @@
 import axios from 'helpers/axios'
-import { IMyMusic, IMusic } from 'apis/types/business'
+import { IMyMusic, IMusic, ISonglist } from 'apis/types/business'
+import { IComment } from 'apis/types/comment'
 
 export enum SONG_TYPE {
   ALL = 0,
@@ -9,9 +10,30 @@ export enum SONG_TYPE {
   KOREAN = 16
 }
 
+interface IParams {
+  id: number,
+  offset?: number,
+  limit?: number
+}
+
+interface IGetCommentsResponse {
+  comments: IComment[],
+  hotComments?: IComment[],
+  isMusician: boolean,
+  more: boolean,
+  moreHot: boolean,
+  topComments: IComment[],
+  total: number,
+  userId: number
+}
+
 type GetSongDetailFn = (ids: number[]) => Promise<any>
 type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>
 type GetRecommendSongsFn = () => Promise<IMusic[]>
+type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>
+type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>
+type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>
+type GetgetLyricFn = (id: number) => Promise<any>
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
@@ -46,8 +68,66 @@ const getRecommendSongs: GetRecommendSongsFn = async () => {
   return response.recommend
 }
 
+const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
+  const response = await axios({
+    method: 'get',
+    url: '/simi/playlist',
+    params: {
+      id,
+      offset,
+      limit
+    }
+  })
+
+  return response.playlists
+}
+
+const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
+  const response = await axios({
+    method: 'get',
+    url: '/simi/song',
+    params: {
+      id,
+      offset,
+      limit
+    }
+  })
+
+  return response.songs
+}
+
+const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
+  const response = await axios({
+    method: 'get',
+    url: '/comment/music',
+    params: {
+      id,
+      offset,
+      limit
+    }
+  })
+
+  return response
+}
+
+const getLyric: GetgetLyricFn = async (id) => {
+  const response = await axios({
+    method: 'get',
+    url: '/lyric',
+    params: {
+      id
+    }
+  })
+
+  return response
+}
+
 export default {
   getSongDetail,
   getTopSongs,
-  getRecommendSongs
+  getRecommendSongs,
+  getSimiSonglist,
+  getSimiSong,
+  getComments,
+  getLyric
 }

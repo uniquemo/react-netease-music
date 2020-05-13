@@ -1,0 +1,23 @@
+.block {
+  margin-bottom: 50px;
+}
+
+.latestComment {
+  margin-bottom: 0;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+}
+
+.pagination {
+  padding: 30px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

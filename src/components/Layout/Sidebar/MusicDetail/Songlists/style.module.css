@@ -1,0 +1,23 @@
+@value colors: "~styles/colors.module.css";
+@value tipsColor, bgColor from colors;
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.item:hover {
+  background-color: bgColor;
+}
+
+.name {
+  width: 220px;
+  margin-bottom: 5px;
+}
+
+.playCount {
+  color: tipsColor;
+}

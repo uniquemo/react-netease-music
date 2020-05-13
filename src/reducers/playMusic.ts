@@ -11,12 +11,16 @@ const PLAY: string = 'PLAY'
 const SET_PLAY_LIST: string = 'SET_PLAY_LIST'
 const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'
 const SET_PLAY_MODE: string = 'SET_PLAY_MODE'
+const SHOW_LYRIC: string = 'SHOW_LYRIC'
+const HIDE_LYRIC: string = 'HIDE_LYRIC'
 
 export const ACTIONS = {
   PLAY,
   SET_PLAY_LIST,
   CLEAR_PLAY_LIST,
-  SET_PLAY_MODE
+  SET_PLAY_MODE,
+  SHOW_LYRIC,
+  HIDE_LYRIC
 }
 
 
@@ -26,14 +30,16 @@ export interface IState {
   musicUrl: string,
   music?: IMyMusic,
   playList: IMyMusic[],
-  playMode: MODE
+  playMode: MODE,
+  showLyric: boolean
 }
 
 export const initialState = {
   musicId: 0,
   musicUrl: '',
   playList: getPlayList(),
-  playMode: getPlayMode()
+  playMode: getPlayMode(),
+  showLyric: false
 }
 
 const playMusicReducer = (state: IState, { type, payload }: IAction) => {
@@ -73,6 +79,18 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       return {
         ...state,
         playMode: payload?.playMode || MODE.PLAY_IN_ORDER
+      }
+    }
+    case ACTIONS.SHOW_LYRIC: {
+      return {
+        ...state,
+        showLyric: true
+      }
+    }
+    case ACTIONS.HIDE_LYRIC: {
+      return {
+        ...state,
+        showLyric: false
       }
     }
     default:
