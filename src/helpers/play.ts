@@ -9,7 +9,7 @@ enum KEY {
 const DEFAULT_VALUE = '[]'
 
 // play history
-export const setPlayHistory = (music: IMyMusic) => {
+export const setPlayHistory = (music: IMyMusic): IMyMusic[] => {
   const list = getPlayHistory().slice(0, 100)
   const index = list.findIndex((item) => item.id === music.id)
 
@@ -19,6 +19,8 @@ export const setPlayHistory = (music: IMyMusic) => {
 
   list.unshift(music)
   window.localStorage.setItem(KEY.PLAY_HISTORY, JSON.stringify(list))
+
+  return list
 }
 export const getPlayHistory = (): IMyMusic[] => JSON.parse(window.localStorage.getItem(KEY.PLAY_HISTORY) || DEFAULT_VALUE)
 export const removePlayHistory = () => window.localStorage.removeItem(KEY.PLAY_HISTORY)

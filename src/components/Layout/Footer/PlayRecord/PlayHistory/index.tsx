@@ -1,14 +1,13 @@
 import React from 'react'
 
 import List from '../List'
-import { getPlayHistory, removePlayHistory } from 'helpers/play'
 import { IMyMusic } from 'apis/types/business'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 
 const { useContext } = React
 
 const PlayHistory = () => {
-  const playHistory = getPlayHistory()
+  const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
 
   const handleDoubleClick = (item: IMyMusic) => {
@@ -22,12 +21,17 @@ const PlayHistory = () => {
     })
   }
 
+  const clearPlayHistory = () => {
+    dispatch({
+      type: ACTIONS.CLEAR_PLAY_HISTORY
+    })
+  }
+
   return (
     <List
-      data={playHistory}
+      data={state.playHistory}
       onDoubleClick={handleDoubleClick}
-      // TODO: Fix 点击删除后UI没有同步
-      onClear={() => removePlayHistory()}
+      onClear={clearPlayHistory}
     />
   )
 }

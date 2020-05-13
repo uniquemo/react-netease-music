@@ -2,8 +2,17 @@ import React from 'react'
 import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
-import { setPlayList, getPlayList, removePlayList, MODE, getPlayMode, setPlayMode } from 'helpers/play'
-import { setPlayHistory } from 'helpers/play'
+import {
+  setPlayList,
+  getPlayList,
+  removePlayList,
+  MODE,
+  getPlayMode,
+  setPlayMode,
+  setPlayHistory,
+  getPlayHistory,
+  removePlayHistory
+} from 'helpers/play'
 import { IAction } from './types'
 
 // Actions
@@ -13,6 +22,7 @@ const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'
 const SET_PLAY_MODE: string = 'SET_PLAY_MODE'
 const SHOW_LYRIC: string = 'SHOW_LYRIC'
 const HIDE_LYRIC: string = 'HIDE_LYRIC'
+const CLEAR_PLAY_HISTORY: string = 'CLEAR_PLAY_HISTORY'
 
 export const ACTIONS = {
   PLAY,
@@ -20,7 +30,8 @@ export const ACTIONS = {
   CLEAR_PLAY_LIST,
   SET_PLAY_MODE,
   SHOW_LYRIC,
-  HIDE_LYRIC
+  HIDE_LYRIC,
+  CLEAR_PLAY_HISTORY
 }
 
 
@@ -30,6 +41,7 @@ export interface IState {
   musicUrl: string,
   music?: IMyMusic,
   playList: IMyMusic[],
+  playHistory: IMyMusic[],
   playMode: MODE,
   showLyric: boolean
 }
@@ -38,6 +50,7 @@ export const initialState = {
   musicId: 0,
   musicUrl: '',
   playList: getPlayList(),
+  playHistory: getPlayHistory(),
   playMode: getPlayMode(),
   showLyric: false
 }
@@ -45,15 +58,17 @@ export const initialState = {
 const playMusicReducer = (state: IState, { type, payload }: IAction) => {
   switch (type) {
     case ACTIONS.PLAY: {
+      let playHistory: IMyMusic[] = []
       if (!payload?.keepOrder) {
-        setPlayHistory(payload?.music)
+        playHistory = setPlayHistory(payload?.music)
       }
 
       return {
         ...state,
         musicId: payload?.musicId,
         musicUrl: getMusicUrl(payload?.musicId),
-        music: payload?.music
+        music: payload?.music,
+        playHistory: !payload?.keepOrder ? playHistory : state.playHistory
       }
     }
     case ACTIONS.SET_PLAY_LIST: {
@@ -91,6 +106,14 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       return {
         ...state,
         showLyric: false
+      }
+    }
+    case ACTIONS.CLEAR_PLAY_HISTORY: {
+      removePlayHistory()
+
+      return {
+        ...state,
+        playHistory: []
       }
     }
     default:
