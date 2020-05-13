@@ -1,4 +1,4 @@
-import { IMyMusic, IMusic } from 'apis/types/business'
+import { IMyMusic, IMusic, ISimpleMusic } from 'apis/types/business'
 
 export const getMusicUrl = (id?: number): string => {
   return id ? `https://music.163.com/song/media/outer/url?id=${id}.mp3` : ''
@@ -21,8 +21,20 @@ export const createMusicWithAlbum = (music: IMusic) => {
     id,
     name,
     artists,
-    duration: duration / 1000,
+    duration,
     picUrl: album.blurPicUrl,
     ...others
+  }
+}
+
+export const createMusicFromSimpleMusic = (music: ISimpleMusic): IMyMusic => {
+  const { id, name, al, ar, dt } = music
+  return {
+    id,
+    name,
+    picUrl: al.picUrl,
+    artists: ar,
+    duration: dt,
+    album: al
   }
 }

@@ -32,6 +32,10 @@
   visibility: hidden;
 }
 
+.enabled {
+  cursor: pointer;
+}
+
 .dots {
   display: flex;
   position: absolute;

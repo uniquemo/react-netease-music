@@ -1,5 +1,6 @@
 import axios from 'helpers/axios'
-import { ITrackMusic, IMyMusic, ISonglist } from './types/business'
+import { createMusicFromSimpleMusic } from 'helpers/business'
+import { ISimpleMusic, IMyMusic, ISonglist } from './types/business'
 import { IGetSonglistsRequest, IGetSonglistCatsResponse, ICategory } from './types/songlist'
 import { PAGE_SIZE } from 'constants/pagination'
 
@@ -20,15 +21,9 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
   })
 
   const songs: IMyMusic[] = []
-  response?.playlist?.tracks?.forEach((item: ITrackMusic) => {
-    songs.push({
-      id: item.id,
-      name: item.name,
-      picUrl: item.al.picUrl,
-      artists: item.ar,
-      duration: item.dt,
-      album: item.al
-    })
+  response?.playlist?.tracks?.forEach((item: ISimpleMusic) => {
+    const song = createMusicFromSimpleMusic(item)
+    songs.push(song)
   })
 
   return {

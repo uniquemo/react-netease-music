@@ -8,7 +8,7 @@ import Pagination from 'components/Pagination'
 import useQuery from 'hooks/useQuery'
 import useAsyncFn from 'hooks/useAsyncFn'
 import searchApis from 'apis/search'
-import { SEARCH_TYPE } from 'apis/types/search'
+import { TARGET_TYPE } from 'apis/types/business'
 import { PAGE_SIZE, PAGE } from 'constants/pagination'
 import styles from './style.module.css'
 
@@ -19,7 +19,7 @@ interface ITab {
   tabKey: string,
   unit: string,
   key: string,
-  searchType: SEARCH_TYPE
+  searchType: TARGET_TYPE
 }
 
 const TABS: IDictionary<ITab> = {
@@ -28,35 +28,35 @@ const TABS: IDictionary<ITab> = {
     tabKey: 'MUSIC',
     unit: '首',
     key: 'song',
-    searchType: SEARCH_TYPE.MUSIC
+    searchType: TARGET_TYPE.MUSIC
   },
   ARTIST: {
     tab: '歌手',
     tabKey: 'ARTIST',
     unit: '位',
     key: 'artist',
-    searchType: SEARCH_TYPE.ARTIST
+    searchType: TARGET_TYPE.ARTIST
   },
   ALBUM: {
     tab: '专辑',
     tabKey: 'ALBUM',
     unit: '张',
     key: 'album',
-    searchType: SEARCH_TYPE.ALBUM
+    searchType: TARGET_TYPE.ALBUM
   },
   SONG_LIST: {
     tab: '歌单',
     tabKey: 'SONG_LIST',
     unit: '个',
     key: 'playlist',
-    searchType: SEARCH_TYPE.SONG_LIST
+    searchType: TARGET_TYPE.SONG_LIST
   },
   USER: {
     tab: '用户',
     tabKey: 'USER',
     unit: '位',
     key: 'userprofile',
-    searchType: SEARCH_TYPE.USER
+    searchType: TARGET_TYPE.USER
   }
 }
 

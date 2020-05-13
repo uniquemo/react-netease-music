@@ -1,5 +1,6 @@
 import axios from 'helpers/axios'
-import { IMyMusic, IMusic, ISonglist } from 'apis/types/business'
+import { createMusicFromSimpleMusic } from 'helpers/business'
+import { IMyMusic, IMusic, ISonglist, ISimpleMusic } from 'apis/types/business'
 import { IComment } from 'apis/types/comment'
 
 export enum SONG_TYPE {
@@ -27,7 +28,7 @@ interface IGetCommentsResponse {
   userId: number
 }
 
-type GetSongDetailFn = (ids: number[]) => Promise<any>
+type GetSongDetailFn = (ids: number[]) => Promise<IMyMusic[]>
 type GetTopSongsFn = (type?: SONG_TYPE) => Promise<IMyMusic[]>
 type GetRecommendSongsFn = () => Promise<IMusic[]>
 type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>
@@ -44,7 +45,7 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
     }
   })
 
-  return response
+  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item))
 }
 
 const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {

@@ -43,24 +43,26 @@ const Footer = () => {
       ) : null}
 
       <div className={styles.songWrap}>
-        <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
-          <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
-          {!showLyric && <div className={styles.mask} onClick={handleShowLyric}>
-            <Icon icon='double-chevron-up' />
-          </div>}
-          {showLyric && <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
-            <Icon icon='double-chevron-down' />
-          </div>}
-        </div>
-        <div>
-          <div className={styles.info}>
-            <div className={styles.name}>{`${music?.name || '--'} -`}</div>
-            <Artists artists={state?.music?.artists} />
+        {!!musicId && (<>
+          <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
+            <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
+            {!showLyric && <div className={styles.mask} onClick={handleShowLyric}>
+              <Icon icon='double-chevron-up' />
+            </div>}
+            {showLyric && <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
+              <Icon icon='double-chevron-down' />
+            </div>}
           </div>
-          <div className={styles.time}>
-            <AudioTimer />
+          <div>
+            <div className={styles.info}>
+              <div className={styles.name}>{`${music?.name || '--'} -`}</div>
+              <Artists artists={state?.music?.artists} />
+            </div>
+            <div className={styles.time}>
+              <AudioTimer />
+            </div>
           </div>
-        </div>
+        </>)}
       </div>
 
       <div className={styles.operations}>

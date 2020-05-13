@@ -1,4 +1,5 @@
 import React from 'react'
+import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import songApis from 'apis/song'
@@ -32,6 +33,7 @@ const Lyric = () => {
   useEffect(() => {
     if (!audioInfo.state?.paused) {
       const audioTime = audioInfo.state?.time || 0
+
       const lineIndex = lines.findIndex(([time], index) => {
         const prevTime = index - 1 >= 0 ? lines[index - 1][0] : time
         const nextTime = index + 1 < lines.length ? lines[index + 1][0] : time
@@ -53,16 +55,20 @@ const Lyric = () => {
 
   return (
     <div className={styles.root} ref={ref => lyricRef.current = ref}>
-      {lines.map(([time, lyric], index) => {
-        return (
-          <div
-            key={time}
-            className={cn(styles.line, line === index && styles.active)}
-          >
-            {lyric}
-          </div>
-        )
-      })}
+      {lyricState.loading ? <Spinner className='spinner' /> : (
+        <>
+          {lines.map(([time, lyric], index) => {
+            return (
+              <div
+                key={time}
+                className={cn(styles.line, line === index && styles.active)}
+              >
+                {lyric}
+              </div>
+            )
+          })}
+        </>
+      )}
     </div>
   )
 }
