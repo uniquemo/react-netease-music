@@ -9,7 +9,7 @@ import useAsyncFn from 'hooks/useAsyncFn'
 import useClickAway from 'hooks/useClickAway'
 import useQuery from 'hooks/useQuery'
 import searchApis from 'apis/search'
-import { setSearchHistory, getSearchHistory } from 'helpers/search'
+import { setSearchHistory, searchHistoryLocalStorage } from 'helpers/search'
 import { debounce } from 'helpers/fn'
 import ROUTES from 'constants/routes'
 import styles from './style.module.css'
@@ -88,8 +88,16 @@ const Searcher = () => {
           <SearchResult data={searchResult} />
         ) : (
           <div>
-            <Words title='热门搜索' words={state.value?.map(({ first }) => first)} onWordClick={handleWordClick} />
-            <Words title='搜索历史' words={getSearchHistory()} onWordClick={handleWordClick} />
+            <Words
+              title='热门搜索'
+              words={state.value?.map(({ first }) => first)}
+              onWordClick={handleWordClick}
+            />
+            <Words
+              title='搜索历史'
+              words={searchHistoryLocalStorage.getItem()}
+              onWordClick={handleWordClick}
+            />
         </div>
         )}
       </div>

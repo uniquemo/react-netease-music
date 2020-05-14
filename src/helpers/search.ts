@@ -1,10 +1,19 @@
+import { DEFAULT_VALUE, localStorageFactory } from './localStorage'
+
+const KEY = '__searchHistory'
+
+export const searchHistoryLocalStorage = localStorageFactory<string[]>({
+  key: KEY,
+  defaultValue: DEFAULT_VALUE.ARRAY,
+})
+
 export const setSearchHistory = (keyword: string) => {
   keyword = keyword.trim()
   if (!keyword) {
     return
   }
 
-  let data: string[] = getSearchHistory()
+  let data: string[] = searchHistoryLocalStorage.getItem()
   data = data.slice(0, 10)
 
   const index = data.findIndex(key => key === keyword)
@@ -14,9 +23,5 @@ export const setSearchHistory = (keyword: string) => {
   }
 
   data.unshift(keyword)
-  window.localStorage.setItem('__searchHistory', JSON.stringify(data))
+  searchHistoryLocalStorage.setItem(data)
 }
-
-export const removeSearchHistory = () => window.localStorage.removeItem('__searchHistory')
-
-export const getSearchHistory = (): string[] => JSON.parse(window.localStorage.getItem('__searchHistory') || '[]')

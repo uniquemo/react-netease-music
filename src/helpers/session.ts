@@ -1,7 +1,9 @@
+import { DEFAULT_VALUE, localStorageFactory } from './localStorage'
 import { ILoginResult } from 'apis/types/auth'
 
-export const setSession = (session: ILoginResult) => window.localStorage.setItem('__session', JSON.stringify(session))
+const KEY = '__session'
 
-export const removeSession = () => window.localStorage.removeItem('__session')
-
-export const getSession = (): ILoginResult => JSON.parse(window.localStorage.getItem('__session') || '{}')
+export const sessionLocalStorage = localStorageFactory<ILoginResult>({
+  key: KEY,
+  defaultValue: DEFAULT_VALUE.OBJECT
+})

@@ -3,15 +3,11 @@ import { IMyMusic } from 'apis/types/business'
 import { HTMLMediaState, HTMLMediaControls } from 'hooks/utils/createHTMLMediaHook'
 import { getMusicUrl } from 'helpers/business'
 import {
-  setPlayList,
-  getPlayList,
-  removePlayList,
   MODE,
-  getPlayMode,
-  setPlayMode,
   setPlayHistory,
-  getPlayHistory,
-  removePlayHistory
+  playHistory as playHistoryLocalStorage,
+  playMode as playModeLocalStorage,
+  playList as playListLocalStorage
 } from 'helpers/play'
 import { IAction } from './types'
 
@@ -49,9 +45,9 @@ export interface IState {
 export const initialState = {
   musicId: 0,
   musicUrl: '',
-  playList: getPlayList(),
-  playHistory: getPlayHistory(),
-  playMode: getPlayMode(),
+  playList: playListLocalStorage.getItem(),
+  playHistory: playHistoryLocalStorage.getItem(),
+  playMode: playModeLocalStorage.getItem(),
   showLyric: false
 }
 
@@ -73,7 +69,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
     }
     case ACTIONS.SET_PLAY_LIST: {
       const playList = payload?.playList || []
-      setPlayList(playList)
+      playListLocalStorage.setItem(playList)
 
       return {
         ...state,
@@ -81,7 +77,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       }
     }
     case ACTIONS.CLEAR_PLAY_LIST: {
-      removePlayList()
+      playListLocalStorage.removeItem()
 
       return {
         ...state,
@@ -89,7 +85,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       }
     }
     case ACTIONS.SET_PLAY_MODE: {
-      setPlayMode(payload?.playMode)
+      playModeLocalStorage.setItem(payload?.playMode)
 
       return {
         ...state,
@@ -109,7 +105,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
       }
     }
     case ACTIONS.CLEAR_PLAY_HISTORY: {
-      removePlayHistory()
+      playHistoryLocalStorage.removeItem()
 
       return {
         ...state,

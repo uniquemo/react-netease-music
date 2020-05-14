@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getSession, setSession, removeSession } from 'helpers/session'
+import { sessionLocalStorage } from 'helpers/session'
 import { IAction } from './types'
 import { ILoginResult } from 'apis/types/auth'
 
@@ -17,7 +17,7 @@ export interface IState {
   user: ILoginResult
 }
 
-const session = getSession()
+const session = sessionLocalStorage.getItem()
 
 export const initialState = {
   isLogined: !!session.userId,
@@ -27,7 +27,7 @@ export const initialState = {
 const logReducer = (state: IState, action: IAction) => {
   switch (action.type) {
     case ACTIONS.LOGIN: {
-      setSession(action.payload?.user)
+      sessionLocalStorage.setItem(action.payload?.user)
 
       return {
         ...state,
@@ -36,7 +36,7 @@ const logReducer = (state: IState, action: IAction) => {
       }
     }
     case ACTIONS.LOGOUT: {
-      removeSession()
+      sessionLocalStorage.removeItem()
 
       return {
         ...state,

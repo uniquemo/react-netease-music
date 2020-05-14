@@ -1,8 +1,8 @@
 import React from 'react'
 import { Tooltip, Icon, IconName } from '@blueprintjs/core'
 
-import { getPlayMode, MODE } from 'helpers/play'
-import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { MODE } from 'helpers/play'
+import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 
 const MODE_ORDER = [MODE.PLAY_IN_ORDER, MODE.SINGLE_CYCLE, MODE.SHUFFLE_PLAYBACK]
 
@@ -24,16 +24,16 @@ const MODE_MAP: IDictionary<{
   }
 }
 
-const { useState, useContext } = React
+const { useContext } = React
 
 const PlayMode = () => {
   const dispatch = useContext(PlayMusicDispatchContext)
-  const [mode, setMode] = useState(getPlayMode())
+  const state = useContext(PlayMusicStateContext)
+  const { playMode } = state
 
   const handleClick = () => {
-    const idx = MODE_ORDER.findIndex(m => m === mode)
+    const idx = MODE_ORDER.findIndex(m => m === playMode)
     const nextMode = MODE_ORDER[(idx + 1) % (MODE_ORDER.length)]
-    setMode(nextMode)
 
     dispatch({
       type: ACTIONS.SET_PLAY_MODE,
@@ -44,8 +44,8 @@ const PlayMode = () => {
   }
 
   return (
-    <Tooltip content={MODE_MAP[mode].label}>
-      <Icon icon={MODE_MAP[mode].icon} onClick={handleClick} />
+    <Tooltip content={MODE_MAP[playMode].label}>
+      <Icon icon={MODE_MAP[playMode].icon} onClick={handleClick} />
     </Tooltip>
   )
 }
