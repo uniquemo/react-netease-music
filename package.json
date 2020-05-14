@@ -1,7 +1,7 @@
 {
   "name": "react-netease-music",
   "version": "1.0.0",
-  "description": "",
+  "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
@@ -13,7 +13,16 @@
     "type": "git",
     "url": "git+https://github.com/Unique111/react-netease-music.git"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react hook",
+    "music",
+    "player",
+    "lyric",
+    "banner",
+    "typescript",
+    "eslint"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

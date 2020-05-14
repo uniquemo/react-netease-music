@@ -1,4 +1,6 @@
-# React Netease Music——基于React、TypeScript的高仿网易云mac客户端播放器
+# React Netease Music
+React Netease Music——一个基于React、TypeScript的高仿网易云mac客户端播放器。
+
 一直想写一个音乐播放器把玩把玩，最近无意中发现很早就有人整理出了相关的API，话不多说，撸起来！代码使用React编写，没有使用额外的数据管理库（因为react hook真的挺方便的😂），欢迎提出你的意见，喜欢的话请给我一个star哈😁~
 
 ## 功能列表
@@ -35,27 +37,36 @@
 - [ ] 创建/编辑/删除歌单
 - [ ] 私信/@我/评论等通知功能
 - [ ] 主题换肤
-- ......看心情添加功能😂
+- [ ] ......看心情添加功能😂
 
 ## 技术栈
 - React，使用react hook做状态管理，没有使用额外的数据管理库。
 - TypeScript，用TypeScript确实可以提高效率😃（容易发现错误）。
-- @blueprintjs组件库，主要使用其中的Icon、Dialog、Toast、Spinner、Popover等。
+- @blueprintjs组件库，主要使用其中的Icon、Dialog、Toast、Spinner等。
 - CSS Modules。
 - Webpack。
+- Eslint做代码检查。
 
 ## API接口
 [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
 
 ## 播放器的相关截图
 ![01_个性推荐页](./resources/01_个性推荐页.png)
+
 ![02_每日歌曲推荐](./resources/02_每日歌曲推荐.png)
+
 ![03_全部歌单](./resources/03_全部歌单.png)
+
 ![04_最新音乐页](./resources/04_最新音乐页.png)
+
 ![05_歌单详情页](./resources/05_歌单详情页.png)
+
 ![06_音乐播放详情](./resources/06_音乐播放详情.png)
+
 ![07_播放记录功能](./resources/07_播放记录功能.png)
+
 ![08_搜索功能](./resources/08_搜索功能.png)
+
 ![09_搜索结果页](./resources/09_搜索结果页.png)
 
 ## 项目启动
