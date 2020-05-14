@@ -1,28 +1,50 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig, ResponseType, AxiosInstance } from 'axios'
+import Toaster from 'helpers/toaster'
 import { SERVER } from 'constants/server'
 
-const myAxios = ({
-  url,
-  method = 'get',
-  params,
-  data,
-  ...others
-}: AxiosRequestConfig) => {
-  return axios({
-    baseURL: SERVER,
-    url,
-    method,
-    params,
-    data,
-    withCredentials: true,
-    ...others
-  }).then(result => {
-    // console.log('axios origin result => ', result)
-    return result.data
-  }).catch(error => {
-    // console.log('axios origin error => ', error)
-    throw error
-  })
+const TIMEOUT = 40000
+const MIME_TYPE: IDictionary<ResponseType> = {
+  JSON: 'json'
 }
 
-export default myAxios
+const createInstance = () => {
+  const instance = axios.create({
+    baseURL: SERVER,
+    withCredentials: true,
+    timeout: TIMEOUT,
+    responseType: MIME_TYPE.JSON
+  })
+
+  instance.interceptors.response.use(handleResponse, handleError)
+
+  return instance
+}
+
+const handleResponse = (response: any) => {
+  return response.data
+}
+
+const handleError = (error: any) => {
+  const { response, message } = error
+  return Promise.reject(response ? new Error(response.data.message || message) : error)
+}
+
+const toastError = (error: any) => {
+  const { response, message } = error
+
+  Toaster.show({
+    message: response?.data?.message || message
+  })
+
+  return Promise.reject(error)
+}
+
+interface Instance extends AxiosInstance {
+  (config: AxiosRequestConfig): Promise<any>
+}
+export const requestWithoutErrorToast: Instance = createInstance()
+
+const request: Instance = createInstance()
+request.interceptors.response.use(undefined, toastError)
+
+export default request

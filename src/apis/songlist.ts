@@ -13,7 +13,6 @@ type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[], collect
 
 const getSonglistDetail: GetSonglistDetailFn = async (id) => {
   const response = await axios({
-    method: 'get',
     url: '/playlist/detail',
     params: {
       id
@@ -34,7 +33,6 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
 
 const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, offset }) => {
   const response = await axios({
-    method: 'get',
     url: '/top/playlist',
     params: {
       cat,
@@ -49,7 +47,6 @@ const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, off
 
 const getSonglistCats: GetSonglistCatsFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/playlist/catlist'
   })
 
@@ -58,7 +55,6 @@ const getSonglistCats: GetSonglistCatsFn = async () => {
 
 const getSonglistHotCats: GetSonglistHotCatsFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/playlist/hot'
   })
 
@@ -67,7 +63,6 @@ const getSonglistHotCats: GetSonglistHotCatsFn = async () => {
 
 const getHighQualitySonglist: GetHighQualitySonglistFn = async (cat = '全部') => {
   const response = await axios({
-    method: 'get',
     url: '/top/playlist/highquality',
     params: {
       limit: 1,
@@ -80,7 +75,6 @@ const getHighQualitySonglist: GetHighQualitySonglistFn = async (cat = '全部') 
 
 const getUserSonglist: GetUserSonglistFn = async (uid) => {
   const response = await axios({
-    method: 'get',
     url: '/user/playlist',
     params: {
       uid,

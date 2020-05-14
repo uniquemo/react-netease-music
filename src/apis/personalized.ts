@@ -9,7 +9,6 @@ type GetBannerFn = () => Promise<IBanner[]>
 
 const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({ limit }) => {
   const response = await axios({
-    method: 'get',
     url: '/personalized',
     params: {
       limit
@@ -21,7 +20,6 @@ const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({ limit }) => 
 
 const getPersonalizedNewMusic: GetPersonalizedNewMusicFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/personalized/newsong'
   })
 
@@ -30,7 +28,6 @@ const getPersonalizedNewMusic: GetPersonalizedNewMusicFn = async () => {
 
 const getPersonalizedMV: GetPersonalizedMVFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/personalized/mv'
   })
 
@@ -39,7 +36,6 @@ const getPersonalizedMV: GetPersonalizedMVFn = async () => {
 
 const getBanner: GetBannerFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/banner',
     params: {
       type: 0

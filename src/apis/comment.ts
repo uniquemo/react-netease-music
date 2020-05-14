@@ -24,7 +24,6 @@ type UnlikeCommentFn = (params: Params, callback?: Function) => Promise<any>
 
 const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, commentId }) => {
   const response = await axios({
-    method: 'get',
     url: '/comment/like',
     params: {
       id,

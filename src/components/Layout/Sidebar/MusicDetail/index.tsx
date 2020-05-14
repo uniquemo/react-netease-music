@@ -70,12 +70,14 @@ const MusicDetail = () => {
             <Spinner size={Spinner.SIZE_SMALL} />
           ) : (
             <>
-              <div className={styles.block}>
-                <div className={styles.title}>包含这首歌的歌单</div>
-                <div>
-                  <Songlists data={songlistState.value || []} />
+              {!!songlistState.value?.length && (
+                <div className={styles.block}>
+                  <div className={styles.title}>包含这首歌的歌单</div>
+                  <div>
+                    <Songlists data={songlistState.value || []} />
+                  </div>
                 </div>
-              </div>
+              )}
               <div className={styles.block}>
                 <div className={styles.title}>相似歌曲</div>
                 <div>

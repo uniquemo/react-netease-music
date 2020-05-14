@@ -57,7 +57,7 @@ const LoginDialog: React.FC<IDialogProps> = ({ isOpen, onClose = noop }) => {
             setPassword(event.target.value)
           }}
         />
-        {error && <span className='error'>{error.message}</span>}
+        {error && <div className='error'>{error.message}</div>}
 
         <div className={styles.loginBtn}>
           <Button onClick={handleLogin} loading={loading}>登录</Button>

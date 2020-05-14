@@ -38,7 +38,6 @@ type GetgetLyricFn = (id: number) => Promise<{ lyric: string, offset: number, ve
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
-    method: 'get',
     url: '/song/detail',
     params: {
       ids: ids.join(',')
@@ -50,7 +49,6 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
 
 const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
   const response = await axios({
-    method: 'get',
     url: '/top/song',
     params: {
       type
@@ -62,7 +60,6 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
 
 const getRecommendSongs: GetRecommendSongsFn = async () => {
   const response = await axios({
-    method: 'get',
     url: '/recommend/songs'
   })
 
@@ -71,7 +68,6 @@ const getRecommendSongs: GetRecommendSongsFn = async () => {
 
 const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
   const response = await axios({
-    method: 'get',
     url: '/simi/playlist',
     params: {
       id,
@@ -85,7 +81,6 @@ const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
 
 const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
   const response = await axios({
-    method: 'get',
     url: '/simi/song',
     params: {
       id,
@@ -99,7 +94,6 @@ const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
 
 const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
   const response = await axios({
-    method: 'get',
     url: '/comment/music',
     params: {
       id,
@@ -113,7 +107,6 @@ const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
 
 const getLyric: GetgetLyricFn = async (id) => {
   const response = await axios({
-    method: 'get',
     url: '/lyric',
     params: {
       id

@@ -5,7 +5,7 @@
   width: 100%;
   min-width: bodyMinWidth;
   height: headerHeight;
-  background-color: #f8f8f8;
+  background-color: rgba(248, 248, 248, 0.95);
   position: fixed;
   top: 0;
   display: flex;

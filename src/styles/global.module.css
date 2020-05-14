@@ -27,6 +27,7 @@ img {
 
 /* 设置全局样式 */
 :global(.error) {
+  margin-top: 10px;
   color: red !important;
 }
 
@@ -74,4 +75,9 @@ img {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+:global(.mo-toaster .bp3-toast) {
+  color: #fff;
+  background-color: red;
 }

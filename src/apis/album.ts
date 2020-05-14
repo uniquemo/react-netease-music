@@ -5,7 +5,6 @@ type GetAlbumFn = (id: number) => Promise<IGetAlbumResponse>
 
 const getAlbum: GetAlbumFn = async (id) => {
   const response = await axios({
-    method: 'get',
     url: '/album',
     params: {
       id
