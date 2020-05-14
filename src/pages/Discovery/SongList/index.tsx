@@ -1,10 +1,10 @@
 import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 
+import Pagination from 'components/Pagination'
 import HighQuality from './HighQuality'
 import Categories, { DEFAULT_CAT } from './Categories'
 import Songlists from 'components/Songlists'
-import Pagination from 'components/Pagination'
 import songlistApis from 'apis/songlist'
 import useAsyncFn from 'hooks/useAsyncFn'
 import { PAGE_SIZE, PAGE } from 'constants/pagination'

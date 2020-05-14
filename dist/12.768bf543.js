@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{217:function(n,e,t){"use strict";t.r(e);var i=t(0),r=t.n(i);e.default=function(){return r.a.createElement("div",null,"Singers")}}}]);

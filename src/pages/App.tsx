@@ -1,12 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import Layout from 'components/Layout'
-import Discovery from './Discovery'
-import Videos from './Videos'
-import Search from './Search'
-import SonglistDetail from './SonglistDetail'
-
 import useAudio from 'hooks/useAudio'
 import { MODE } from 'helpers/play'
 import playMusicReducer, { initialState, PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
@@ -14,7 +8,13 @@ import logReducer, { initialState as logInitialState, LogStateContext, LogDispat
 import { IMyMusic } from 'apis/types/business'
 import ROUTES from 'constants/routes'
 
-const { useReducer, useMemo, useCallback } = React
+const { useReducer, useMemo, useCallback, lazy, Suspense } = React
+
+const Layout = lazy(() => import('components/Layout'))
+const Discovery = lazy(() => import('./Discovery'))
+const Videos = lazy(() => import('./Videos'))
+const Search = lazy(() => import('./Search'))
+const SonglistDetail = lazy(() => import('./SonglistDetail'))
 
 const App = () => {
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
@@ -75,30 +75,32 @@ const App = () => {
     }
   }, [state.musicId, state.playList, state.playMode, audioControls])
 
-  return (
-    <BrowserRouter>
-      <LogDispatchContext.Provider value={logDispath}>
-        <LogStateContext.Provider value={logState}>
-          <PlayMusicDispatchContext.Provider value={dispatch}>
-            <PlayMusicStateContext.Provider value={state}>
-              <AudioContext.Provider value={audioInfo}>
-                <Layout>
-                  {audio}
-                  <Switch>
-                    <Route path={ROUTES.DISCOVERY} component={Discovery} />
-                    <Route path={ROUTES.VIDEOS} component={Videos} />
-                    <Route exact path={ROUTES.SEARCH} component={Search} />
-                    <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
-                    <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
-                  </Switch>
-                </Layout>
-              </AudioContext.Provider>
-            </PlayMusicStateContext.Provider>
-          </PlayMusicDispatchContext.Provider>
-        </LogStateContext.Provider>
-      </LogDispatchContext.Provider>
-    </BrowserRouter>
-  )
+  return (<>
+    {audio}
+    <Suspense fallback={null}>
+      <BrowserRouter>
+        <LogDispatchContext.Provider value={logDispath}>
+          <LogStateContext.Provider value={logState}>
+            <PlayMusicDispatchContext.Provider value={dispatch}>
+              <PlayMusicStateContext.Provider value={state}>
+                <AudioContext.Provider value={audioInfo}>
+                  <Layout>
+                    <Switch>
+                      <Route path={ROUTES.DISCOVERY} component={Discovery} />
+                      <Route path={ROUTES.VIDEOS} component={Videos} />
+                      <Route exact path={ROUTES.SEARCH} component={Search} />
+                      <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
+                      <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
+                    </Switch>
+                  </Layout>
+                </AudioContext.Provider>
+              </PlayMusicStateContext.Provider>
+            </PlayMusicDispatchContext.Provider>
+          </LogStateContext.Provider>
+        </LogDispatchContext.Provider>
+      </BrowserRouter>
+    </Suspense>
+  </>)
 }
 
 export default App

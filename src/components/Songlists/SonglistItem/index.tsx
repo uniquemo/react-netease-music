@@ -1,8 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-import PlayIcon from 'components/PlayIcon'
 import PlayCount from 'components/PlayCount'
+import PlayIcon from 'components/PlayIcon'
 import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 

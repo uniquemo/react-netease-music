@@ -2,8 +2,8 @@ import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 import cn from 'classnames'
 
-import MusicList from 'components/MusicList'
 import Pagination from 'components/Pagination'
+import MusicList from 'components/MusicList'
 
 import useQuery from 'hooks/useQuery'
 import useAsyncFn from 'hooks/useAsyncFn'
