@@ -19,16 +19,16 @@ const Lyric = () => {
 
   const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
-  const { musicId } = state
+  const { musicId, showLyric } = state
 
   const [lyricState, getLyricFn] = useAsyncFn(songApis.getLyric)
   const lines = formatLyric(lyricState.value?.lyric)
 
   useEffect(() => {
-    if (musicId) {
+    if (musicId && showLyric) {
       getLyricFn(musicId)
     }
-  }, [musicId])
+  }, [musicId, showLyric])
 
   useEffect(() => {
     if (!audioInfo.state?.paused) {

@@ -2,15 +2,18 @@ import React from 'react'
 import { Icon } from '@blueprintjs/core'
 
 import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
+import { playList as playListLocalStorage } from 'helpers/play'
 import styles from './style.module.css'
 
-const { useContext } = React
+const { useContext, useMemo } = React
 
 const PlayOperations = () => {
   const audioInfo = useContext(AudioContext)
   const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
-  const { musicId, playList } = state
+  const { musicId } = state
+
+  const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
   const togglePlayStatus = () => {
     if (audioInfo.state?.paused) {

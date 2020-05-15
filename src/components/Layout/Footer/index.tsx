@@ -83,10 +83,12 @@ const Footer = () => {
         </div>
       </div>
 
-      <PlayRecord
-        show={showPlayRecord}
-        onClickAway={() => setShowPlayRecord(false)}
-      />
+      {showPlayRecord && (
+        <PlayRecord
+          show={showPlayRecord}
+          onClickAway={() => setShowPlayRecord(false)}
+        />
+      )}
     </div>
   )
 }

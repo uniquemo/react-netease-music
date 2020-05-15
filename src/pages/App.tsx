@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import useAudio from 'hooks/useAudio'
-import { MODE } from 'helpers/play'
+import { MODE, playList as playListLocalStorage } from 'helpers/play'
 import playMusicReducer, { initialState, PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
 import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log'
 import { IMyMusic } from 'apis/types/business'
@@ -19,9 +19,12 @@ const SonglistDetail = lazy(() => import('./SonglistDetail'))
 const App = () => {
   const [logState, logDispath] = useReducer(logReducer, logInitialState)
   const [state, dispatch] = useReducer(playMusicReducer, initialState)
+  const { musicId, musicUrl, playMode } = state
+
+  const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
   const [audio, audioState, audioControls, audioRef] = useAudio({
-    src: state.musicUrl,
+    src: musicUrl,
     autoPlay: true,
     onEnded: () => onRadioEnded()
   })
@@ -33,23 +36,25 @@ const App = () => {
       controls: audioControls,
       ref: audioRef
     }
-  }, [state.musicUrl, audio, audioState, audioControls, audioRef])
+  }, [musicUrl, audio, audioState, audioControls, audioRef])
+
+  const playMusic = useCallback((index: number) => {
+    dispatch({
+      type: ACTIONS.PLAY,
+      payload: {
+        musicId: playList[index].id,
+        music: playList[index]
+      }
+    })
+  }, [playList])
 
   const onRadioEnded = useCallback(() => {
-    const { playMode, playList, musicId } = state
-
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
         const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)
         if (playList.length) {
           const nextIdx = idx > -1 ? (idx + 1) % playList.length : 0
-          dispatch({
-            type: ACTIONS.PLAY,
-            payload: {
-              musicId: playList[nextIdx].id,
-              music: playList[nextIdx]
-            }
-          })
+          playMusic(nextIdx)
         }
         return
       }
@@ -60,20 +65,14 @@ const App = () => {
       case MODE.SHUFFLE_PLAYBACK: {
         if (playList.length) {
           const randomIdx = Math.floor(Math.random() * playList.length)
-          dispatch({
-            type: ACTIONS.PLAY,
-            payload: {
-              musicId: playList[randomIdx].id,
-              music: playList[randomIdx]
-            }
-          })
+          playMusic(randomIdx)
         }
         return
       }
       default:
         return
     }
-  }, [state.musicId, state.playList, state.playMode, audioControls])
+  }, [musicId, playMode, audioControls, playList])
 
   return (<>
     {audio}

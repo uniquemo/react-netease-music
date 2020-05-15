@@ -72,7 +72,7 @@ const Comments = () => {
         <div className={styles.block}>
           <div className={styles.title}>最新评论</div>
           <div className={styles.loading}>
-            <Spinner className='spinner' />
+            <Spinner className='spinner' size={Spinner.SIZE_SMALL} />
           </div>
         </div>
       ) : (

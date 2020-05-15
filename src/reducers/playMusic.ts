@@ -36,8 +36,6 @@ export interface IState {
   musicId: number,
   musicUrl: string,
   music?: IMyMusic,
-  playList: IMyMusic[],
-  playHistory: IMyMusic[],
   playMode: MODE,
   showLyric: boolean
 }
@@ -45,8 +43,6 @@ export interface IState {
 export const initialState = {
   musicId: 0,
   musicUrl: '',
-  playList: playListLocalStorage.getItem(),
-  playHistory: playHistoryLocalStorage.getItem(),
   playMode: playModeLocalStorage.getItem(),
   showLyric: false
 }
@@ -63,26 +59,17 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
         ...state,
         musicId: payload?.musicId,
         musicUrl: getMusicUrl(payload?.musicId),
-        music: payload?.music,
-        playHistory: !payload?.keepOrder ? playHistory : state.playHistory
+        music: payload?.music
       }
     }
     case ACTIONS.SET_PLAY_LIST: {
       const playList = payload?.playList || []
       playListLocalStorage.setItem(playList)
-
-      return {
-        ...state,
-        playList
-      }
+      return state
     }
     case ACTIONS.CLEAR_PLAY_LIST: {
       playListLocalStorage.removeItem()
-
-      return {
-        ...state,
-        playList: []
-      }
+      return state
     }
     case ACTIONS.SET_PLAY_MODE: {
       playModeLocalStorage.setItem(payload?.playMode)
@@ -106,11 +93,7 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
     }
     case ACTIONS.CLEAR_PLAY_HISTORY: {
       playHistoryLocalStorage.removeItem()
-
-      return {
-        ...state,
-        playHistory: []
-      }
+      return state
     }
     default:
       return state

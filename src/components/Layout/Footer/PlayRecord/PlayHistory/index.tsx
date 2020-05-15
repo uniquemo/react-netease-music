@@ -2,13 +2,14 @@ import React from 'react'
 
 import List from '../List'
 import { IMyMusic } from 'apis/types/business'
-import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { playHistory as playHistoryLocalStorage } from 'helpers/play'
 
 const { useContext } = React
 
 const PlayHistory = () => {
-  const state = useContext(PlayMusicStateContext)
   const dispatch = useContext(PlayMusicDispatchContext)
+  const playHistory = playHistoryLocalStorage.getItem()
 
   const handleDoubleClick = (item: IMyMusic) => {
     dispatch({
@@ -29,7 +30,7 @@ const PlayHistory = () => {
 
   return (
     <List
-      data={state.playHistory}
+      data={playHistory}
       onDoubleClick={handleDoubleClick}
       onClear={clearPlayHistory}
     />
