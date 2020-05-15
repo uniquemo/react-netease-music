@@ -13,12 +13,14 @@ interface IProps {
   picUrl?: string
 }
 
+const { useCallback } = React
+
 const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   const history = useHistory()
 
-  const handleItemClick = () => {
+  const handleItemClick = useCallback(() => {
     history.push(`${ROUTES.SONG_LISTS}/${id}`)
-  }
+  }, [history, id])
 
   return (
     <div className={styles.root} onClick={handleItemClick}>

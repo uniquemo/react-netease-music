@@ -5,25 +5,27 @@ import { PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS 
 import { playList as playListLocalStorage } from 'helpers/play'
 import styles from './style.module.css'
 
-const { useContext, useMemo } = React
+const { useContext, useMemo, useCallback } = React
 
 const PlayOperations = () => {
   const audioInfo = useContext(AudioContext)
-  const state = useContext(PlayMusicStateContext)
+  const { state: audioState, controls } = audioInfo
+
   const dispatch = useContext(PlayMusicDispatchContext)
+  const state = useContext(PlayMusicStateContext)
   const { musicId } = state
 
   const playList = useMemo(() => playListLocalStorage.getItem(), [musicId])
 
-  const togglePlayStatus = () => {
-    if (audioInfo.state?.paused) {
-      audioInfo.controls?.play()
+  const togglePlayStatus = useCallback(() => {
+    if (audioState?.paused) {
+      controls?.play()
     } else {
-      audioInfo.controls?.pause()
+      controls?.pause()
     }
-  }
+  }, [audioState?.paused, controls])
 
-  const play = (prev?: boolean) => {
+  const play = useCallback((prev?: boolean) => {
     const len = playList.length
     if (!len) {
       return
@@ -45,10 +47,10 @@ const PlayOperations = () => {
         music: playList[nextIndex]
       }
     })
-  }
+  }, [playList, musicId, dispatch])
 
-  const playPrev = () => play(true)
-  const playNext = () => play()
+  const playPrev = useCallback(() => play(true), [play])
+  const playNext = useCallback(() => play(), [play])
 
   return (
     <>

@@ -19,5 +19,5 @@
 }
 
 .playCount {
-  color: tipsColor;
+  color: tipsColor !important;
 }

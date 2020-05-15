@@ -10,13 +10,13 @@ interface IProps {
   onBarClick: (donePercent: number) => void
 }
 
-const { useRef } = React
+const { useRef, useCallback, useMemo } = React
 
 const ProgressBar: React.FC<IProps> = ({ donePercent, renderLabel, onBarClick, className }) => {
   const barRef = useRef<HTMLDivElement | null>()
   const dotRef = useRef<HTMLDivElement | null>()
 
-  const getPercent = (event: React.MouseEvent<HTMLDivElement>) => {
+  const getPercent = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     const box = barRef.current?.getBoundingClientRect()
     const clickX = event.pageX - (box?.x || 0)
 
@@ -25,14 +25,14 @@ const ProgressBar: React.FC<IProps> = ({ donePercent, renderLabel, onBarClick, c
       : 0
 
     return percent
-  }
+  }, [])
 
-  const handleBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleBarClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     const percent = getPercent(event)
     onBarClick(percent)
-  }
+  }, [getPercent, onBarClick])
 
-  const width = `${donePercent * 100}%`
+  const width = useMemo(() => `${donePercent * 100}%`, [donePercent])
 
   return (
     <div

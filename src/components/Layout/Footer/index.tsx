@@ -12,7 +12,7 @@ import PlayVolume from './PlayVolume'
 import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
 
-const { useContext, useState } = React
+const { useContext, useState, useCallback } = React
 
 const Footer = () => {
   const [showPlayRecord, setShowPlayRecord] = useState(false)
@@ -20,19 +20,21 @@ const Footer = () => {
   const state = useContext(PlayMusicStateContext)
   const { musicId, music, showLyric } = state
 
-  const togglePlayRecord = () => setShowPlayRecord(!showPlayRecord)
+  const togglePlayRecord = useCallback(() => {
+    setShowPlayRecord(!showPlayRecord)
+  }, [showPlayRecord, setShowPlayRecord])
 
-  const handleShowLyric = () => {
+  const handleShowLyric = useCallback(() => {
     dispatch({
       type: ACTIONS.SHOW_LYRIC
     })
-  }
+  }, [dispatch])
 
-  const handleHideLyric = () => {
+  const handleHideLyric = useCallback(() => {
     dispatch({
       type: ACTIONS.HIDE_LYRIC
     })
-  }
+  }, [dispatch])
 
   return (
     <div className={styles.root}>
@@ -83,12 +85,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {showPlayRecord && (
-        <PlayRecord
-          show={showPlayRecord}
-          onClickAway={() => setShowPlayRecord(false)}
-        />
-      )}
+      <PlayRecord
+        show={showPlayRecord}
+        onClickAway={() => setShowPlayRecord(false)}
+      />
     </div>
   )
 }

@@ -37,23 +37,25 @@ const PlayRecord: React.FC<IProps> = ({ show, onClickAway }) => {
 
   return (
     <div className={cn(styles.root, show && styles.show)} ref={ref => playRecordRef.current = ref}>
-      <div className={styles.tabs}>
-        {Object.keys(TABS).map((key) => {
-          return (
-            <div
-              key={key}
-              className={cn(styles.tab, activeTab === key && styles.active)}
-              onClick={() => setActiveTab(TABS[key].tabKey)}
-            >
-              {TABS[key].tab}
-            </div>
-          )
-        })}
-      </div>
+      {show && <>
+        <div className={styles.tabs}>
+          {Object.keys(TABS).map((key) => {
+            return (
+              <div
+                key={key}
+                className={cn(styles.tab, activeTab === key && styles.active)}
+                onClick={() => setActiveTab(TABS[key].tabKey)}
+              >
+                {TABS[key].tab}
+              </div>
+            )
+          })}
+        </div>
 
-      <div className={styles.content}>
-        {activeTab === TABS.PLAY_LIST.tabKey ? <PlayList /> : <PlayHistory />}
-      </div>
+        <div className={styles.content}>
+          {activeTab === TABS.PLAY_LIST.tabKey ? <PlayList /> : <PlayHistory />}
+        </div>
+      </>}
     </div>
   )
 }

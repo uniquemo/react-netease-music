@@ -24,14 +24,14 @@ const MODE_MAP: IDictionary<{
   }
 }
 
-const { useContext } = React
+const { useContext, useCallback } = React
 
 const PlayMode = () => {
   const dispatch = useContext(PlayMusicDispatchContext)
   const state = useContext(PlayMusicStateContext)
   const { playMode } = state
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     const idx = MODE_ORDER.findIndex(m => m === playMode)
     const nextMode = MODE_ORDER[(idx + 1) % (MODE_ORDER.length)]
 
@@ -41,7 +41,7 @@ const PlayMode = () => {
         playMode: nextMode
       }
     })
-  }
+  }, [dispatch, playMode])
 
   return (
     <Tooltip content={MODE_MAP[playMode].label}>
