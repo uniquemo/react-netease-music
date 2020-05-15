@@ -32,7 +32,7 @@ const ProgressBar: React.FC<IProps> = ({ donePercent, renderLabel, onBarClick, c
     onBarClick(percent)
   }, [getPercent, onBarClick])
 
-  const width = useMemo(() => `${donePercent * 100}%`, [donePercent])
+  const width = useMemo(() => `${Math.floor(donePercent * 100)}%`, [donePercent])
 
   return (
     <div

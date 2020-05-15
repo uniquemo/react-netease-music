@@ -5,6 +5,7 @@ import { Icon } from '@blueprintjs/core'
 import Navbar from './Navbar'
 import Searcher from './Searcher'
 import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
+import { REPOSITORY } from 'constants/github'
 import styles from './style.module.css'
 
 const { useContext } = React
@@ -56,8 +57,12 @@ const Header = () => {
         <div>
           {!showLyric && <Navbar />}
         </div>
-        <div>
+        <div className={styles.operations}>
           <Searcher />
+          <div
+            className={styles.githubLogo}
+            onClick={() => window.open(REPOSITORY)}
+          />
         </div>
       </div>
     </div>
