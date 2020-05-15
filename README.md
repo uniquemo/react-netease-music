@@ -1,10 +1,13 @@
 # React Netease Music
 React Netease Music——一个基于React、TypeScript的高仿网易云mac客户端播放器。
 
-一直想写一个音乐播放器把玩把玩，最近无意中发现很早就有人整理出了相关的API，话不多说，撸起来！代码使用React编写，没有使用额外的数据管理库（因为react hook真的挺方便的😂），欢迎提出你的意见，喜欢的话请给我一个star哈😁~
+一直想写一个音乐播放器把玩把玩，最近无意中发现很早就有人整理出了相关的API，话不多说，撸起来！代码使用React编写，没有使用额外的数据管理库（因为react hook真的挺方便的hhhh），欢迎提出你的意见，喜欢的话请给我一个star哈😁~
+
+## 项目体验地址
+[高仿网易云音乐播放器——音为爱呀😍](http://47.115.57.59:8000/discovery)
 
 ## 功能列表
-- [x] 登录/登出
+- [x] 登录/登出（目前仅支持手机密码登录）
 - [x] 发现页
   - [x] banner
   - [x] 推荐歌单
@@ -74,3 +77,4 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 yarn
 yarn dev
 ```
+然后在浏览器中访问：`http://localhost:8080`
