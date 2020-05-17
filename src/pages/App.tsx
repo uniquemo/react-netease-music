@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
+import Layout from 'components/Layout'
 import useAudio from 'hooks/useAudio'
 import { MODE, playList as playListLocalStorage } from 'helpers/play'
 import playMusicReducer, { initialState, PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
@@ -10,7 +11,6 @@ import ROUTES from 'constants/routes'
 
 const { useReducer, useMemo, useCallback, lazy, Suspense } = React
 
-const Layout = lazy(() => import('components/Layout'))
 const Discovery = lazy(() => import('./Discovery'))
 const Videos = lazy(() => import('./Videos'))
 const Search = lazy(() => import('./Search'))
@@ -74,16 +74,16 @@ const App = () => {
     }
   }, [musicId, playMode, audioControls, playList])
 
-  return (<>
-    {audio}
-    <Suspense fallback={null}>
-      <BrowserRouter>
-        <LogDispatchContext.Provider value={logDispath}>
-          <LogStateContext.Provider value={logState}>
-            <PlayMusicDispatchContext.Provider value={dispatch}>
-              <PlayMusicStateContext.Provider value={state}>
-                <AudioContext.Provider value={audioInfo}>
-                  <Layout>
+  return (
+    <BrowserRouter>
+      <LogDispatchContext.Provider value={logDispath}>
+        <LogStateContext.Provider value={logState}>
+          <PlayMusicDispatchContext.Provider value={dispatch}>
+            <PlayMusicStateContext.Provider value={state}>
+              <AudioContext.Provider value={audioInfo}>
+                <Layout>
+                  {audio}
+                  <Suspense fallback={null}>
                     <Switch>
                       <Route path={ROUTES.DISCOVERY} component={Discovery} />
                       <Route path={ROUTES.VIDEOS} component={Videos} />
@@ -91,15 +91,15 @@ const App = () => {
                       <Route exact path={ROUTES.SONG_LIST_DETAIL} component={SonglistDetail} />
                       <Redirect from={ROUTES.ROOT} to={ROUTES.DEFAULT_ROUTE} />
                     </Switch>
-                  </Layout>
-                </AudioContext.Provider>
-              </PlayMusicStateContext.Provider>
-            </PlayMusicDispatchContext.Provider>
-          </LogStateContext.Provider>
-        </LogDispatchContext.Provider>
-      </BrowserRouter>
-    </Suspense>
-  </>)
+                  </Suspense>
+                </Layout>
+              </AudioContext.Provider>
+            </PlayMusicStateContext.Provider>
+          </PlayMusicDispatchContext.Provider>
+        </LogStateContext.Provider>
+      </LogDispatchContext.Provider>
+    </BrowserRouter>
+  )
 }
 
 export default App

@@ -15,8 +15,9 @@ const PlayVolume = () => {
     controls?.volume(percent)
   }, [controls])
 
-  const donePercent = useMemo(() => {
-    return Number((state?.volume || 0).toFixed(2))
+  const originDonePercent = useMemo(() => {
+    const volume = Number((state?.volume || 0).toFixed(2))
+    return Math.floor(volume * 100)
   }, [state?.volume])
 
   return (
@@ -25,7 +26,7 @@ const PlayVolume = () => {
       <div className={styles.progress}>
         <ProgressBar
           className={styles.bar}
-          donePercent={donePercent}
+          originDonePercent={originDonePercent}
           onBarClick={handleBarClick}
         />
       </div>

@@ -26,7 +26,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
     {
       title: '',
       key: 'name',
-      width: '100px',
+      width: '80px',
       render: (name: string, record: IMusic, index?: number) => {
         return (
           <div className={styles.operations}>
@@ -39,7 +39,6 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
                 {(index || 0) + 1}
               </span>
             )}
-            <Icon icon='heart' iconSize={14} />
             <Icon icon='import' iconSize={14} />
           </div>
         )
