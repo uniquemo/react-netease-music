@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/Unique111/react-netease-music/compare/v1.0.1...v1.1.0) (2020-05-19)
+
+
+### Features
+
+* add music vip type and music resource does not exist condition ([3ef9dcc](https://github.com/Unique111/react-netease-music/commit/3ef9dccf3a8cc4723e72a76724c613a55cea75e1))
+
+
+
 # 1.0.0 (2020-05-17)
 
 
