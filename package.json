@@ -1,6 +1,6 @@
 {
   "name": "react-netease-music",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "changelog-gen": "conventional-changelog -p angular -i CHAGELOG.md -s",
-    "release": "./deploy/bash.sh"
+    "release": "./deploy/bash.sh && yarn changelog-gen"
   },
   "repository": {
     "type": "git",
