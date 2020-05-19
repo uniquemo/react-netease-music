@@ -5,6 +5,6 @@
 echo "Start to deploy react-netease-music"
 
 yarn build
-cp -r ./dist/** /usr/share/nginx/html
+scp -r ./dist/** root@47.115.57.59:/usr/share/nginx/html
 
 echo "Successfully deploy react-netease-music"

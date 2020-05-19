@@ -3,7 +3,8 @@ import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import Table, { IColumn } from 'components/Table'
-import { IMusic, IArtist, IAlbum } from 'apis/types/business'
+import VipIcon from 'components/VipIcon'
+import { IMusic, IArtist, IAlbum, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
 import albumApis from 'apis/album'
 import { formatTime } from 'helpers/time'
 import { createMusic } from 'helpers/business'
@@ -48,10 +49,13 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
       title: '音乐标题',
       key: 'name',
       width: '45%',
-      render: (name: string, { alias, id }: IMusic) => {
+      render: (name: string, { alias, id, fee }: IMusic) => {
         return (
           <>
-            <div className={cn(styles.name, state.musicId === id && styles.active)}>{name}</div>
+            <div className={cn(styles.name, state.musicId === id && styles.active)}>
+              <span>{name}</span>
+              {fee === MUSIC_TYPE.VIP && <VipIcon />}
+            </div>
             {alias?.length ? <div className={styles.alias}>{alias.join(' ')}</div> : null}
           </>
         )
@@ -100,12 +104,15 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
     onPlayAll && onPlayAll()
   }
 
+  const checkIsRecordRowDisabled = (record: IMusic) => record.status === MUSIC_STATUS.NOT_FOUND
+
   return (
     <div>
       <Table<IMusic>
         columns={columns}
         data={data}
         onDoubleClick={handleDoubleClick}
+        isRecordRowDisabled={checkIsRecordRowDisabled}
       />
     </div>
   )

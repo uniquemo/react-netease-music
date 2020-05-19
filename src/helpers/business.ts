@@ -28,10 +28,12 @@ export const createMusicWithAlbum = (music: IMusic) => {
 }
 
 export const createMusicFromSimpleMusic = (music: ISimpleMusic): IMyMusic => {
-  const { id, name, al, ar, dt } = music
+  const { id, name, al, ar, dt, fee, status } = music
   return {
     id,
     name,
+    fee,
+    status,
     picUrl: al.picUrl,
     artists: ar,
     duration: dt,

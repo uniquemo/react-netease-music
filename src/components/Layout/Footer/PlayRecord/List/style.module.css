@@ -2,10 +2,20 @@
 @value tipsColor, borderColor, nameHoverColor, nameColor from colors;
 
 .name {
+  display: flex;
+  align-items: center;
   padding-left: 20px;
 
   .icon {
     margin: 0 3px 0 -15px;
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 5px;
+    }
   }
 }
 

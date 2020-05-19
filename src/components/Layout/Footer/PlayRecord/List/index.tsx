@@ -3,7 +3,8 @@ import { Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
 import Table, { IColumn } from 'components/Table'
-import { IMyMusic, IArtist } from 'apis/types/business'
+import VipIcon from 'components/VipIcon'
+import { IMyMusic, IArtist, MUSIC_STATUS, MUSIC_TYPE } from 'apis/types/business'
 import { formatTime } from 'helpers/time'
 import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
@@ -23,8 +24,8 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
   const columns: IColumn<IMyMusic, keyof IMyMusic>[] = [
     {
       key: 'name',
-      width: '50%',
-      render: (name: string, { id }: IMyMusic) => {
+      width: '55%',
+      render: (name: string, { id, fee }: IMyMusic) => {
         const isActive = state.musicId === id
         return (
           <div className={cn(styles.name, isActive && 'active')}>
@@ -35,7 +36,10 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
                 icon={audioInfo.state?.paused ? 'pause' : 'play'}
               />
             )}
-            {name}
+            <div className={styles.text}>
+              <span>{name}</span>
+              {fee === MUSIC_TYPE.VIP && <VipIcon />}
+            </div>
           </div>
         )
       }
@@ -53,7 +57,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
     },
     {
       key: 'duration',
-      width: '20%',
+      width: '15%',
       render: (duration: number) => formatTime(duration)
     }
   ]
@@ -77,6 +81,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
           data={data}
           showHeader={false}
           onDoubleClick={onDoubleClick}
+          isRecordRowDisabled={(item) => item.status === MUSIC_STATUS.NOT_FOUND}
         />
       </div>
     </>

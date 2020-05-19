@@ -11,6 +11,14 @@ export enum TARGET_TYPE {
   VIDEO = 1014
 }
 
+export enum MUSIC_STATUS {
+  NOT_FOUND = -200
+}
+
+export enum MUSIC_TYPE {
+  VIP = 1
+}
+
 export interface IArtist {
   albumSize: number,
   id: number,
@@ -80,6 +88,8 @@ export interface IMyMusic {
   duration: number,
   picUrl?: string,
   album?: IAlbum,
+  fee?: number, // 用来判断是否需要vip，fee=1则vip才能听
+  status?: number,  // 歌曲状态，-200表示资源不存在
   [key: string]: any
 }
 
@@ -132,5 +142,7 @@ export interface ISimpleMusic {
   dt: number,
   id: number,
   name: string,
-  publishTime: number
+  publishTime: number,
+  fee?: number,
+  status?: number
 }
