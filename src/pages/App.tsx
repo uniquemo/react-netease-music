@@ -26,7 +26,13 @@ const App = () => {
   const [audio, audioState, audioControls, audioRef] = useAudio({
     src: musicUrl,
     autoPlay: true,
-    onEnded: () => onRadioEnded()
+    onEnded: () => playNextMusic(),
+    onError: () => {
+      if (playMode === MODE.SINGLE_CYCLE) {
+        return
+      }
+      playNextMusic()
+    }
   })
 
   const audioInfo = useMemo(() => {
@@ -48,7 +54,7 @@ const App = () => {
     })
   }, [playList])
 
-  const onRadioEnded = useCallback(() => {
+  const playNextMusic = useCallback(() => {
     switch (playMode) {
       case MODE.PLAY_IN_ORDER: {
         const idx = playList.findIndex(({ id }: IMyMusic) => id === musicId)

@@ -1,5 +1,5 @@
 @value colors: "~styles/colors.module.css";
-@value tipsHoverColor, bgColor from colors;
+@value tipsHoverColor, bgColor, tipsColor from colors;
 
 .root {
   font-size: 0.9em;
@@ -23,6 +23,10 @@
 
   .row:hover {
     background-color: bgColor;
+  }
+
+  .disabled {
+    color: tipsColor;
   }
 }
 

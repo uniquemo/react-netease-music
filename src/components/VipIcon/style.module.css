@@ -1,0 +1,13 @@
+@value colors: "~styles/colors.module.css";
+@value red from colors;
+
+.root {
+  width: 25px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  color: #fff;
+  background-color: red;
+}

@@ -20,8 +20,13 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
   })
 
   const songs: IMyMusic[] = []
-  response?.playlist?.tracks?.forEach((item: ISimpleMusic) => {
-    const song = createMusicFromSimpleMusic(item)
+  response?.playlist?.tracks?.forEach((item: ISimpleMusic, index: number) => {
+    const privilege = response?.privileges?.[index]
+    const song = createMusicFromSimpleMusic({
+      ...item,
+      fee: privilege?.fee,
+      status: privilege?.st
+    })
     songs.push(song)
   })
 
