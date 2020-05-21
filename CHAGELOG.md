@@ -8,6 +8,7 @@
 
 ### Features
 
+* add deploy docker node script ([7bf0938](https://github.com/Unique111/react-netease-music/commit/7bf0938f9481022ec0ba21d0e5f932a3f5a0f348))
 * add music vip type and music resource does not exist condition ([3ef9dcc](https://github.com/Unique111/react-netease-music/commit/3ef9dccf3a8cc4723e72a76724c613a55cea75e1))
 
 
