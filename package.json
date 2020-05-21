@@ -9,7 +9,7 @@
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "changelog-gen": "conventional-changelog -p angular -i CHAGELOG.md -s",
-    "release": "./deploy/bash.sh && yarn changelog-gen"
+    "release": "./deploy/bash.sh"
   },
   "repository": {
     "type": "git",
