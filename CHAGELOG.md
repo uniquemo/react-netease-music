@@ -1,3 +1,18 @@
+## [1.1.1](https://github.com/Unique111/react-netease-music/compare/v1.0.1...v1.1.1) (2020-05-21)
+
+
+### Bug Fixes
+
+* docker file nginx config ([c2e31c6](https://github.com/Unique111/react-netease-music/commit/c2e31c69bf6693dcb2ffe425386157e41d8f97f7))
+
+
+### Features
+
+* add deploy docker node script ([7bf0938](https://github.com/Unique111/react-netease-music/commit/7bf0938f9481022ec0ba21d0e5f932a3f5a0f348))
+* add music vip type and music resource does not exist condition ([3ef9dcc](https://github.com/Unique111/react-netease-music/commit/3ef9dccf3a8cc4723e72a76724c613a55cea75e1))
+
+
+
 # [1.1.0](https://github.com/Unique111/react-netease-music/compare/v1.0.1...v1.1.0) (2020-05-19)
 
 
