@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/Unique111/react-netease-music/compare/v1.1.1...v1.1.2) (2020-05-21)
+
+
+### Bug Fixes
+
+* docker release node script ([4e7b8ec](https://github.com/Unique111/react-netease-music/commit/4e7b8ecd1c51602e23dac32ea5657b04a15e608b))
+
+
+
 ## [1.1.1](https://github.com/Unique111/react-netease-music/compare/v1.0.1...v1.1.1) (2020-05-21)
 
 
