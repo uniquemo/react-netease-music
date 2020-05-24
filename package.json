@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unique111/react-netease-music.git"
+    "url": "git+https://github.com/uniquemo/react-netease-music.git"
   },
   "keywords": [
     "react",
@@ -32,9 +32,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Unique111/react-netease-music/issues"
+    "url": "https://github.com/uniquemo/react-netease-music/issues"
   },
-  "homepage": "https://github.com/Unique111/react-netease-music#readme",
+  "homepage": "https://github.com/uniquemo/react-netease-music#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

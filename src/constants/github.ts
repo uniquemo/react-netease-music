@@ -1,1 +1,1 @@
-export const REPOSITORY: string = 'https://github.com/Unique111/react-netease-music'
+export const REPOSITORY: string = 'https://github.com/uniquemo/react-netease-music'
