@@ -8,9 +8,14 @@
     "build": "webpack --mode=production",
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "changelog-gen": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release": "./deploy/bash.sh",
-    "docker-release": "./deploy/docker.sh"
+    "docker-release": "./deploy/docker.sh",
+    "changelog-gen": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "version": "yarn changelog-gen && git add CHANGELOG.md",
+    "postversion": "git commit -m 'feat: update CHANGELOG.md' && git push",
+    "version-patch": "npm version patch && yarn version",
+    "version-minor": "npm version minor && yarn version",
+    "version-major": "npm version major && yarn version"
   },
   "repository": {
     "type": "git",
