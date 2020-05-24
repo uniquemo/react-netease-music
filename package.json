@@ -8,7 +8,7 @@
     "build": "webpack --mode=production",
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "changelog-gen": "conventional-changelog -p angular -i CHAGELOG.md -s",
+    "changelog-gen": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "release": "./deploy/bash.sh",
     "docker-release": "./deploy/docker.sh"
   },
