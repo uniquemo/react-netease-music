@@ -4,7 +4,7 @@ import { SERVER } from 'constants/server'
 
 const TIMEOUT = 40000
 const MIME_TYPE: IDictionary<ResponseType> = {
-  JSON: 'json'
+  JSON: 'json',
 }
 
 const createInstance = () => {
@@ -12,7 +12,7 @@ const createInstance = () => {
     baseURL: SERVER,
     withCredentials: true,
     timeout: TIMEOUT,
-    responseType: MIME_TYPE.JSON
+    responseType: MIME_TYPE.JSON,
   })
 
   instance.interceptors.response.use(handleResponse, handleError)
@@ -33,7 +33,7 @@ const toastError = (error: any) => {
   const { response, message } = error
 
   Toaster.show({
-    message: response?.data?.message || message
+    message: response?.data?.message || message,
   })
 
   return Promise.reject(error)

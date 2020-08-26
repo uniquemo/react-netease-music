@@ -5,5 +5,5 @@ const KEY = '__session'
 
 export const sessionLocalStorage = localStorageFactory<ILoginResult>({
   key: KEY,
-  defaultValue: DEFAULT_VALUE.OBJECT
+  defaultValue: DEFAULT_VALUE.OBJECT,
 })

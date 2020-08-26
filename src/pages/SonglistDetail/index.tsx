@@ -17,12 +17,12 @@ const { useEffect, useContext } = React
 const TABS = [
   {
     label: '歌曲列表',
-    key: 'songlist'
+    key: 'songlist',
   },
   {
     label: '评论',
-    key: 'comment'
-  }
+    key: 'comment',
+  },
 ]
 
 const SonglistDetail = () => {
@@ -43,15 +43,15 @@ const SonglistDetail = () => {
     const list = songs.map((item) => {
       return createMusic({
         ...item,
-        duration: item.duration / 1000
+        duration: item.duration / 1000,
       })
     })
 
     dispatch({
       type: ACTIONS.SET_PLAY_LIST,
       payload: {
-        playList: list
-      }
+        playList: list,
+      },
     })
 
     if (autoPlay) {
@@ -59,31 +59,27 @@ const SonglistDetail = () => {
         type: ACTIONS.PLAY,
         payload: {
           musicId: list[0].id,
-          music: list[0]
-        }
+          music: list[0],
+        },
       })
     }
   }
 
   return (
     <div className={styles.root}>
-      {loading ? <Spinner className='spinner' /> : (
+      {loading ? (
+        <Spinner className="spinner" />
+      ) : (
         <>
           <div className={styles.basicInfo}>
-            <BasicInfo
-              data={result?.songlist}
-              onPlayAll={playAll}
-            />
+            <BasicInfo data={result?.songlist} onPlayAll={playAll} />
           </div>
 
           <div className={styles.content}>
             <div className={styles.tabs}>
               <Tabs tabs={TABS} />
             </div>
-            <MusicList
-              data={songs}
-              onPlayAll={playAll}
-            />
+            <MusicList data={songs} onPlayAll={playAll} />
           </div>
         </>
       )}

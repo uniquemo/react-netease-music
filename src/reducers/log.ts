@@ -4,16 +4,16 @@ import { sessionLocalStorage } from 'helpers/session'
 import { IAction } from './types'
 import { ILoginResult } from 'apis/types/auth'
 
-const LOGIN: string = 'LOGIN'
-const LOGOUT: string = 'LOGOUT'
+const LOGIN = 'LOGIN'
+const LOGOUT = 'LOGOUT'
 
 export const ACTIONS = {
   LOGIN,
-  LOGOUT
+  LOGOUT,
 }
 
 export interface IState {
-  isLogined: boolean,
+  isLogined: boolean
   user: ILoginResult
 }
 
@@ -21,7 +21,7 @@ const session = sessionLocalStorage.getItem()
 
 export const initialState = {
   isLogined: !!session.userId,
-  user: session
+  user: session,
 }
 
 const logReducer = (state: IState, action: IAction) => {
@@ -32,7 +32,7 @@ const logReducer = (state: IState, action: IAction) => {
       return {
         ...state,
         isLogined: true,
-        user: action.payload?.user
+        user: action.payload?.user,
       }
     }
     case ACTIONS.LOGOUT: {
@@ -41,7 +41,7 @@ const logReducer = (state: IState, action: IAction) => {
       return {
         ...state,
         isLogined: false,
-        user: {}
+        user: {},
       }
     }
     default:

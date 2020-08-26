@@ -21,7 +21,7 @@ const Songlist = () => {
 
   return (
     <div className={styles.root}>
-      <LinkTitle title='推荐歌单' route={ROUTES.SONG_LIST} />
+      <LinkTitle title="推荐歌单" route={ROUTES.SONG_LIST} />
       {isGettingSonglist ? <Spinner /> : <Songlists data={songlist} />}
     </div>
   )

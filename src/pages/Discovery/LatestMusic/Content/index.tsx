@@ -10,7 +10,7 @@ import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS, AudioContext 
 import styles from './style.module.css'
 
 interface IProps {
-  data?: IMyMusic[],
+  data?: IMyMusic[]
   onDoubleClick: () => void
 }
 
@@ -31,9 +31,9 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
         music: createMusic({
           ...item,
           duration: item?.duration / 1000,
-          picUrl: item?.picUrl || item?.album?.blurPicUrl
-        })
-      }
+          picUrl: item?.picUrl || item?.album?.blurPicUrl,
+        }),
+      },
     })
 
     onDoubleClick()
@@ -55,25 +55,17 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
 
             <div className={styles.musicInfo}>
               <div className={styles.pic}>
-                <img src={`${picUrl || album?.blurPicUrl}?param=60y60`} className='cover' loading='lazy' />
+                <img src={`${picUrl || album?.blurPicUrl}?param=60y60`} className="cover" loading="lazy" />
                 <PlayIcon className={styles.playIcon} />
               </div>
-              <div className={cn(styles.name, isActive && 'active')}>
-                {name}
-              </div>
+              <div className={cn(styles.name, isActive && 'active')}>{name}</div>
             </div>
 
-            <div className={styles.artists}>
-              {artists.map(({ name }) => name).join(' / ')}
-            </div>
+            <div className={styles.artists}>{artists.map(({ name }) => name).join(' / ')}</div>
 
-            <div className={styles.album}>
-              {album?.name}
-            </div>
+            <div className={styles.album}>{album?.name}</div>
 
-            <div className={styles.duration}>
-              {formatTime(duration / 1000)}
-            </div>
+            <div className={styles.duration}>{formatTime(duration / 1000)}</div>
           </div>
         )
       })}

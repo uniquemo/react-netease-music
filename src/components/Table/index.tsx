@@ -5,41 +5,40 @@ import { noop } from 'helpers/fn'
 import styles from './style.module.css'
 
 export interface IColumn<RecordType, Key extends keyof RecordType> {
-  title?: string,
-  key: Key,
-  width?: string,
+  title?: string
+  key: Key
+  width?: string
   render: (value: any, record: RecordType, index?: number) => string | ReactElement
 }
 
 interface IProps<RecordType> {
-  showHeader?: boolean,
-  columns: IColumn<RecordType, keyof RecordType>[],
-  data: RecordType[],
-  onDoubleClick?: (item: RecordType) => void,
+  showHeader?: boolean
+  columns: IColumn<RecordType, keyof RecordType>[]
+  data: RecordType[]
+  onDoubleClick?: (item: RecordType) => void
   isRecordRowDisabled?: (record: RecordType) => boolean
 }
 
-function Table<RecordType extends object = any>({
+function Table<RecordType extends Record<string, any> = any>({
   showHeader = true,
   columns,
   data,
   onDoubleClick = noop,
-  isRecordRowDisabled
+  isRecordRowDisabled,
 }: IProps<RecordType>) {
   return (
     <div className={styles.root}>
-      {showHeader && <div className={styles.header}>
-        {columns.map(({ title, width }, index) => {
-          return (
-            <div
-              key={index}
-              style={{ width }}
-            >
-              {title}
-            </div>
-          )
-        })}
-      </div>}
+      {showHeader && (
+        <div className={styles.header}>
+          {columns.map(({ title, width }, index) => {
+            return (
+              <div key={index} style={{ width }}>
+                {title}
+              </div>
+            )
+          })}
+        </div>
+      )}
       {data?.length ? (
         <div className={styles.content}>
           {data?.map((item, index) => {

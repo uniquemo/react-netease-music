@@ -22,8 +22,8 @@ const Comments = () => {
   const [state, getCommentsFn] = useAsyncFn(songApis.getComments)
   const { value: result, loading } = state
 
-  const [likeState, likeCommentFn] = useAsyncFn(commentApis.likeComment)
-  const [unlikeState, unlikeCommentFn] = useAsyncFn(commentApis.unlikeComment)
+  const [, likeCommentFn] = useAsyncFn(commentApis.likeComment)
+  const [, unlikeCommentFn] = useAsyncFn(commentApis.unlikeComment)
 
   const playState = useContext(PlayMusicStateContext)
   const { musicId, showLyric } = playState
@@ -33,7 +33,7 @@ const Comments = () => {
       getCommentsFn({
         id: musicId,
         offset: 0,
-        limit: PAGE_SIZE
+        limit: PAGE_SIZE,
       })
     }
   }, [musicId, showLyric])
@@ -43,7 +43,7 @@ const Comments = () => {
     getCommentsFn({
       id: musicId,
       offset: (page - 1) * PAGE_SIZE,
-      limit: PAGE_SIZE
+      limit: PAGE_SIZE,
     })
   }
 
@@ -72,7 +72,7 @@ const Comments = () => {
         <div className={styles.block}>
           <div className={styles.title}>最新评论</div>
           <div className={styles.loading}>
-            <Spinner className='spinner' size={Spinner.SIZE_SMALL} />
+            <Spinner className="spinner" size={Spinner.SIZE_SMALL} />
           </div>
         </div>
       ) : (
@@ -93,7 +93,7 @@ const Comments = () => {
           )}
 
           <div className={cn(styles.block, styles.latestComment)}>
-            <div className={styles.title}>最新评论（{ result?.total || 0 }）</div>
+            <div className={styles.title}>最新评论（{result?.total || 0}）</div>
             <div className={styles.comments}>
               {result?.comments.map((item) => {
                 return (
@@ -106,12 +106,7 @@ const Comments = () => {
           </div>
 
           <div className={styles.pagination}>
-            <Pagination
-              page={page}
-              pageSize={PAGE_SIZE}
-              total={result?.total}
-              onPageChange={handlePageChange}
-            />
+            <Pagination page={page} pageSize={PAGE_SIZE} total={result?.total} onPageChange={handlePageChange} />
           </div>
         </>
       )}

@@ -7,21 +7,21 @@ import { PlayMusicStateContext, PlayMusicDispatchContext, ACTIONS } from 'reduce
 const MODE_ORDER = [MODE.PLAY_IN_ORDER, MODE.SINGLE_CYCLE, MODE.SHUFFLE_PLAYBACK]
 
 const MODE_MAP: IDictionary<{
-  label: string,
+  label: string
   icon: IconName
 }> = {
   [MODE.PLAY_IN_ORDER]: {
     label: '顺序播放',
-    icon: 'sort'
+    icon: 'sort',
   },
   [MODE.SINGLE_CYCLE]: {
     label: '单曲循环',
-    icon: 'repeat'
+    icon: 'repeat',
   },
   [MODE.SHUFFLE_PLAYBACK]: {
     label: '随机播放',
-    icon: 'random'
-  }
+    icon: 'random',
+  },
 }
 
 const { useContext, useCallback } = React
@@ -32,14 +32,14 @@ const PlayMode = () => {
   const { playMode } = state
 
   const handleClick = useCallback(() => {
-    const idx = MODE_ORDER.findIndex(m => m === playMode)
-    const nextMode = MODE_ORDER[(idx + 1) % (MODE_ORDER.length)]
+    const idx = MODE_ORDER.findIndex((m) => m === playMode)
+    const nextMode = MODE_ORDER[(idx + 1) % MODE_ORDER.length]
 
     dispatch({
       type: ACTIONS.SET_PLAY_MODE,
       payload: {
-        playMode: nextMode
-      }
+        playMode: nextMode,
+      },
     })
   }, [dispatch, playMode])
 

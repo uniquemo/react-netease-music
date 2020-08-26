@@ -10,8 +10,8 @@ import { PlayMusicStateContext, AudioContext } from 'reducers/playMusic'
 import styles from './style.module.css'
 
 interface IProps {
-  data: IMyMusic[],
-  onDoubleClick: (item: IMyMusic) => void,
+  data: IMyMusic[]
+  onDoubleClick: (item: IMyMusic) => void
   onClear: () => void
 }
 
@@ -30,11 +30,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         return (
           <div className={cn(styles.name, isActive && 'active')}>
             {isActive && (
-              <Icon
-                className={styles.icon}
-                iconSize={13}
-                icon={audioInfo.state?.paused ? 'pause' : 'play'}
-              />
+              <Icon className={styles.icon} iconSize={13} icon={audioInfo.state?.paused ? 'pause' : 'play'} />
             )}
             <div className={styles.text}>
               <span>{name}</span>
@@ -42,24 +38,22 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
             </div>
           </div>
         )
-      }
+      },
     },
     {
       key: 'artists',
       width: '30%',
       render: (artists: IArtist[], { id }: IMyMusic) => {
         return (
-          <div className={state.musicId === id ? 'active' : ''}>
-            {artists?.map(({ name }) => name).join(' / ')}
-          </div>
+          <div className={state.musicId === id ? 'active' : ''}>{artists?.map(({ name }) => name).join(' / ')}</div>
         )
-      }
+      },
     },
     {
       key: 'duration',
       width: '15%',
-      render: (duration: number) => formatTime(duration)
-    }
+      render: (duration: number) => formatTime(duration),
+    },
   ]
 
   return (
@@ -69,7 +63,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         {data.length > 0 && (
           <div className={styles.actions}>
             <div onClick={onClear}>
-              <Icon icon='trash' iconSize={15} />
+              <Icon icon="trash" iconSize={15} />
               {' 清空'}
             </div>
           </div>

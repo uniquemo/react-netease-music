@@ -9,7 +9,7 @@ type SearchFn = (params: ISearchRequest) => Promise<any>
 
 const searchHot: SearchHotFn = async () => {
   const response = await axios({
-    url: '/search/hot'
+    url: '/search/hot',
   })
 
   return response?.result?.hots
@@ -19,8 +19,8 @@ const searchSuggest: SearchSuggestFn = async ({ keywords }) => {
   const response = await axios({
     url: '/search/suggest',
     params: {
-      keywords
-    }
+      keywords,
+    },
   })
 
   return response.result
@@ -33,8 +33,8 @@ const search: SearchFn = async ({ keywords, type = TARGET_TYPE.MUSIC, limit = PA
       keywords,
       type,
       limit,
-      offset
-    }
+      offset,
+    },
   })
 
   return response.result
@@ -43,5 +43,5 @@ const search: SearchFn = async ({ keywords, type = TARGET_TYPE.MUSIC, limit = PA
 export default {
   searchHot,
   searchSuggest,
-  search
+  search,
 }

@@ -7,13 +7,13 @@ const getAlbum: GetAlbumFn = async (id) => {
   const response = await axios({
     url: '/album',
     params: {
-      id
-    }
+      id,
+    },
   })
 
   return response
 }
 
 export default {
-  getAlbum
+  getAlbum,
 }

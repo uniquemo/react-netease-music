@@ -3,30 +3,30 @@ import useMountedState from './useMountedState'
 
 export type AsyncState<T> =
   | {
-      loading: boolean,
-      error?: undefined,
+      loading: boolean
+      error?: undefined
       value?: undefined
     }
   | {
-      loading: false,
-      error: Error,
+      loading: false
+      error: Error
       value?: undefined
     }
   | {
-      loading: false,
-      error?: undefined,
+      loading: false
+      error?: undefined
       value: T
     }
 
 export type AsyncFn<Result = any, Args extends any[] = any[]> = [
   AsyncState<Result>,
-  (...args: Args) => Promise<Result | null>
+  (...args: Args) => Promise<Result | null>,
 ]
 
 export interface IOptions<Result> {
-  deps: DependencyList,
-  initialState: AsyncState<Result>,
-  successHandler?: (value: Result) => void,
+  deps: DependencyList
+  initialState: AsyncState<Result>
+  successHandler?: (value: Result) => void
   errorHandler?: (error: Error) => void
 }
 
@@ -34,15 +34,10 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
   fn: (...args: Args) => Promise<Result>,
   options: IOptions<Result> = {
     deps: [],
-    initialState: { loading: false }
-  }
+    initialState: { loading: false },
+  },
 ): AsyncFn<Result, Args> {
-  const {
-    initialState = { loading: false },
-    deps = [],
-    successHandler,
-    errorHandler
-  } = options
+  const { initialState = { loading: false }, deps = [], successHandler, errorHandler } = options
 
   const lastCallId = useRef(0)
   const [state, set] = useState<AsyncState<Result>>(initialState)
@@ -54,7 +49,7 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
     set({ loading: true })
 
     return fn(...args).then(
-      value => {
+      (value) => {
         const callback = args[args.length - 1]
 
         if (isMounted() && callId === lastCallId.current) {
@@ -66,13 +61,13 @@ export default function useAsyncFn<Result = any, Args extends any[] = any[]>(
         }
         return value
       },
-      error => {
+      (error) => {
         if (isMounted() && callId === lastCallId.current) {
           errorHandler && errorHandler(error)
           set({ error, loading: false })
         }
         return null
-      }
+      },
     )
   }, deps)
 

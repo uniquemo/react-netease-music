@@ -13,24 +13,24 @@ const { useEffect, useState, useContext } = React
 const TABS = [
   {
     label: '全部',
-    type: SONG_TYPE.ALL
+    type: SONG_TYPE.ALL,
   },
   {
     label: '华语',
-    type: SONG_TYPE.CHINESE
+    type: SONG_TYPE.CHINESE,
   },
   {
     label: '欧美',
-    type: SONG_TYPE.EU_USA
+    type: SONG_TYPE.EU_USA,
   },
   {
     label: '韩国',
-    type: SONG_TYPE.KOREAN
+    type: SONG_TYPE.KOREAN,
   },
   {
     label: '日本',
-    type: SONG_TYPE.JAPANESE
-  }
+    type: SONG_TYPE.JAPANESE,
+  },
 ]
 
 const LatestMusic = () => {
@@ -51,8 +51,8 @@ const LatestMusic = () => {
     dispatch({
       type: ACTIONS.SET_PLAY_LIST,
       payload: {
-        playList: state.value
-      }
+        playList: state.value,
+      },
     })
 
     if (autoPlay) {
@@ -60,8 +60,8 @@ const LatestMusic = () => {
         type: ACTIONS.PLAY,
         payload: {
           musicId: state.value?.[0].id,
-          music: state.value?.[0]
-        }
+          music: state.value?.[0],
+        },
       })
     }
   }
@@ -84,14 +84,18 @@ const LatestMusic = () => {
         </div>
 
         <div className={styles.operations}>
-          <div className={styles.playAll} onClick={() => playAll(true)}>播放全部</div>
+          <div className={styles.playAll} onClick={() => playAll(true)}>
+            播放全部
+          </div>
         </div>
       </div>
 
       <div className={styles.content}>
-        {state.loading
-          ? <Spinner className='spinner' />
-          : <Content data={state.value} onDoubleClick={() => playAll(false)} />}
+        {state.loading ? (
+          <Spinner className="spinner" />
+        ) : (
+          <Content data={state.value} onDoubleClick={() => playAll(false)} />
+        )}
       </div>
     </div>
   )

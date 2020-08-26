@@ -2,15 +2,14 @@ import React from 'react'
 import { Popover, Icon } from '@blueprintjs/core'
 import cn from 'classnames'
 
-import useClickAway from 'hooks/useClickAway'
 import { IGetSonglistCatsResponse, ICategory } from 'apis/types/songlist'
 import { noop } from 'helpers/fn'
 import styles from './style.module.css'
 
 interface IProps {
-  cats?: IGetSonglistCatsResponse,
-  hotCats?: ICategory[],
-  selectedCat?: string,
+  cats?: IGetSonglistCatsResponse
+  hotCats?: ICategory[]
+  selectedCat?: string
   onCatSelect?: (cat: string) => void
 }
 
@@ -30,10 +29,7 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
     return (
       <div className={styles.popover}>
         <div className={styles.all}>
-          <span
-            className={currentCat === DEFAULT_CAT ? 'active' : ''}
-            onClick={() => handleCatClick(DEFAULT_CAT)}
-          >
+          <span className={currentCat === DEFAULT_CAT ? 'active' : ''} onClick={() => handleCatClick(DEFAULT_CAT)}>
             全部歌单
           </span>
         </div>
@@ -67,10 +63,10 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
   return (
     <div className={styles.root}>
       <div className={styles.cats}>
-        <Popover content={renderCats()} interactionKind='click' position='bottom'>
+        <Popover content={renderCats()} interactionKind="click" position="bottom">
           <div className={styles.catsBtn}>
             {currentCat}
-            <Icon icon='chevron-right' />
+            <Icon icon="chevron-right" />
           </div>
         </Popover>
       </div>

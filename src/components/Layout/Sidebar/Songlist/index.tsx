@@ -8,7 +8,7 @@ import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 
 interface IProps {
-  title: string,
+  title: string
   data?: ISonglist[]
 }
 

@@ -9,39 +9,39 @@ const NAVBAR = {
   [ROUTES.DISCOVERY]: [
     {
       label: '个性推荐',
-      route: ROUTES.RECOMMENDATION
+      route: ROUTES.RECOMMENDATION,
     },
     {
       label: '每日歌曲推荐',
-      route: ROUTES.RECOMMEND_DAILY
+      route: ROUTES.RECOMMEND_DAILY,
     },
     {
       label: '歌单',
-      route: ROUTES.SONG_LIST
+      route: ROUTES.SONG_LIST,
     },
     {
       label: '排行榜',
-      route: ROUTES.LEADER_BOARD
+      route: ROUTES.LEADER_BOARD,
     },
     {
       label: '歌手',
-      route: ROUTES.SINGERS
+      route: ROUTES.SINGERS,
     },
     {
       label: '最新音乐',
-      route: ROUTES.LATEST_MUSIC
-    }
+      route: ROUTES.LATEST_MUSIC,
+    },
   ],
   [ROUTES.VIDEOS]: [
     {
       label: '视频',
-      route: ROUTES.VIDEO
+      route: ROUTES.VIDEO,
     },
     {
       label: 'MV',
-      route: ROUTES.MV
-    }
-  ]
+      route: ROUTES.MV,
+    },
+  ],
 }
 
 const Navbar = () => {
@@ -64,21 +64,19 @@ const Navbar = () => {
 
   return (
     <div className={styles.root}>
-      {
-        items.map(({ label, route }, index) => {
-          const isActive = hasMatchRoute ? route === pathname : index === 0
+      {items.map(({ label, route }, index) => {
+        const isActive = hasMatchRoute ? route === pathname : index === 0
 
-          return (
-            <div
-              key={label}
-              className={cn(styles.item, isActive ? styles.active : '')}
-              onClick={() => handleItemClick(route)}
-            >
-              {label}
-            </div>
-          )
-        })
-      }
+        return (
+          <div
+            key={label}
+            className={cn(styles.item, isActive ? styles.active : '')}
+            onClick={() => handleItemClick(route)}
+          >
+            {label}
+          </div>
+        )
+      })}
     </div>
   )
 }

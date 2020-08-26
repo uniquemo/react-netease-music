@@ -8,26 +8,26 @@ export interface HTMLMediaProps extends React.AudioHTMLAttributes<any>, React.Vi
 }
 
 export interface HTMLMediaState {
-  buffered: any[],
-  duration: number,
-  paused: boolean,
-  muted: boolean,
-  time: number,
+  buffered: any[]
+  duration: number
+  paused: boolean
+  muted: boolean
+  time: number
   volume: number
 }
 
 export interface HTMLMediaControls {
-  play: () => Promise<void> | void,
-  pause: () => void,
-  mute: () => void,
-  unmute: () => void,
-  volume: (volume: number) => void,
+  play: () => Promise<void> | void
+  pause: () => void
+  mute: () => void
+  unmute: () => void
+  volume: (volume: number) => void
   seek: (time: number) => void
 }
 
 const createHTMLMediaHook = (tag: 'audio' | 'video') => {
   const hook = (
-    elOrProps: HTMLMediaProps | React.ReactElement<HTMLMediaProps>
+    elOrProps: HTMLMediaProps | React.ReactElement<HTMLMediaProps>,
   ): [React.ReactElement<HTMLMediaProps>, HTMLMediaState, HTMLMediaControls, { current: HTMLAudioElement | null }] => {
     let element: React.ReactElement<any> | undefined
     let props: HTMLMediaProps
@@ -45,7 +45,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
       duration: 0,
       paused: true,
       muted: false,
-      volume: 1
+      volume: 1,
     })
     const ref = useRef<HTMLAudioElement | null>(null)
 
@@ -127,7 +127,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
     // if one tries to execute another `.play()` or `.pause()` while that
     // promise is resolving. So prevent that with this lock.
     // See: https://bugs.chromium.org/p/chromium/issues/detail?id=593273
-    let lockPlay: boolean = false
+    let lockPlay = false
 
     const controls = {
       play: () => {
@@ -192,7 +192,7 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
     }
 
     useEffect(() => {
-      const el = ref.current!;
+      const el = ref.current
 
       if (!el) {
         if (process.env.NODE_ENV !== 'production') {
@@ -200,13 +200,13 @@ const createHTMLMediaHook = (tag: 'audio' | 'video') => {
             console.error(
               'useAudio() ref to <audio> element is empty at mount. ' +
                 'It seem you have not rendered the audio element, which it ' +
-                'returns as the first argument const [audio] = useAudio(...).'
+                'returns as the first argument const [audio] = useAudio(...).',
             )
           } else if (tag === 'video') {
             console.error(
               'useVideo() ref to <video> element is empty at mount. ' +
                 'It seem you have not rendered the video element, which it ' +
-                'returns as the first argument const [video] = useVideo(...).'
+                'returns as the first argument const [video] = useVideo(...).',
             )
           }
         }

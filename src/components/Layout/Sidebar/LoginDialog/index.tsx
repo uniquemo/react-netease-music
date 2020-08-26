@@ -24,43 +24,40 @@ const LoginDialog: React.FC<IDialogProps> = ({ isOpen, onClose = noop }) => {
         payload: {
           user: {
             ...result,
-            userId: result.profile.userId
-          }
-        }
+            userId: result.profile.userId,
+          },
+        },
       })
       onClose()
     }
   }
 
   return (
-    <Dialog
-      style={{ width: '400px' }}
-      title='登录'
-      isOpen={isOpen}
-      onClose={onClose}
-    >
+    <Dialog style={{ width: '400px' }} title="登录" isOpen={isOpen} onClose={onClose}>
       <div className={styles.content}>
         <InputGroup
-          placeholder='请输入手机号'
-          leftIcon='mobile-phone'
+          placeholder="请输入手机号"
+          leftIcon="mobile-phone"
           value={phone}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setPhone(event.target.value)
           }}
         />
         <InputGroup
-          placeholder='请输入密码'
-          leftIcon='lock'
-          type='password'
+          placeholder="请输入密码"
+          leftIcon="lock"
+          type="password"
           value={password}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setPassword(event.target.value)
           }}
         />
-        {error && <div className='error'>{error.message}</div>}
+        {error && <div className="error">{error.message}</div>}
 
         <div className={styles.loginBtn}>
-          <Button onClick={handleLogin} loading={loading}>登录</Button>
+          <Button onClick={handleLogin} loading={loading}>
+            登录
+          </Button>
         </div>
       </div>
     </Dialog>

@@ -21,7 +21,7 @@ const Header = () => {
 
   const hideLyric = () => {
     dispatch({
-      type: ACTIONS.HIDE_LYRIC
+      type: ACTIONS.HIDE_LYRIC,
     })
   }
 
@@ -30,39 +30,38 @@ const Header = () => {
       <div className={styles.actions}>
         <div className={styles.iconsWrap}>
           <div className={styles.circle}>
-            <Icon icon='cross' iconSize={8} />
+            <Icon icon="cross" iconSize={8} />
           </div>
           <div className={styles.circle}>
-            <Icon icon='minus' iconSize={8} />
+            <Icon icon="minus" iconSize={8} />
           </div>
           <div className={styles.circle}>
-            <Icon icon='maximize' iconSize={7} />
+            <Icon icon="maximize" iconSize={7} />
           </div>
           {showLyric && (
             <div className={styles.down} onClick={hideLyric}>
-              <Icon icon='chevron-down' iconSize={20} />
+              <Icon icon="chevron-down" iconSize={20} />
             </div>
           )}
         </div>
 
         {!showLyric && (
           <div className={styles.backForward}>
-            <div onClick={handleGoBack}><Icon icon='chevron-left' /></div>
-            <div onClick={handleGoForward}><Icon icon='chevron-right' /></div>
+            <div onClick={handleGoBack}>
+              <Icon icon="chevron-left" />
+            </div>
+            <div onClick={handleGoForward}>
+              <Icon icon="chevron-right" />
+            </div>
           </div>
         )}
       </div>
 
       <div className={styles.content}>
-        <div>
-          {!showLyric && <Navbar />}
-        </div>
+        <div>{!showLyric && <Navbar />}</div>
         <div className={styles.operations}>
           <Searcher />
-          <div
-            className={styles.githubLogo}
-            onClick={() => window.open(REPOSITORY)}
-          />
+          <div className={styles.githubLogo} onClick={() => window.open(REPOSITORY)} />
         </div>
       </div>
     </div>

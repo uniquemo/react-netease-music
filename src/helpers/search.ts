@@ -16,7 +16,7 @@ export const setSearchHistory = (keyword: string) => {
   let data: string[] = searchHistoryLocalStorage.getItem()
   data = data.slice(0, 10)
 
-  const index = data.findIndex(key => key === keyword)
+  const index = data.findIndex((key) => key === keyword)
 
   if (index > -1) {
     data.splice(index, 1)

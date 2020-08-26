@@ -11,26 +11,21 @@ const ProgressBar = () => {
   const { state, controls } = audioInfo
 
   const donePercent = useMemo(() => {
-    return state?.duration
-      ? (state?.time / state.duration)
-      : 0
+    return state?.duration ? state?.time / state.duration : 0
   }, [state?.time, state?.duration])
 
   const renderLabel = useCallback(() => {
     return formatTime(state?.time)
   }, [state?.time])
 
-  const handleBarClick = useCallback((percent) => {
-    controls?.seek((state?.duration || 0) * percent)
-  }, [controls, state?.duration])
-
-  return (
-    <BaseProgressBar
-      donePercent={donePercent}
-      renderLabel={renderLabel}
-      onBarClick={handleBarClick}
-    />
+  const handleBarClick = useCallback(
+    (percent) => {
+      controls?.seek((state?.duration || 0) * percent)
+    },
+    [controls, state?.duration],
   )
+
+  return <BaseProgressBar donePercent={donePercent} renderLabel={renderLabel} onBarClick={handleBarClick} />
 }
 
 export default ProgressBar

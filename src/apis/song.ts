@@ -8,23 +8,23 @@ export enum SONG_TYPE {
   CHINESE = 7,
   EU_USA = 96,
   JAPANESE = 8,
-  KOREAN = 16
+  KOREAN = 16,
 }
 
 interface IParams {
-  id: number,
-  offset?: number,
+  id: number
+  offset?: number
   limit?: number
 }
 
 interface IGetCommentsResponse {
-  comments: IComment[],
-  hotComments?: IComment[],
-  isMusician: boolean,
-  more: boolean,
-  moreHot: boolean,
-  topComments: IComment[],
-  total: number,
+  comments: IComment[]
+  hotComments?: IComment[]
+  isMusician: boolean
+  more: boolean
+  moreHot: boolean
+  topComments: IComment[]
+  total: number
   userId: number
 }
 
@@ -34,14 +34,14 @@ type GetRecommendSongsFn = () => Promise<IMusic[]>
 type GetSimiSonglistFn = (params: IParams) => Promise<ISonglist[]>
 type GetgetSimiSongFn = (params: IParams) => Promise<IMusic[]>
 type GetCommentsFn = (params: IParams) => Promise<IGetCommentsResponse>
-type GetgetLyricFn = (id: number) => Promise<{ lyric: string, offset: number, version: number }>
+type GetgetLyricFn = (id: number) => Promise<{ lyric: string; offset: number; version: number }>
 
 const getSongDetail: GetSongDetailFn = async (ids) => {
   const response = await axios({
     url: '/song/detail',
     params: {
-      ids: ids.join(',')
-    }
+      ids: ids.join(','),
+    },
   })
 
   return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item))
@@ -51,8 +51,8 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
   const response = await axios({
     url: '/top/song',
     params: {
-      type
-    }
+      type,
+    },
   })
 
   return response.data
@@ -60,7 +60,7 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
 
 const getRecommendSongs: GetRecommendSongsFn = async () => {
   const response = await axios({
-    url: '/recommend/songs'
+    url: '/recommend/songs',
   })
 
   return response.recommend
@@ -72,8 +72,8 @@ const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
     params: {
       id,
       offset,
-      limit
-    }
+      limit,
+    },
   })
 
   return response.playlists
@@ -85,8 +85,8 @@ const getSimiSong: GetgetSimiSongFn = async ({ id, offset, limit }) => {
     params: {
       id,
       offset,
-      limit
-    }
+      limit,
+    },
   })
 
   return response.songs
@@ -98,8 +98,8 @@ const getComments: GetCommentsFn = async ({ id, offset, limit }) => {
     params: {
       id,
       offset,
-      limit
-    }
+      limit,
+    },
   })
 
   return response
@@ -109,8 +109,8 @@ const getLyric: GetgetLyricFn = async (id) => {
   const response = await axios({
     url: '/lyric',
     params: {
-      id
-    }
+      id,
+    },
   })
 
   return response.lrc
@@ -123,5 +123,5 @@ export default {
   getSimiSonglist,
   getSimiSong,
   getComments,
-  getLyric
+  getLyric,
 }

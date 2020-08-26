@@ -47,7 +47,7 @@ const Lyric = () => {
           const scrollHeight = LYRIC_LINE_HEIGHT * lineIndex - HIGHLIGHT_LYRIC_TOP
           lyricRef.current?.scrollTo({
             top: scrollHeight < 0 ? 0 : scrollHeight,
-            behavior: 'smooth'
+            behavior: 'smooth',
           })
           setLine(lineIndex)
         }
@@ -56,15 +56,14 @@ const Lyric = () => {
   }, [audioInfo.state, lines])
 
   return (
-    <div className={styles.root} ref={ref => lyricRef.current = ref}>
-      {lyricState.loading ? <Spinner className='spinner' /> : (
+    <div className={styles.root} ref={(ref) => (lyricRef.current = ref)}>
+      {lyricState.loading ? (
+        <Spinner className="spinner" />
+      ) : (
         <>
           {lines.map(([time, lyric], index) => {
             return (
-              <div
-                key={time}
-                className={cn(styles.line, line === index && styles.active)}
-              >
+              <div key={time} className={cn(styles.line, line === index && styles.active)}>
                 {lyric}
               </div>
             )

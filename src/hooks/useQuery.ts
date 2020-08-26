@@ -12,7 +12,7 @@ const useQuery = () => {
       prev[key] = decodeURIComponent(value)
       return prev
     }, result)
-  
+
   return result
 }
 

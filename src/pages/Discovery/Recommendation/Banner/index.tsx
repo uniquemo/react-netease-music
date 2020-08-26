@@ -37,7 +37,7 @@ const Banner = () => {
     return {
       [currentMid]: styles.middle,
       [left]: styles.left,
-      [right]: styles.right
+      [right]: styles.right,
     }
   }, [currentMid, banners])
 
@@ -52,15 +52,16 @@ const Banner = () => {
         type: ACTIONS.PLAY,
         payload: {
           musicId,
-          music: songs[0]
-        }
+          music: songs[0],
+        },
       })
     }
   }
 
-  return (isGettingBanner
-    ? <Spinner />
-    : <div className={styles.root}>
+  return isGettingBanner ? (
+    <Spinner />
+  ) : (
+    <div className={styles.root}>
       <div className={styles.banners}>
         {banners.map(({ imageUrl, typeTitle, targetId, targetType }, index) => {
           const className = bannersClassName[index] || styles.hidden

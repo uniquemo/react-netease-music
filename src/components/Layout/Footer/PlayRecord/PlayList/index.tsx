@@ -16,20 +16,14 @@ const PlayHistory = () => {
       type: ACTIONS.PLAY,
       payload: {
         musicId: item.id,
-        music: item
-      }
+        music: item,
+      },
     })
   }
 
   const handleClear = () => dispatch({ type: ACTIONS.CLEAR_PLAY_LIST })
 
-  return (
-    <List
-      data={playList}
-      onDoubleClick={handleDoubleClick}
-      onClear={handleClear}
-    />
-  )
+  return <List data={playList} onDoubleClick={handleDoubleClick} onClear={handleClear} />
 }
 
 export default PlayHistory

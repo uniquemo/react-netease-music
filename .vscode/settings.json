@@ -1,5 +1,8 @@
 {
   "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true  // Automatically Fix Code
+  },
   "javascript.validate.enable": true,
   "javascript.format.enable": true,
   "[javascript]": { "editor.defaultFormatter": "dbaeumer.vscode-eslint" },

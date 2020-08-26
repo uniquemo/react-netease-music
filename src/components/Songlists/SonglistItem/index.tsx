@@ -7,9 +7,9 @@ import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 
 interface IProps {
-  id: number,
-  name: string,
-  playCount: number,
+  id: number
+  name: string
+  playCount: number
   picUrl?: string
 }
 
@@ -25,7 +25,7 @@ const SonglistItem: React.FC<IProps> = ({ id, name, playCount, picUrl }) => {
   return (
     <div className={styles.root} onClick={handleItemClick}>
       <div className={styles.cover}>
-        {picUrl && <img src={picUrl} loading='lazy' />}
+        {picUrl && <img src={picUrl} loading="lazy" />}
         <PlayCount count={playCount} className={styles.playCount} />
         <PlayIcon className={styles.playIcon} />
       </div>

@@ -4,7 +4,13 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Layout from 'components/Layout'
 import useAudio from 'hooks/useAudio'
 import { MODE, playList as playListLocalStorage } from 'helpers/play'
-import playMusicReducer, { initialState, PlayMusicStateContext, PlayMusicDispatchContext, AudioContext, ACTIONS } from 'reducers/playMusic'
+import playMusicReducer, {
+  initialState,
+  PlayMusicStateContext,
+  PlayMusicDispatchContext,
+  AudioContext,
+  ACTIONS,
+} from 'reducers/playMusic'
 import logReducer, { initialState as logInitialState, LogStateContext, LogDispatchContext } from 'reducers/log'
 import { IMyMusic } from 'apis/types/business'
 import ROUTES from 'constants/routes'
@@ -32,7 +38,7 @@ const App = () => {
         return
       }
       playNextMusic()
-    }
+    },
   })
 
   const audioInfo = useMemo(() => {
@@ -40,19 +46,22 @@ const App = () => {
       audio,
       state: audioState,
       controls: audioControls,
-      ref: audioRef
+      ref: audioRef,
     }
   }, [musicUrl, audio, audioState, audioControls, audioRef])
 
-  const playMusic = useCallback((index: number) => {
-    dispatch({
-      type: ACTIONS.PLAY,
-      payload: {
-        musicId: playList[index].id,
-        music: playList[index]
-      }
-    })
-  }, [playList])
+  const playMusic = useCallback(
+    (index: number) => {
+      dispatch({
+        type: ACTIONS.PLAY,
+        payload: {
+          musicId: playList[index].id,
+          music: playList[index],
+        },
+      })
+    },
+    [playList],
+  )
 
   const playNextMusic = useCallback(() => {
     switch (playMode) {
