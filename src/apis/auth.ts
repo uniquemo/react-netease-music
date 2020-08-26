@@ -8,19 +8,19 @@ const login: LoginFn = ({ phone, password }) => {
     url: '/login/cellphone',
     params: {
       phone,
-      password
-    }
+      password,
+    },
   })
 }
 
 const logout = () => {
   return axios({
     method: 'post',
-    url: '/logout'
+    url: '/logout',
   })
 }
 
 export default {
   login,
-  logout
+  logout,
 }

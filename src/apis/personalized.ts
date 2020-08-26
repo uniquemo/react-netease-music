@@ -11,8 +11,8 @@ const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({ limit }) => 
   const response = await axios({
     url: '/personalized',
     params: {
-      limit
-    }
+      limit,
+    },
   })
 
   return response.result || []
@@ -20,7 +20,7 @@ const getPersonalizedSonglist: GetPersonalizedSonglistFn = async ({ limit }) => 
 
 const getPersonalizedNewMusic: GetPersonalizedNewMusicFn = async () => {
   const response = await axios({
-    url: '/personalized/newsong'
+    url: '/personalized/newsong',
   })
 
   return response.result
@@ -28,7 +28,7 @@ const getPersonalizedNewMusic: GetPersonalizedNewMusicFn = async () => {
 
 const getPersonalizedMV: GetPersonalizedMVFn = async () => {
   const response = await axios({
-    url: '/personalized/mv'
+    url: '/personalized/mv',
   })
 
   return response.result
@@ -38,8 +38,8 @@ const getBanner: GetBannerFn = async () => {
   const response = await axios({
     url: '/banner',
     params: {
-      type: 0
-    }
+      type: 0,
+    },
   })
 
   return response.banners
@@ -49,5 +49,5 @@ export default {
   getPersonalizedSonglist,
   getPersonalizedNewMusic,
   getPersonalizedMV,
-  getBanner
+  getBanner,
 }

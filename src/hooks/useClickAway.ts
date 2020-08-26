@@ -8,7 +8,7 @@ export const off = (obj: any, ...args: any[]) => obj.removeEventListener(...args
 const useClickAway = <E extends Event = Event>(
   ref: RefObject<HTMLElement | null>,
   onClickAway: (event: E) => void,
-  events: string[] = defaultEvents
+  events: string[] = defaultEvents,
 ) => {
   const savedCallback = useRef(onClickAway)
 

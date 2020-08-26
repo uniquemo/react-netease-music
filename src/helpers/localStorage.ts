@@ -1,20 +1,20 @@
 export const DEFAULT_VALUE = {
   ARRAY: '[]',
   OBJECT: '{}',
-  STRING: ''
+  STRING: '',
 }
 
 interface ILocalStorageFactoryParams<T> {
-  key: string,
-  defaultValue: string,
-  raw?: boolean,
-  serializer?: (value: T) => string,
+  key: string
+  defaultValue: string
+  raw?: boolean
+  serializer?: (value: T) => string
   deserializer?: (value: string) => T
 }
 
 interface ILocalStorageFactoryReturn<T> {
-  setItem: (value: T) => void,
-  getItem: () => T,
+  setItem: (value: T) => void
+  getItem: () => T
   removeItem: () => void
 }
 

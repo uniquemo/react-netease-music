@@ -15,10 +15,10 @@ import styles from './style.module.css'
 const { useEffect, useState } = React
 
 interface ITab {
-  tab: string,
-  tabKey: string,
-  unit: string,
-  key: string,
+  tab: string
+  tabKey: string
+  unit: string
+  key: string
   searchType: TARGET_TYPE
 }
 
@@ -28,36 +28,36 @@ const TABS: IDictionary<ITab> = {
     tabKey: 'MUSIC',
     unit: '首',
     key: 'song',
-    searchType: TARGET_TYPE.MUSIC
+    searchType: TARGET_TYPE.MUSIC,
   },
   ARTIST: {
     tab: '歌手',
     tabKey: 'ARTIST',
     unit: '位',
     key: 'artist',
-    searchType: TARGET_TYPE.ARTIST
+    searchType: TARGET_TYPE.ARTIST,
   },
   ALBUM: {
     tab: '专辑',
     tabKey: 'ALBUM',
     unit: '张',
     key: 'album',
-    searchType: TARGET_TYPE.ALBUM
+    searchType: TARGET_TYPE.ALBUM,
   },
   SONG_LIST: {
     tab: '歌单',
     tabKey: 'SONG_LIST',
     unit: '个',
     key: 'playlist',
-    searchType: TARGET_TYPE.SONG_LIST
+    searchType: TARGET_TYPE.SONG_LIST,
   },
   USER: {
     tab: '用户',
     tabKey: 'USER',
     unit: '位',
     key: 'userprofile',
-    searchType: TARGET_TYPE.USER
-  }
+    searchType: TARGET_TYPE.USER,
+  },
 }
 
 const Search = () => {
@@ -85,7 +85,7 @@ const Search = () => {
     searchFn({
       keywords: keyword,
       type: searchType,
-      offset: (page - 1) * PAGE_SIZE
+      offset: (page - 1) * PAGE_SIZE,
     })
   }
 
@@ -96,10 +96,13 @@ const Search = () => {
       <div className={styles.header}>
         <div className={styles.title}>
           <span className={styles.keyword}>{keyword}</span>
-          <span className={styles.count}>找到 {total} {unit}{tab}</span>
+          <span className={styles.count}>
+            找到 {total} {unit}
+            {tab}
+          </span>
         </div>
         <div className={styles.tabs}>
-          {Object.keys(TABS).map(key => {
+          {Object.keys(TABS).map((key) => {
             return (
               <div
                 key={key}
@@ -114,20 +117,14 @@ const Search = () => {
       </div>
 
       <div className={styles.content}>
-        {loading ? <Spinner className={styles.spinner} /> : (
+        {loading ? (
+          <Spinner className={styles.spinner} />
+        ) : (
           <div>
-            {activeTab === TABS.MUSIC.tabKey && (
-              <MusicList
-                data={result?.songs}
-              />
-            )}
+            {activeTab === TABS.MUSIC.tabKey && <MusicList data={result?.songs} />}
 
-            <div className='pagination'>
-              <Pagination
-                page={page}
-                total={total}
-                onPageChange={handlePageChange}
-              />
+            <div className="pagination">
+              <Pagination page={page} total={total} onPageChange={handlePageChange} />
             </div>
           </div>
         )}

@@ -6,21 +6,21 @@ enum COMMENT_TYPE {
   SONGLIST = 2,
   ALBUM = 3,
   RADIO_STATION = 4,
-  VIDEO = 5
+  VIDEO = 5,
 }
 
 interface ILikeUnlikeCommentRequest {
-  likeOrUnlike: number,
-  type?: COMMENT_TYPE,
-  id: number,
+  likeOrUnlike: number
+  type?: COMMENT_TYPE
+  id: number
   commentId: number
 }
 
 type Params = Omit<ILikeUnlikeCommentRequest, 'likeOrUnlike'>
 
 type LikeUnlikeCommentFn = (params: ILikeUnlikeCommentRequest) => Promise<any>
-type LikeCommentFn = (params: Params, callback?: Function) => Promise<any>
-type UnlikeCommentFn = (params: Params, callback?: Function) => Promise<any>
+type LikeCommentFn = (params: Params, callback?: () => void) => Promise<any>
+type UnlikeCommentFn = (params: Params, callback?: () => void) => Promise<any>
 
 const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, commentId }) => {
   const response = await axios({
@@ -29,8 +29,8 @@ const likeUnlikeComment: LikeUnlikeCommentFn = async ({ likeOrUnlike, type, id, 
       id,
       type,
       t: likeOrUnlike,
-      cid: commentId
-    }
+      cid: commentId,
+    },
   })
   return response
 }
@@ -40,7 +40,7 @@ const likeComment: LikeCommentFn = async ({ id, commentId, type = COMMENT_TYPE.M
     likeOrUnlike: 1,
     type,
     id,
-    commentId
+    commentId,
   })
   return response
 }
@@ -50,7 +50,7 @@ const unlikeComment: UnlikeCommentFn = async ({ id, commentId, type = COMMENT_TY
     likeOrUnlike: 2,
     type,
     id,
-    commentId
+    commentId,
   })
   return response
 }
@@ -58,5 +58,5 @@ const unlikeComment: UnlikeCommentFn = async ({ id, commentId, type = COMMENT_TY
 export default {
   likeUnlikeComment,
   likeComment,
-  unlikeComment
+  unlikeComment,
 }

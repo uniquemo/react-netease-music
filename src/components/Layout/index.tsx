@@ -12,9 +12,7 @@ const Layout: React.FC = ({ children }) => {
       <Header />
       <div className={styles.middle}>
         <Sidebar />
-        <div className={styles.content}>
-          {children}
-        </div>
+        <div className={styles.content}>{children}</div>
       </div>
       <Footer />
     </div>

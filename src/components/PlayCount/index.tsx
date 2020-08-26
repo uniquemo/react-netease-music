@@ -6,14 +6,14 @@ import { formatNum } from 'helpers/num'
 import styles from './style.module.css'
 
 interface IProps {
-  count: number,
+  count: number
   className?: string
 }
 
 const PlayCount: React.FC<IProps> = ({ count, className }) => {
   return (
     <div className={cn(styles.root, className)}>
-      <Icon icon='play' />
+      <Icon icon="play" />
       {formatNum(count)}
     </div>
   )

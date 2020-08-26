@@ -11,7 +11,7 @@ export const formatNum = (num: number | string, n = 2) => {
 
 export const formatTime = (interval?: number) => {
   interval = Math.floor(interval || 0)
-  const minute = formatNum(Math.floor((interval / 60)))
+  const minute = formatNum(Math.floor(interval / 60))
   const second = formatNum(interval % 60)
   return `${minute}:${second}`
 }
@@ -26,9 +26,7 @@ export const formatDatetime = (t?: string | number, detailed?: boolean) => {
   const minutes = formatNum(time.getMinutes())
   const seconds = formatNum(time.getSeconds())
 
-  return detailed
-    ? `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`
-    : `${year}-${month}-${date}`
+  return detailed ? `${year}-${month}-${date} ${hours}:${minutes}:${seconds}` : `${year}-${month}-${date}`
 }
 
 export const getDay = (t: number = Date.now()) => {

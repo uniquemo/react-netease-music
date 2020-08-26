@@ -9,9 +9,9 @@ import styles from './style.module.css'
 // 1~5正常+后3，n-5~n正常+前3，其他前3+后3，最多全部显示10页
 
 interface IProps {
-  total?: number,
-  page?: number,
-  pageSize?: number,
+  total?: number
+  page?: number
+  pageSize?: number
   onPageChange: (page: number) => void
 }
 
@@ -60,7 +60,7 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
   }
 
   const createContinuousPageItems = (start: number, end: number) => {
-    const pages = []
+    const pages: JSX.Element[] = []
     for (let i = start; i <= end; i++) {
       const pageItem = createPageItem(i)
       pages.push(pageItem)
@@ -70,7 +70,7 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
 
   const createPages = (elements: (JSX.Element | JSX.Element[])[]) => {
     let result: JSX.Element[] = []
-    elements.forEach(item => {
+    elements.forEach((item) => {
       const temp = Array.isArray(item) ? item : [item]
       result = [...result, ...temp]
     })
@@ -87,7 +87,7 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
 
     const KEY = {
       LEFT: 'LEFT',
-      RIGHT: 'RIGHT'
+      RIGHT: 'RIGHT',
     }
 
     const firstPage = createPageItem(PAGE)
@@ -97,25 +97,16 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
     const PAGE_RIGHT_BORDER = pageCount - PAGE_LEFT_BORDER + 1
 
     if (currentPage <= PAGE_LEFT_BORDER) {
-      result = createPages([
-        firstPage,
-        createContinuousPageItems(2, PAGE_LEFT_BORDER + PAGE_SCALE),
-        rightDot,
-        lastPage
-      ])
+      result = createPages([firstPage, createContinuousPageItems(2, PAGE_LEFT_BORDER + PAGE_SCALE), rightDot, lastPage])
     } else if (currentPage >= PAGE_RIGHT_BORDER) {
-      result = createPages([
-        firstPage,
-        leftDot,
-        createContinuousPageItems(PAGE_RIGHT_BORDER - PAGE_SCALE, pageCount)
-      ])
+      result = createPages([firstPage, leftDot, createContinuousPageItems(PAGE_RIGHT_BORDER - PAGE_SCALE, pageCount)])
     } else {
       result = createPages([
         firstPage,
         leftDot,
         createContinuousPageItems(currentPage - PAGE_SCALE, currentPage + PAGE_SCALE),
         rightDot,
-        lastPage
+        lastPage,
       ])
     }
 
@@ -129,11 +120,11 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
   return (
     <div className={styles.root}>
       <div className={cn(styles.item, isFirstPage && styles.disabled)} onClick={handlePrev}>
-        <Icon icon='chevron-left' />
+        <Icon icon="chevron-left" />
       </div>
       <div className={styles.pages}>{renderPages()}</div>
       <div className={cn(styles.item, isLastPage && styles.disabled)} onClick={handleNext}>
-        <Icon icon='chevron-right' />
+        <Icon icon="chevron-right" />
       </div>
     </div>
   )

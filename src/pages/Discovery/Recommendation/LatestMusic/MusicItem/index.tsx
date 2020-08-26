@@ -11,10 +11,10 @@ import { createMusic } from 'helpers/business'
 import styles from './style.module.css'
 
 interface IProps {
-  id: number,
-  name: string,
-  picUrl: string,
-  song: IMusicSong,
+  id: number
+  name: string
+  picUrl: string
+  song: IMusicSong
   index: number
 }
 
@@ -38,9 +38,9 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
           picUrl,
           artists: song.artists,
           duration: song.duration / 1000,
-          ...others
-        })
-      }
+          ...others,
+        }),
+      },
     })
   }
 
@@ -49,7 +49,7 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
   return (
     <div className={cn(styles.root, hasBorderBottom && styles.borderBottom, isMusicActive && styles.active)}>
       <div className={styles.pic} onClick={() => playMusic(id)}>
-        <img src={`${picUrl}?param=60y60`} loading='lazy' />
+        <img src={`${picUrl}?param=60y60`} loading="lazy" />
         <PlayIcon className={styles.playIcon} />
       </div>
       {isMusicActive ? (
@@ -57,14 +57,10 @@ const MusicItem: React.FC<IProps> = ({ id, name, picUrl, song, index, ...others 
           <Icon icon={audioInfo?.state?.paused ? 'volume-off' : 'volume-up'} />
         </div>
       ) : (
-        <div className={styles.order}>
-          {index < 9 ? `0${index + 1}` : index + 1}
-        </div>
+        <div className={styles.order}>{index < 9 ? `0${index + 1}` : index + 1}</div>
       )}
       <div className={styles.info}>
-        <div className={styles.name}>
-          {name}
-        </div>
+        <div className={styles.name}>{name}</div>
         <Artists artists={song?.artists} />
       </div>
     </div>

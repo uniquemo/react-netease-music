@@ -11,9 +11,12 @@ const PlayVolume = () => {
   const audioInfo = useContext(AudioContext)
   const { state, controls } = audioInfo
 
-  const handleBarClick = useCallback((percent: number) => {
-    controls?.volume(percent)
-  }, [controls])
+  const handleBarClick = useCallback(
+    (percent: number) => {
+      controls?.volume(percent)
+    },
+    [controls],
+  )
 
   const originDonePercent = useMemo(() => {
     const volume = Number((state?.volume || 0).toFixed(2))
@@ -22,13 +25,9 @@ const PlayVolume = () => {
 
   return (
     <div className={styles.root}>
-      <Icon icon='volume-off' />
+      <Icon icon="volume-off" />
       <div className={styles.progress}>
-        <ProgressBar
-          className={styles.bar}
-          originDonePercent={originDonePercent}
-          onBarClick={handleBarClick}
-        />
+        <ProgressBar className={styles.bar} originDonePercent={originDonePercent} onBarClick={handleBarClick} />
       </div>
     </div>
   )

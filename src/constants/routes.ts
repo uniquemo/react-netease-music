@@ -1,25 +1,25 @@
-const ROOT: string = '/'
+const ROOT = '/'
 
-const DISCOVERY: string = '/discovery'
-const RECOMMENDATION: string = `${DISCOVERY}/recommendation`
-const SONG_LIST: string = `${DISCOVERY}/songlist`
-const LEADER_BOARD: string = `${DISCOVERY}/leaderboard`
-const SINGERS: string = `${DISCOVERY}/singers`
-const LATEST_MUSIC: string = `${DISCOVERY}/latestmusic`
-const RECOMMEND_DAILY: string = `${DISCOVERY}/recommend_daily`
+const DISCOVERY = '/discovery'
+const RECOMMENDATION = `${DISCOVERY}/recommendation`
+const SONG_LIST = `${DISCOVERY}/songlist`
+const LEADER_BOARD = `${DISCOVERY}/leaderboard`
+const SINGERS = `${DISCOVERY}/singers`
+const LATEST_MUSIC = `${DISCOVERY}/latestmusic`
+const RECOMMEND_DAILY = `${DISCOVERY}/recommend_daily`
 
-const VIDEOS: string = '/videos'
-const VIDEO: string = `${VIDEOS}/video`
-const MV: string = `${VIDEOS}/mv`
+const VIDEOS = '/videos'
+const VIDEO = `${VIDEOS}/video`
+const MV = `${VIDEOS}/mv`
 
-const SEARCH: string = '/search'
+const SEARCH = '/search'
 
-const SONG_LISTS: string = '/songlists'
-const SONG_LIST_DETAIL: string = `${SONG_LISTS}/:songlistId`
+const SONG_LISTS = '/songlists'
+const SONG_LIST_DETAIL = `${SONG_LISTS}/:songlistId`
 
-const DOWNLOAD: string = '/download'
-const CLOUD: string = '/cloud'
-const COLLECTION: string = '/collection'
+const DOWNLOAD = '/download'
+const CLOUD = '/cloud'
+const COLLECTION = '/collection'
 
 const DEFAULT_ROUTE: string = DISCOVERY
 
@@ -41,7 +41,7 @@ const ROUTES = {
   SONG_LIST_DETAIL,
   DOWNLOAD,
   CLOUD,
-  COLLECTION
+  COLLECTION,
 }
 
 export default ROUTES

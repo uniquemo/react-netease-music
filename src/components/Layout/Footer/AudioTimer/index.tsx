@@ -13,11 +13,7 @@ const AudioTimer = () => {
     return `${formatTime(state?.time)} / ${formatTime(state?.duration)}`
   }, [state?.time, state?.duration])
 
-  return (
-    <div>
-      {time}
-    </div>
-  )
+  return <div>{time}</div>
 }
 
 export default AudioTimer

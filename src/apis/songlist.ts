@@ -4,19 +4,19 @@ import { ISimpleMusic, IMyMusic, ISonglist } from './types/business'
 import { IGetSonglistsRequest, IGetSonglistCatsResponse, ICategory } from './types/songlist'
 import { PAGE_SIZE } from 'constants/pagination'
 
-type GetSonglistDetailFn = (id: number) => Promise<{ songlist: ISonglist, songs: IMyMusic[] }>
-type GetSonglistsFn = (params: IGetSonglistsRequest) => Promise<{ playlists: ISonglist[], total: number }>
+type GetSonglistDetailFn = (id: number) => Promise<{ songlist: ISonglist; songs: IMyMusic[] }>
+type GetSonglistsFn = (params: IGetSonglistsRequest) => Promise<{ playlists: ISonglist[]; total: number }>
 type GetSonglistCatsFn = () => Promise<IGetSonglistCatsResponse>
 type GetSonglistHotCatsFn = () => Promise<ICategory[]>
 type GetHighQualitySonglistFn = (cat?: string) => Promise<ISonglist>
-type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[], collect: ISonglist[] }>
+type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[]; collect: ISonglist[] }>
 
 const getSonglistDetail: GetSonglistDetailFn = async (id) => {
   const response = await axios({
     url: '/playlist/detail',
     params: {
-      id
-    }
+      id,
+    },
   })
 
   const songs: IMyMusic[] = []
@@ -25,14 +25,14 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
     const song = createMusicFromSimpleMusic({
       ...item,
       fee: privilege?.fee,
-      status: privilege?.st
+      status: privilege?.st,
     })
     songs.push(song)
   })
 
   return {
     songlist: response.playlist,
-    songs
+    songs,
   }
 }
 
@@ -43,8 +43,8 @@ const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, off
       cat,
       order,
       limit,
-      offset
-    }
+      offset,
+    },
   })
 
   return response
@@ -52,7 +52,7 @@ const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, off
 
 const getSonglistCats: GetSonglistCatsFn = async () => {
   const response = await axios({
-    url: '/playlist/catlist'
+    url: '/playlist/catlist',
   })
 
   return response
@@ -60,7 +60,7 @@ const getSonglistCats: GetSonglistCatsFn = async () => {
 
 const getSonglistHotCats: GetSonglistHotCatsFn = async () => {
   const response = await axios({
-    url: '/playlist/hot'
+    url: '/playlist/hot',
   })
 
   return response.tags
@@ -71,8 +71,8 @@ const getHighQualitySonglist: GetHighQualitySonglistFn = async (cat = '全部') 
     url: '/top/playlist/highquality',
     params: {
       limit: 1,
-      cat
-    }
+      cat,
+    },
   })
 
   return response?.playlists?.[0]
@@ -83,8 +83,8 @@ const getUserSonglist: GetUserSonglistFn = async (uid) => {
     url: '/user/playlist',
     params: {
       uid,
-      limit: PAGE_SIZE
-    }
+      limit: PAGE_SIZE,
+    },
   })
 
   const playlist: ISonglist[] = response.playlist || []
@@ -93,7 +93,7 @@ const getUserSonglist: GetUserSonglistFn = async (uid) => {
 
   return {
     create,
-    collect
+    collect,
   }
 }
 
@@ -103,5 +103,5 @@ export default {
   getSonglistCats,
   getSonglistHotCats,
   getHighQualitySonglist,
-  getUserSonglist
+  getUserSonglist,
 }

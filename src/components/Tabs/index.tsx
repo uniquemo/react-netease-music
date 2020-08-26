@@ -5,9 +5,9 @@ import { noop } from 'helpers/fn'
 import styles from './style.module.css'
 
 interface ITab {
-  label?: string,
-  key: string,
-  renderLabel?: () => React.ReactElement,
+  label?: string
+  key: string
+  renderLabel?: () => React.ReactElement
   onClick?: (key: string) => void
 }
 

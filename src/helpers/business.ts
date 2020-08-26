@@ -11,7 +11,7 @@ export const createMusic = ({ id, name, artists, duration, picUrl, ...others }: 
     artists,
     duration,
     picUrl,
-    ...others
+    ...others,
   }
 }
 
@@ -23,7 +23,7 @@ export const createMusicWithAlbum = (music: IMusic) => {
     artists,
     duration,
     picUrl: album.blurPicUrl,
-    ...others
+    ...others,
   }
 }
 
@@ -37,6 +37,6 @@ export const createMusicFromSimpleMusic = (music: ISimpleMusic): IMyMusic => {
     picUrl: al.picUrl,
     artists: ar,
     duration: dt,
-    album: al
+    album: al,
   }
 }

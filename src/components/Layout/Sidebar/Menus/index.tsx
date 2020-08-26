@@ -7,14 +7,14 @@ import ROUTES from 'constants/routes'
 import styles from './style.module.css'
 
 interface IMenuItem {
-  icon: IconName,
-  label: string,
-  active?: boolean,
+  icon: IconName
+  label: string
+  active?: boolean
   route: string
 }
 
 interface IMenu {
-  title?: string,
+  title?: string
   items: IMenuItem[]
 }
 
@@ -24,14 +24,14 @@ const MENU: IMenu[] = [
       {
         icon: 'music',
         label: '发现音乐',
-        route: ROUTES.DISCOVERY
+        route: ROUTES.DISCOVERY,
       },
       {
         icon: 'mobile-video',
         label: '视频',
-        route: ROUTES.VIDEOS
-      }
-    ]
+        route: ROUTES.VIDEOS,
+      },
+    ],
   },
   {
     title: '我的音乐',
@@ -39,20 +39,20 @@ const MENU: IMenu[] = [
       {
         icon: 'import',
         label: '下载管理',
-        route: ROUTES.DOWNLOAD
+        route: ROUTES.DOWNLOAD,
       },
       {
         icon: 'cloud',
         label: '我的音乐云盘',
-        route: ROUTES.CLOUD
+        route: ROUTES.CLOUD,
       },
       {
         icon: 'star-empty',
         label: '我的收藏',
-        route: ROUTES.COLLECTION
-      }
-    ]
-  }
+        route: ROUTES.COLLECTION,
+      },
+    ],
+  },
 ]
 
 const Menus = () => {

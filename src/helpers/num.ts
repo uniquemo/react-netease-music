@@ -1,4 +1,4 @@
-export const formatNum = (num: number = 0) => {
+export const formatNum = (num = 0) => {
   let result = ''
 
   if (num > Math.pow(10, 8)) {

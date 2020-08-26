@@ -22,8 +22,10 @@ const MV = () => {
 
   return (
     <div className={styles.root}>
-      <LinkTitle title='推荐MV' route={ROUTES.MV} />
-      {isGettingMV ? <Spinner /> : (
+      <LinkTitle title="推荐MV" route={ROUTES.MV} />
+      {isGettingMV ? (
+        <Spinner />
+      ) : (
         <div className={styles.content}>
           {mvs.map(({ name, artistName, playCount, picUrl, copywriter }) => {
             return (

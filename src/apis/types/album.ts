@@ -1,6 +1,6 @@
 import { IAlbum } from './business'
 
 export interface IGetAlbumResponse {
-  album: IAlbum,
+  album: IAlbum
   songs: any[]
 }

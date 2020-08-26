@@ -41,27 +41,27 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
             music: createMusic({
               ...item,
               picUrl,
-              duration: item.duration / 1000
-            })
-          }
+              duration: item.duration / 1000,
+            }),
+          },
         })
-      }
+      },
     },
     albums: {
       title: '专辑',
       icon: 'headset',
-      renderLabel: (item: IAlbum) => `${item.name} - ${item?.artist?.name}`
+      renderLabel: (item: IAlbum) => `${item.name} - ${item?.artist?.name}`,
     },
     artists: {
       title: '歌手',
       icon: 'person',
-      renderLabel: (item: IArtist) => `${item.name}`
+      renderLabel: (item: IArtist) => `${item.name}`,
     },
     mvs: {
       title: '视频',
       icon: 'mobile-video',
-      renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`
-    }
+      renderLabel: (item: IMV) => `${item.name} - ${item.artistName}`,
+    },
   }
 
   return (
@@ -74,13 +74,7 @@ const SearchResult: React.FC<IProps> = ({ data }) => {
           return null
         }
 
-        return (
-          <Item
-            key={type}
-            {...configOfType}
-            data={itemData}
-          />
-        )
+        return <Item key={type} {...configOfType} data={itemData} />
       })}
       {!order && <div className={styles.empty}>没有结果喔</div>}
     </div>

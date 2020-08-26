@@ -1,6 +1,6 @@
 export const noop = () => {}
 
-export const debounce = (fn: Function, interval: number, immediate?: boolean) => {
+export const debounce = (fn: (...args: any[]) => void, interval: number) => {
   let timer: NodeJS.Timeout | null = null
 
   return function (...args: any[]) {

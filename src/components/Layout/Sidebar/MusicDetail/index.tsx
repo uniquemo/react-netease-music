@@ -34,62 +34,64 @@ const MusicDetail = () => {
 
   return (
     <div className={cn(styles.root, showLyric && styles.show)}>
-      {showLyric && <>
-        <div className={styles.music}>
-          <div className={styles.cdWrap}>
-            <div className={styles.cd}>
-              <div className={styles.bar}>
-                <img src={playBar} className={cn(styles.playBar, !isPlaying && styles.pause)} />
-                <img src={playCd} className={styles.playCd} />
-              </div>
-              <div className={styles.circle}>
-                <div className={cn(styles.cover, isPlaying && styles.rotate)}>
-                  <img src={`${music?.picUrl || music?.album?.blurPicUrl}?param=190y190`} />
+      {showLyric && (
+        <>
+          <div className={styles.music}>
+            <div className={styles.cdWrap}>
+              <div className={styles.cd}>
+                <div className={styles.bar}>
+                  <img src={playBar} className={cn(styles.playBar, !isPlaying && styles.pause)} />
+                  <img src={playCd} className={styles.playCd} />
+                </div>
+                <div className={styles.circle}>
+                  <div className={cn(styles.cover, isPlaying && styles.rotate)}>
+                    <img src={`${music?.picUrl || music?.album?.blurPicUrl}?param=190y190`} />
+                  </div>
                 </div>
               </div>
+              <div></div>
             </div>
-            <div></div>
+            <div className={styles.lyric}>
+              <div className={styles.name}>{music?.name}</div>
+              <div className={styles.artists}>
+                歌手：
+                <span>{music?.artists.map(({ name }) => name).join(' / ')}</span>
+              </div>
+              <div className={styles.lrc}>
+                <Lyric />
+              </div>
+            </div>
           </div>
-          <div className={styles.lyric}>
-            <div className={styles.name}>{music?.name}</div>
-            <div className={styles.artists}>
-              歌手：
-              <span>{music?.artists.map(({ name }) => name).join(' / ')}</span>
-            </div>
-            <div className={styles.lrc}>
-              <Lyric />
-            </div>
-          </div>
-        </div>
 
-        <div className={styles.relatedInfo}>
-          <div className={styles.comment}>
-            <Comments />
-          </div>
-          <div className={styles.relatedDetail}>
-            {songlistState.loading || simiSongState.loading ? (
-              <Spinner size={Spinner.SIZE_SMALL} />
-            ) : (
-              <>
-                {!!songlistState.value?.length && (
+          <div className={styles.relatedInfo}>
+            <div className={styles.comment}>
+              <Comments />
+            </div>
+            <div className={styles.relatedDetail}>
+              {songlistState.loading || simiSongState.loading ? (
+                <Spinner size={Spinner.SIZE_SMALL} />
+              ) : (
+                <>
+                  {!!songlistState.value?.length && (
+                    <div className={styles.block}>
+                      <div className={styles.title}>包含这首歌的歌单</div>
+                      <div>
+                        <Songlists data={songlistState.value || []} />
+                      </div>
+                    </div>
+                  )}
                   <div className={styles.block}>
-                    <div className={styles.title}>包含这首歌的歌单</div>
+                    <div className={styles.title}>相似歌曲</div>
                     <div>
-                      <Songlists data={songlistState.value || []} />
+                      <SimiSongs data={simiSongState.value || []} />
                     </div>
                   </div>
-                )}
-                <div className={styles.block}>
-                  <div className={styles.title}>相似歌曲</div>
-                  <div>
-                    <SimiSongs data={simiSongState.value || []} />
-                  </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      </>}
+        </>
+      )}
     </div>
   )
 }

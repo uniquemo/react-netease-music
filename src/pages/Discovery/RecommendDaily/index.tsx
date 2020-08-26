@@ -30,8 +30,8 @@ const RecommendDaily = () => {
     dispatch({
       type: ACTIONS.SET_PLAY_LIST,
       payload: {
-        playList: state.value
-      }
+        playList: state.value,
+      },
     })
 
     if (autoPlay) {
@@ -43,9 +43,9 @@ const RecommendDaily = () => {
           music: createMusic({
             ...item,
             picUrl: item.album?.blurPicUrl,
-            duration: item.duration / 1000
-          })
-        }
+            duration: item.duration / 1000,
+          }),
+        },
       })
     }
   }
@@ -65,10 +65,7 @@ const RecommendDaily = () => {
         </div>
 
         {isLogined && (
-          <div
-            className='playAll'
-            onClick={() => playAll(true)}
-          >
+          <div className="playAll" onClick={() => playAll(true)}>
             播放全部
           </div>
         )}
@@ -76,11 +73,10 @@ const RecommendDaily = () => {
 
       {isLogined ? (
         <div className={styles.content}>
-          {state.loading ? <Spinner className='spinner' /> : (
-            <MusicList
-              data={state.value || []}
-              onPlayAll={() => playAll()}
-            />
+          {state.loading ? (
+            <Spinner className="spinner" />
+          ) : (
+            <MusicList data={state.value || []} onPlayAll={() => playAll()} />
           )}
         </div>
       ) : (

@@ -25,29 +25,32 @@ const PlayOperations = () => {
     }
   }, [audioState?.paused, controls])
 
-  const play = useCallback((prev?: boolean) => {
-    const len = playList.length
-    if (!len) {
-      return
-    }
-
-    const index = playList.findIndex(({ id }) => id === musicId)
-    let nextIndex = -1
-
-    if (index > -1) {
-      nextIndex = prev ? (index - 1 + len) % len : (index + 1) % len
-    } else {
-      nextIndex = 0
-    }
-
-    dispatch({
-      type: ACTIONS.PLAY,
-      payload: {
-        musicId: playList[nextIndex].id,
-        music: playList[nextIndex]
+  const play = useCallback(
+    (prev?: boolean) => {
+      const len = playList.length
+      if (!len) {
+        return
       }
-    })
-  }, [playList, musicId, dispatch])
+
+      const index = playList.findIndex(({ id }) => id === musicId)
+      let nextIndex = -1
+
+      if (index > -1) {
+        nextIndex = prev ? (index - 1 + len) % len : (index + 1) % len
+      } else {
+        nextIndex = 0
+      }
+
+      dispatch({
+        type: ACTIONS.PLAY,
+        payload: {
+          musicId: playList[nextIndex].id,
+          music: playList[nextIndex],
+        },
+      })
+    },
+    [playList, musicId, dispatch],
+  )
 
   const playPrev = useCallback(() => play(true), [play])
   const playNext = useCallback(() => play(), [play])
@@ -55,13 +58,13 @@ const PlayOperations = () => {
   return (
     <>
       <div className={styles.prev} onClick={playPrev}>
-        <Icon icon='step-backward' />
+        <Icon icon="step-backward" />
       </div>
       <div className={styles.pause} onClick={togglePlayStatus}>
         <Icon icon={audioInfo.state?.paused ? 'play' : 'pause'} />
       </div>
       <div className={styles.next} onClick={playNext}>
-        <Icon icon='step-forward' />
+        <Icon icon="step-forward" />
       </div>
     </>
   )

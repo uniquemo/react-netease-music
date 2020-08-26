@@ -26,13 +26,13 @@ const Footer = () => {
 
   const handleShowLyric = useCallback(() => {
     dispatch({
-      type: ACTIONS.SHOW_LYRIC
+      type: ACTIONS.SHOW_LYRIC,
     })
   }, [dispatch])
 
   const handleHideLyric = useCallback(() => {
     dispatch({
-      type: ACTIONS.HIDE_LYRIC
+      type: ACTIONS.HIDE_LYRIC,
     })
   }, [dispatch])
 
@@ -45,26 +45,32 @@ const Footer = () => {
       ) : null}
 
       <div className={styles.songWrap}>
-        {!!musicId && (<>
-          <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
-            <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
-            {!showLyric && <div className={styles.mask} onClick={handleShowLyric}>
-              <Icon icon='double-chevron-up' />
-            </div>}
-            {showLyric && <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
-              <Icon icon='double-chevron-down' />
-            </div>}
-          </div>
-          <div>
-            <div className={styles.info}>
-              <div className={styles.name}>{`${music?.name || '--'} -`}</div>
-              <Artists artists={state?.music?.artists} />
+        {!!musicId && (
+          <>
+            <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
+              <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading="lazy" />
+              {!showLyric && (
+                <div className={styles.mask} onClick={handleShowLyric}>
+                  <Icon icon="double-chevron-up" />
+                </div>
+              )}
+              {showLyric && (
+                <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
+                  <Icon icon="double-chevron-down" />
+                </div>
+              )}
             </div>
-            <div className={styles.time}>
-              <AudioTimer />
+            <div>
+              <div className={styles.info}>
+                <div className={styles.name}>{`${music?.name || '--'} -`}</div>
+                <Artists artists={state?.music?.artists} />
+              </div>
+              <div className={styles.time}>
+                <AudioTimer />
+              </div>
             </div>
-          </div>
-        </>)}
+          </>
+        )}
       </div>
 
       <div className={styles.operations}>
@@ -76,8 +82,8 @@ const Footer = () => {
           <PlayMode />
         </div>
         <div onClick={togglePlayRecord} className={styles.item}>
-          <Tooltip content='打开播放列表'>
-            <Icon icon='menu-closed' className={showPlayRecord ? 'active': ''} />
+          <Tooltip content="打开播放列表">
+            <Icon icon="menu-closed" className={showPlayRecord ? 'active' : ''} />
           </Tooltip>
         </div>
         <div className={styles.item}>
@@ -85,10 +91,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <PlayRecord
-        show={showPlayRecord}
-        onClickAway={() => setShowPlayRecord(false)}
-      />
+      <PlayRecord show={showPlayRecord} onClickAway={() => setShowPlayRecord(false)} />
     </div>
   )
 }

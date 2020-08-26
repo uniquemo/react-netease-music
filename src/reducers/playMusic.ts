@@ -7,18 +7,18 @@ import {
   setPlayHistory,
   playHistory as playHistoryLocalStorage,
   playMode as playModeLocalStorage,
-  playList as playListLocalStorage
+  playList as playListLocalStorage,
 } from 'helpers/play'
 import { IAction } from './types'
 
 // Actions
-const PLAY: string = 'PLAY'
-const SET_PLAY_LIST: string = 'SET_PLAY_LIST'
-const CLEAR_PLAY_LIST: string = 'CLEAR_PLAY_LIST'
-const SET_PLAY_MODE: string = 'SET_PLAY_MODE'
-const SHOW_LYRIC: string = 'SHOW_LYRIC'
-const HIDE_LYRIC: string = 'HIDE_LYRIC'
-const CLEAR_PLAY_HISTORY: string = 'CLEAR_PLAY_HISTORY'
+const PLAY = 'PLAY'
+const SET_PLAY_LIST = 'SET_PLAY_LIST'
+const CLEAR_PLAY_LIST = 'CLEAR_PLAY_LIST'
+const SET_PLAY_MODE = 'SET_PLAY_MODE'
+const SHOW_LYRIC = 'SHOW_LYRIC'
+const HIDE_LYRIC = 'HIDE_LYRIC'
+const CLEAR_PLAY_HISTORY = 'CLEAR_PLAY_HISTORY'
 
 export const ACTIONS = {
   PLAY,
@@ -27,16 +27,15 @@ export const ACTIONS = {
   SET_PLAY_MODE,
   SHOW_LYRIC,
   HIDE_LYRIC,
-  CLEAR_PLAY_HISTORY
+  CLEAR_PLAY_HISTORY,
 }
-
 
 // Reducer
 export interface IState {
-  musicId: number,
-  musicUrl: string,
-  music?: IMyMusic,
-  playMode: MODE,
+  musicId: number
+  musicUrl: string
+  music?: IMyMusic
+  playMode: MODE
   showLyric: boolean
 }
 
@@ -44,22 +43,21 @@ export const initialState = {
   musicId: 0,
   musicUrl: '',
   playMode: playModeLocalStorage.getItem(),
-  showLyric: false
+  showLyric: false,
 }
 
 const playMusicReducer = (state: IState, { type, payload }: IAction) => {
   switch (type) {
     case ACTIONS.PLAY: {
-      let playHistory: IMyMusic[] = []
       if (!payload?.keepOrder) {
-        playHistory = setPlayHistory(payload?.music)
+        setPlayHistory(payload?.music)
       }
 
       return {
         ...state,
         musicId: payload?.musicId,
         musicUrl: getMusicUrl(payload?.musicId),
-        music: payload?.music
+        music: payload?.music,
       }
     }
     case ACTIONS.SET_PLAY_LIST: {
@@ -76,19 +74,19 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
 
       return {
         ...state,
-        playMode: payload?.playMode || MODE.PLAY_IN_ORDER
+        playMode: payload?.playMode || MODE.PLAY_IN_ORDER,
       }
     }
     case ACTIONS.SHOW_LYRIC: {
       return {
         ...state,
-        showLyric: true
+        showLyric: true,
       }
     }
     case ACTIONS.HIDE_LYRIC: {
       return {
         ...state,
-        showLyric: false
+        showLyric: false,
       }
     }
     case ACTIONS.CLEAR_PLAY_HISTORY: {
@@ -103,9 +101,9 @@ const playMusicReducer = (state: IState, { type, payload }: IAction) => {
 export default playMusicReducer
 
 export interface IAudioContext {
-  audio?: React.ReactElement<any> | undefined,
-  state?: HTMLMediaState,
-  controls?: HTMLMediaControls,
+  audio?: React.ReactElement<any> | undefined
+  state?: HTMLMediaState
+  controls?: HTMLMediaControls
   ref?: {
     current: HTMLAudioElement | null
   }

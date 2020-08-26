@@ -1,3 +1,3 @@
-export const PAGE: number = 1
-export const PAGE_SIZE: number = 100
-export const TOTAL: number = 0
+export const PAGE = 1
+export const PAGE_SIZE = 100
+export const TOTAL = 0
