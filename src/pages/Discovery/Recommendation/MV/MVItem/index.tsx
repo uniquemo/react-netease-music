@@ -16,7 +16,7 @@ const MVItem: React.FC<IProps> = ({ name, artistName, playCount, picUrl, copywri
   return (
     <div className={styles.root}>
       <div className={styles.pic}>
-        <img src={picUrl} loading="lazy" />
+        <img src={picUrl} loading='lazy' />
         <PlayCount count={playCount} className={styles.playCount} />
         <div className={styles.copywriter}>{copywriter}</div>
       </div>

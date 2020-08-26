@@ -63,7 +63,7 @@ const List: React.FC<IProps> = ({ data, onDoubleClick, onClear }) => {
         {data.length > 0 && (
           <div className={styles.actions}>
             <div onClick={onClear}>
-              <Icon icon="trash" iconSize={15} />
+              <Icon icon='trash' iconSize={15} />
               {' 清空'}
             </div>
           </div>

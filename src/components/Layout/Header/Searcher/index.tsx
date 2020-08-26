@@ -69,10 +69,10 @@ const Searcher = () => {
   return (
     <div className={styles.root} ref={(ref) => (searchRef.current = ref)}>
       <div className={styles.searcher}>
-        <Icon icon="search" />
+        <Icon icon='search' />
         <input
           ref={(ref) => (inputRef.current = ref)}
-          placeholder="搜索"
+          placeholder='搜索'
           value={keyword}
           onFocus={handleInputFocus}
           onChange={({ target: { value } }) => {
@@ -88,8 +88,8 @@ const Searcher = () => {
           <SearchResult data={searchResult} />
         ) : (
           <div>
-            <Words title="热门搜索" words={state.value?.map(({ first }) => first)} onWordClick={handleWordClick} />
-            <Words title="搜索历史" words={searchHistoryLocalStorage.getItem()} onWordClick={handleWordClick} />
+            <Words title='热门搜索' words={state.value?.map(({ first }) => first)} onWordClick={handleWordClick} />
+            <Words title='搜索历史' words={searchHistoryLocalStorage.getItem()} onWordClick={handleWordClick} />
           </div>
         )}
       </div>

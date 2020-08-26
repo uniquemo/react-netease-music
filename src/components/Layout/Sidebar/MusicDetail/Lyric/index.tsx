@@ -58,7 +58,7 @@ const Lyric = () => {
   return (
     <div className={styles.root} ref={(ref) => (lyricRef.current = ref)}>
       {lyricState.loading ? (
-        <Spinner className="spinner" />
+        <Spinner className='spinner' />
       ) : (
         <>
           {lines.map(([time, lyric], index) => {

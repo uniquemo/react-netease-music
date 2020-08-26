@@ -13,7 +13,7 @@ interface IProps {
 const PlayCount: React.FC<IProps> = ({ count, className }) => {
   return (
     <div className={cn(styles.root, className)}>
-      <Icon icon="play" />
+      <Icon icon='play' />
       {formatNum(count)}
     </div>
   )

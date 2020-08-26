@@ -58,13 +58,13 @@ const PlayOperations = () => {
   return (
     <>
       <div className={styles.prev} onClick={playPrev}>
-        <Icon icon="step-backward" />
+        <Icon icon='step-backward' />
       </div>
       <div className={styles.pause} onClick={togglePlayStatus}>
         <Icon icon={audioInfo.state?.paused ? 'play' : 'pause'} />
       </div>
       <div className={styles.next} onClick={playNext}>
-        <Icon icon="step-forward" />
+        <Icon icon='step-forward' />
       </div>
     </>
   )

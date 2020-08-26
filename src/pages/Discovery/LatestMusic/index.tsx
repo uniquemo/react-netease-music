@@ -92,7 +92,7 @@ const LatestMusic = () => {
 
       <div className={styles.content}>
         {state.loading ? (
-          <Spinner className="spinner" />
+          <Spinner className='spinner' />
         ) : (
           <Content data={state.value} onDoubleClick={() => playAll(false)} />
         )}

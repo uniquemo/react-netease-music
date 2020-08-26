@@ -21,7 +21,7 @@ const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
   return (
     <div className={styles.root}>
       <div className={styles.avatar}>
-        <img src={`${user.avatarUrl}?param=35y35`} loading="lazy" />
+        <img src={`${user.avatarUrl}?param=35y35`} loading='lazy' />
       </div>
 
       <div className={styles.info}>
@@ -45,7 +45,7 @@ const Comment: React.FC<IProps> = ({ data, onLikeChange }) => {
           <div className={styles.time}>{formatDatetime(time, true)}</div>
           <div className={styles.operations}>
             <div className={cn(styles.like, liked && 'active')} onClick={likeUnlike}>
-              <Icon icon="thumbs-up" iconSize={14} />
+              <Icon icon='thumbs-up' iconSize={14} />
               &nbsp;
               {!!likedCount && <span>{likedCount}</span>}
             </div>

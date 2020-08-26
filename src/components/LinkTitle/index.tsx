@@ -19,7 +19,7 @@ const LinkTitle: React.FC<IProps> = ({ title, route }) => {
   return (
     <div onClick={handleClick} className={styles.root}>
       {title}
-      <Icon icon="chevron-right" />
+      <Icon icon='chevron-right' />
     </div>
   )
 }

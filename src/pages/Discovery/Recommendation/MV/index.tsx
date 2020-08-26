@@ -22,7 +22,7 @@ const MV = () => {
 
   return (
     <div className={styles.root}>
-      <LinkTitle title="推荐MV" route={ROUTES.MV} />
+      <LinkTitle title='推荐MV' route={ROUTES.MV} />
       {isGettingMV ? (
         <Spinner />
       ) : (

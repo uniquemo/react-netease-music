@@ -30,17 +30,17 @@ const Header = () => {
       <div className={styles.actions}>
         <div className={styles.iconsWrap}>
           <div className={styles.circle}>
-            <Icon icon="cross" iconSize={8} />
+            <Icon icon='cross' iconSize={8} />
           </div>
           <div className={styles.circle}>
-            <Icon icon="minus" iconSize={8} />
+            <Icon icon='minus' iconSize={8} />
           </div>
           <div className={styles.circle}>
-            <Icon icon="maximize" iconSize={7} />
+            <Icon icon='maximize' iconSize={7} />
           </div>
           {showLyric && (
             <div className={styles.down} onClick={hideLyric}>
-              <Icon icon="chevron-down" iconSize={20} />
+              <Icon icon='chevron-down' iconSize={20} />
             </div>
           )}
         </div>
@@ -48,10 +48,10 @@ const Header = () => {
         {!showLyric && (
           <div className={styles.backForward}>
             <div onClick={handleGoBack}>
-              <Icon icon="chevron-left" />
+              <Icon icon='chevron-left' />
             </div>
             <div onClick={handleGoForward}>
-              <Icon icon="chevron-right" />
+              <Icon icon='chevron-right' />
             </div>
           </div>
         )}

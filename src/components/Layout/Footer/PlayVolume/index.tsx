@@ -25,7 +25,7 @@ const PlayVolume = () => {
 
   return (
     <div className={styles.root}>
-      <Icon icon="volume-off" />
+      <Icon icon='volume-off' />
       <div className={styles.progress}>
         <ProgressBar className={styles.bar} originDonePercent={originDonePercent} onBarClick={handleBarClick} />
       </div>

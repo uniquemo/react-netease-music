@@ -48,15 +48,15 @@ const Footer = () => {
         {!!musicId && (
           <>
             <div className={cn(styles.pic, !showLyric && styles.showLyric)}>
-              <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading="lazy" />
+              <img src={music?.picUrl ? `${music?.picUrl}?param=40y40` : undefined} loading='lazy' />
               {!showLyric && (
                 <div className={styles.mask} onClick={handleShowLyric}>
-                  <Icon icon="double-chevron-up" />
+                  <Icon icon='double-chevron-up' />
                 </div>
               )}
               {showLyric && (
                 <div className={cn(styles.mask, styles.hideLyric)} onClick={handleHideLyric}>
-                  <Icon icon="double-chevron-down" />
+                  <Icon icon='double-chevron-down' />
                 </div>
               )}
             </div>
@@ -82,8 +82,8 @@ const Footer = () => {
           <PlayMode />
         </div>
         <div onClick={togglePlayRecord} className={styles.item}>
-          <Tooltip content="打开播放列表">
-            <Icon icon="menu-closed" className={showPlayRecord ? 'active' : ''} />
+          <Tooltip content='打开播放列表'>
+            <Icon icon='menu-closed' className={showPlayRecord ? 'active' : ''} />
           </Tooltip>
         </div>
         <div className={styles.item}>

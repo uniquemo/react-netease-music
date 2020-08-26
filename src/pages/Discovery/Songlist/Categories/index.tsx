@@ -63,10 +63,10 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
   return (
     <div className={styles.root}>
       <div className={styles.cats}>
-        <Popover content={renderCats()} interactionKind="click" position="bottom">
+        <Popover content={renderCats()} interactionKind='click' position='bottom'>
           <div className={styles.catsBtn}>
             {currentCat}
-            <Icon icon="chevron-right" />
+            <Icon icon='chevron-right' />
           </div>
         </Popover>
       </div>

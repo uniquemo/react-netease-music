@@ -11,7 +11,7 @@ interface IProps {
 const PlayIcon: React.FC<IProps> = ({ className }) => {
   return (
     <div className={cn(styles.root, className)}>
-      <Icon icon="play" />
+      <Icon icon='play' />
     </div>
   )
 }

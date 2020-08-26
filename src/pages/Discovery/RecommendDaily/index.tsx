@@ -65,7 +65,7 @@ const RecommendDaily = () => {
         </div>
 
         {isLogined && (
-          <div className="playAll" onClick={() => playAll(true)}>
+          <div className='playAll' onClick={() => playAll(true)}>
             播放全部
           </div>
         )}
@@ -74,7 +74,7 @@ const RecommendDaily = () => {
       {isLogined ? (
         <div className={styles.content}>
           {state.loading ? (
-            <Spinner className="spinner" />
+            <Spinner className='spinner' />
           ) : (
             <MusicList data={state.value || []} onPlayAll={() => playAll()} />
           )}

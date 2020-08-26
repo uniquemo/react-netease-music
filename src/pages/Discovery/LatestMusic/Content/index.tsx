@@ -55,7 +55,7 @@ const Content: React.FC<IProps> = ({ data, onDoubleClick }) => {
 
             <div className={styles.musicInfo}>
               <div className={styles.pic}>
-                <img src={`${picUrl || album?.blurPicUrl}?param=60y60`} className="cover" loading="lazy" />
+                <img src={`${picUrl || album?.blurPicUrl}?param=60y60`} className='cover' loading='lazy' />
                 <PlayIcon className={styles.playIcon} />
               </div>
               <div className={cn(styles.name, isActive && 'active')}>{name}</div>

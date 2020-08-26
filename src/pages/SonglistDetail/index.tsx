@@ -68,7 +68,7 @@ const SonglistDetail = () => {
   return (
     <div className={styles.root}>
       {loading ? (
-        <Spinner className="spinner" />
+        <Spinner className='spinner' />
       ) : (
         <>
           <div className={styles.basicInfo}>

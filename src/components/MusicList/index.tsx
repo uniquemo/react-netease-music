@@ -38,7 +38,7 @@ const MusicList: React.FC<IProps> = ({ data, onPlayAll }) => {
             ) : (
               <span className={styles.index}>{(index || 0) + 1}</span>
             )}
-            <Icon icon="import" iconSize={14} />
+            <Icon icon='import' iconSize={14} />
           </div>
         )
       },

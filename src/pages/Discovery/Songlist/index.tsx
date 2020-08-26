@@ -57,11 +57,11 @@ const Songlist = () => {
 
       <div>
         {state.loading ? (
-          <Spinner className="spinner" />
+          <Spinner className='spinner' />
         ) : (
           <>
             <Songlists data={state.value?.playlists} />
-            <div className="pagination">
+            <div className='pagination'>
               <Pagination page={page} total={state.value?.total} onPageChange={handlePageChange} />
             </div>
           </>

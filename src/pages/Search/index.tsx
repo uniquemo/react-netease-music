@@ -123,7 +123,7 @@ const Search = () => {
           <div>
             {activeTab === TABS.MUSIC.tabKey && <MusicList data={result?.songs} />}
 
-            <div className="pagination">
+            <div className='pagination'>
               <Pagination page={page} total={total} onPageChange={handlePageChange} />
             </div>
           </div>

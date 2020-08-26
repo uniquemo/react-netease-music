@@ -22,7 +22,7 @@ const LatestMusic = () => {
 
   return (
     <div className={styles.root}>
-      <LinkTitle title="最新音乐" route={ROUTES.LATEST_MUSIC} />
+      <LinkTitle title='最新音乐' route={ROUTES.LATEST_MUSIC} />
       {loading ? (
         <Spinner />
       ) : (

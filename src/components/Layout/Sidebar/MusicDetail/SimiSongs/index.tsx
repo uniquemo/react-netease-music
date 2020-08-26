@@ -33,8 +33,8 @@ const SimiSongs: React.FC<IProps> = ({ data }) => {
 
         return (
           <div className={styles.item} key={id} onClick={() => handleItemClick(item)}>
-            <div className="smallCover">
-              <img src={`${album.blurPicUrl}?param=55y55`} loading="lazy" />
+            <div className='smallCover'>
+              <img src={`${album.blurPicUrl}?param=55y55`} loading='lazy' />
               <PlayIcon className={styles.playIcon} />
             </div>
             <div>

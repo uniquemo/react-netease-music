@@ -120,11 +120,11 @@ const Pagination: React.FC<IProps> = ({ total = TOTAL, page = PAGE, pageSize = P
   return (
     <div className={styles.root}>
       <div className={cn(styles.item, isFirstPage && styles.disabled)} onClick={handlePrev}>
-        <Icon icon="chevron-left" />
+        <Icon icon='chevron-left' />
       </div>
       <div className={styles.pages}>{renderPages()}</div>
       <div className={cn(styles.item, isLastPage && styles.disabled)} onClick={handleNext}>
-        <Icon icon="chevron-right" />
+        <Icon icon='chevron-right' />
       </div>
     </div>
   )
