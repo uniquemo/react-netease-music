@@ -14,4 +14,12 @@ const Root = () => {
   )
 }
 
-ReactDOM.render(<Root />, document.getElementById('root'))
+const render = () => {
+  ReactDOM.render(<Root />, document.getElementById('root'))
+}
+
+render()
+
+if ((module as any).hot) {
+  ;(module as any).hot.accept(['./pages/App.tsx'], () => render())
+}
