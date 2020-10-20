@@ -1,20 +1,24 @@
 import path from 'path'
+import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import TerserPlugin from 'terser-webpack-plugin'
 
 export default (env, argv) => {
+  const isProd = argv.mode === 'production'
+
   const config = {
     entry: './src/index.tsx',
     output: {
       // 因为开发环境中，chunkhash与HotModuleReplacementPlugin有冲突，所以两个环境分别设置
-      filename: argv.mode === 'production' ? '[name].[chunkhash:8].js' : '[name].[hash:8].js',
-      publicPath: '/'
+      filename: isProd ? '[name].[chunkhash:8].js' : '[name].[fullhash:8].js',
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: '/',
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
-      modules: [path.resolve(__dirname, 'src'), 'node_modules']
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
     module: {
       rules: [
@@ -25,7 +29,8 @@ export default (env, argv) => {
             options: {
               plugins: [
                 [
-                  'import', {
+                  'import',
+                  {
                     libraryName: '@blueprintjs/core',
                     transformToDefaultImport: false,
                     customName: (name) => {
@@ -35,7 +40,7 @@ export default (env, argv) => {
                         button: ['button', 'buttons'],
                         'input-group': ['forms', 'inputGroup'],
                         'menu-item': ['menu', 'menuItem'],
-                        'toaster': ['toast', 'toaster']
+                        toaster: ['toast', 'toaster'],
                       }
 
                       if (name === 'position') {
@@ -49,21 +54,18 @@ export default (env, argv) => {
                       }
 
                       return `${BASE_PATH}/components/${name}/${name}`
-                    }
-                  }
-                ]
-              ]
-            }
+                    },
+                  },
+                ],
+              ],
+            },
           },
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader'
-          ],
-          include: /node_modules/
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          include: /node_modules/,
         },
         {
           test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg)$/,
@@ -71,31 +73,34 @@ export default (env, argv) => {
             {
               loader: 'url-loader',
               options: {
-                name: '[name].[hash:8].[ext]'
-              }
-            }
-          ]
-        }
-      ]
+                name: '[name].[hash:8].[ext]',
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': '{}', // 临时修复@blueprintjs报错“process is not defined”
+      }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'src/index.html'),
-        favicon: path.resolve(__dirname, 'favicon.ico')
+        favicon: path.resolve(__dirname, 'favicon.ico'),
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].[contenthash:8].css'
+        filename: '[name].[contenthash:8].css',
       }),
-      // new BundleAnalyzerPlugin()
+      // new BundleAnalyzerPlugin(),
     ],
     optimization: {
+      minimize: true,
       minimizer: [
         new TerserPlugin({
           parallel: true,
-          cache: true
-        })
-      ]
-    }
+        }),
+      ],
+    },
   }
   return config
 }

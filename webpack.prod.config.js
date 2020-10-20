@@ -1,9 +1,9 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import cssnano from 'cssnano'
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 
 export default {
+  devtool: false,
   module: {
     rules: [
       {
@@ -15,22 +15,19 @@ export default {
             options: {
               import: true,
               modules: {
-                localIdentName: '[path][name]__[local]--[hash:base64:5]'
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
               },
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
-          'postcss-loader'
+          'postcss-loader',
         ],
-        include: /src/
+        include: /src/,
       },
-    ]
+    ],
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new OptimizeCssAssetsWebpackPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: cssnano
-    })
-  ]
+  plugins: [new CleanWebpackPlugin()],
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
+  },
 }
