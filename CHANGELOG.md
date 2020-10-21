@@ -1,3 +1,13 @@
+## [1.1.3](https://github.com/uniquemo/react-netease-music/compare/v1.1.2...v1.1.3) (2020-10-21)
+
+
+### Features
+
+* add webpack hmr config ([142b448](https://github.com/uniquemo/react-netease-music/commit/142b44824949c6a2a20099443f2120b3be39eb1d))
+* set jsxSingleQuote to true in prettier configuration ([a1b8713](https://github.com/uniquemo/react-netease-music/commit/a1b87135aeda54df19b73c4f5e2425cff61a6222))
+
+
+
 ## [1.1.2](https://github.com/uniquemo/react-netease-music/compare/v1.1.1...v1.1.2) (2020-05-21)
 
 
