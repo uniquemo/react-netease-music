@@ -38,5 +38,7 @@ module.exports = {
     '@typescript-eslint/no-this-alias': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
+    // 'react/jsx-uses-react': 'off',
+    // 'react/react-in-jsx-scope': 'off'
   },
 }
