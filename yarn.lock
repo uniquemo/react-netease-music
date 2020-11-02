@@ -4050,10 +4050,10 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.6.3"
 
-html-webpack-plugin@^5.0.0-alpha.9:
-  version "5.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.0.0-alpha.9.tgz#6d04b3be2186756530730e1fb160b04aa0e32383"
-  integrity sha512-DrV19vE3DMSBx374Me0AAS8uhVY4JZtn206g0zfE/iWh+ZCMXgtnR+6uabPF71fkZtnG2HvDUQerHPUNKchszg==
+html-webpack-plugin@^5.0.0-alpha.10:
+  version "5.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.0.0-alpha.10.tgz#edc754eb32240c4a54b82b4d0a1df1bfa045b27c"
+  integrity sha512-e8FUuysEchFL7hvc9f0ip4zFIAMeWMXFB6kk0+6CL1UkEflbwGvHrxlWHCVhmV8co+O5zgB41yoYxPlG2vlAhg==
   dependencies:
     "@types/html-minifier-terser" "^5.0.0"
     "@types/tapable" "^1.0.5"
