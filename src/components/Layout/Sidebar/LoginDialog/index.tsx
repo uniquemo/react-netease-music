@@ -7,9 +7,13 @@ import { noop } from 'helpers/fn'
 import { LogDispatchContext, ACTIONS } from 'reducers/log'
 import styles from './style.module.css'
 
+interface IProps extends IDialogProps {
+  onClose: () => void
+}
+
 const { useState, useContext } = React
 
-const LoginDialog: React.FC<IDialogProps> = ({ isOpen, onClose = noop }) => {
+const LoginDialog: React.FC<IProps> = ({ isOpen, onClose = noop }) => {
   const dispatch = useContext(LogDispatchContext)
   const [phone, setPhone] = useState<string>('')
   const [password, setPassword] = useState<string>('')
