@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value nameColor, nameHoverColor, red, borderColor, tipsColor from colors;
 
 .root {
@@ -14,6 +14,7 @@
     border-radius: 20px;
     border: 1px solid tipsColor;
     font-size: 0.95em;
+
     &:hover {
       background-color: borderColor;
     }
@@ -62,12 +63,14 @@
   cursor: default;
   color: nameColor;
   font-size: 0.9em;
+
   &:hover {
     color: nameHoverColor;
   }
 }
 
-.active, .active:hover {
+.active,
+.active:hover {
   color: red;
   background-color: #fdf5f4;
 }

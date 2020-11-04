@@ -1,8 +1,9 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value red from colors;
 
 .root {
   width: 100%;
+
   &:hover {
     .controllDot {
       display: block;
@@ -24,7 +25,6 @@
     height: 12px;
     border-radius: 50%;
     background-color: red;
-    position: relative;
     z-index: 10;
     display: none;
     position: absolute;

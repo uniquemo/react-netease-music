@@ -17,5 +17,8 @@
     "typescript",
     "javascriptreact",
     "typescriptreact"
-  ]
+  ],
+  "stylelint.enable": true,   // 开启stylelint vscode插件
+  "css.validate": false,      // 关闭vscode默认的css插件
+  "scss.validate": false      // 关闭vscode默认的scss插件
 }

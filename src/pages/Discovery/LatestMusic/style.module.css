@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value nameColor, nameHoverColor, red from colors;
 
 .root {
@@ -16,6 +16,7 @@
     background-color: #f33;
     color: #fff;
     cursor: pointer;
+
     &:hover {
       background-color: red;
     }
@@ -29,12 +30,14 @@
     margin-right: 25px;
     color: nameColor;
     cursor: default;
+
     &:hover {
       color: nameHoverColor;
     }
   }
 
-  .active, .active:hover {
+  .active,
+  .active:hover {
     color: red;
   }
 }

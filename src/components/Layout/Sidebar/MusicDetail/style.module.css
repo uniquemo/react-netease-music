@@ -1,16 +1,18 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value red, blue from colors;
 
-@value constants: "~styles/constants.module.css";
+@value constants: '~styles/constants.module.css';
 @value footerHeight, headerHeight, contentMaxWidth from constants;
 
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(180deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -31,7 +33,8 @@
   top: headerHeight;
 }
 
-.music, .relatedInfo {
+.music,
+.relatedInfo {
   width: 1000px;
   margin: 0 auto;
 }
@@ -94,6 +97,7 @@
       background-color: rgba(0, 0, 0, 0.5);
       animation: rotate 20s linear infinite;
       animation-play-state: paused;
+
       img {
         border-radius: 50%;
       }
@@ -116,6 +120,7 @@
     .artists {
       margin-bottom: 15px;
       font-size: 0.95em;
+
       span {
         color: blue;
       }

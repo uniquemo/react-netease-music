@@ -1,3 +1,22 @@
+## [1.1.4](https://github.com/uniquemo/react-netease-music/compare/v1.1.3...v1.1.4) (2020-11-04)
+
+
+### Bug Fixes
+
+* html-webpack-plugin warning ([df2ae8c](https://github.com/uniquemo/react-netease-music/commit/df2ae8c544c586aeff47785dfaf1ed1bf3ccce46))
+
+
+### Features
+
+* lint style files ([883628f](https://github.com/uniquemo/react-netease-music/commit/883628f02658779f6111be13a7c63167e5d0f47e))
+* **issues:** add 升级react16到react17 ([0f1355b](https://github.com/uniquemo/react-netease-music/commit/0f1355b309773f52b2c7754f64f30fe5902150e2))
+* update @babel/preset-react config, set runtime to automatic ([d7c8a62](https://github.com/uniquemo/react-netease-music/commit/d7c8a622f641b1306ca7c4ee5023ad48eb6428a3))
+* upgrade html-webpack-plugin version ([486fe26](https://github.com/uniquemo/react-netease-music/commit/486fe26cdd1b39962c3606e78e3fe856b22df3fc))
+* upgrade react16 to react17 ([287d4a0](https://github.com/uniquemo/react-netease-music/commit/287d4a0728d3038d2df99e7359d29f7e29bee083))
+* upgrade typescript3 to typescript4 ([93a54b1](https://github.com/uniquemo/react-netease-music/commit/93a54b1d6415a5cb90aa2dcc78229abfa4fcf773))
+
+
+
 ## [1.1.3](https://github.com/uniquemo/react-netease-music/compare/v1.1.2...v1.1.3) (2020-10-21)
 
 

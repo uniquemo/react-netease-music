@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value tipsColor, borderColor, nameHoverColor, nameColor from colors;
 
 .name {
@@ -13,6 +13,7 @@
   .text {
     display: flex;
     align-items: center;
+
     span {
       margin-right: 5px;
     }

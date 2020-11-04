@@ -9,7 +9,7 @@
   .item {
     padding: 8px 20px;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
     cursor: default;
     font-size: 0.9em;

@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value red, tipsColor, nameColor, bgColor from colors;
 
 .root {
@@ -33,6 +33,7 @@
   border: 1px solid red;
   background-color: red;
   color: #fff;
+
   &:hover {
     background-color: red;
   }
@@ -41,6 +42,7 @@
 .disabled {
   color: tipsColor;
   cursor: default;
+
   &:hover {
     background-color: #fff;
   }
