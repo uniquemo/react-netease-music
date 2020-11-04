@@ -1,5 +1,5 @@
-@value constants: "~styles/constants.module.css";
-@value contentMaxWidth from constants; 
+@value constants: '~styles/constants.module.css';
+@value contentMaxWidth from constants;
 
 .root {
   width: 94%;

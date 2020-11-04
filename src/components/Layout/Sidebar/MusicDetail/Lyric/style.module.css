@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value tipsHoverColor, black from colors;
 
 .root {
@@ -8,6 +8,7 @@
   white-space: nowrap;
   color: tipsHoverColor;
   font-size: 0.95em;
+
   /* For hide scrollbar */
   padding-right: 17px;
   box-sizing: content-box;

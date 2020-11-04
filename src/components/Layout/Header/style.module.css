@@ -1,4 +1,4 @@
-@value constants: "~styles/constants.module.css";
+@value constants: '~styles/constants.module.css';
 @value sidebarWidth, headerHeight, bodyMinWidth from constants;
 
 .root {

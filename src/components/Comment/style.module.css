@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value blue, tipsHoverColor from colors;
 
 .root {
@@ -31,6 +31,7 @@
   .reply {
     margin-bottom: 10px;
     font-size: 0.9em;
+
     .item {
       width: 100%;
       padding: 8px 10px;

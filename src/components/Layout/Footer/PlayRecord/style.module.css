@@ -1,7 +1,7 @@
-@value constants: "~styles/constants.module.css";
+@value constants: '~styles/constants.module.css';
 @value footerHeight, headerHeight from constants;
 
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value tipsColor, borderColor from colors;
 
 .root {
@@ -43,7 +43,8 @@
     }
   }
 
-  .active, .active:hover {
+  .active,
+  .active:hover {
     color: #fff;
     background-color: tipsColor;
   }

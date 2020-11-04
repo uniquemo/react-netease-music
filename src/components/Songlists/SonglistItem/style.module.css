@@ -1,4 +1,4 @@
-@value colors: "~styles/colors.module.css";
+@value colors: '~styles/colors.module.css';
 @value nameColor from colors;
 
 .root {
