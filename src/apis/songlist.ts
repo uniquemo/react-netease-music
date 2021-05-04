@@ -1,6 +1,6 @@
 import axios from 'helpers/axios'
-import { createMusicFromSimpleMusic } from 'helpers/business'
-import { ISimpleMusic, IMyMusic, ISonglist } from './types/business'
+import songApis from './song'
+import { IMyMusic, ISonglist } from './types/business'
 import { IGetSonglistsRequest, IGetSonglistCatsResponse, ICategory } from './types/songlist'
 import { PAGE_SIZE } from 'constants/pagination'
 
@@ -19,16 +19,8 @@ const getSonglistDetail: GetSonglistDetailFn = async (id) => {
     },
   })
 
-  const songs: IMyMusic[] = []
-  response?.playlist?.tracks?.forEach((item: ISimpleMusic, index: number) => {
-    const privilege = response?.privileges?.[index]
-    const song = createMusicFromSimpleMusic({
-      ...item,
-      fee: privilege?.fee,
-      status: privilege?.st,
-    })
-    songs.push(song)
-  })
+  const songIds = response?.playlist?.trackIds?.map(({ id }: { id: number }) => id)
+  const songs: IMyMusic[] = await songApis.getSongDetail(songIds)
 
   return {
     songlist: response.playlist,

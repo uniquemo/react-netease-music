@@ -25,16 +25,17 @@ const Songlist: React.FC<IProps> = ({ title, data }) => {
     <div className={styles.root}>
       <div className={styles.title}>{title}</div>
       <div className={styles.content}>
-        {data?.map(({ id, name }) => {
+        {data?.map(({ id, name, trackCount }) => {
           const isActive = routeMatch && Number(routeMatch.params.songlistId) === id
+          const text = `${name.replace(logState.user.profile.nickname, '我')}（${trackCount}首）`
           return (
             <div
               key={id}
+              title={text}
               className={cn(styles.item, isActive && 'active')}
-              title={name}
               onClick={() => handleClick(id)}
             >
-              {name.replace(logState.user.profile.nickname, '我')}
+              {text}
             </div>
           )
         })}

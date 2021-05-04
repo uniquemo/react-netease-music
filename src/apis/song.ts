@@ -44,7 +44,7 @@ const getSongDetail: GetSongDetailFn = async (ids) => {
     },
   })
 
-  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item))
+  return response?.songs.map((item: ISimpleMusic) => createMusicFromSimpleMusic({ ...item, status: (item as any).st }))
 }
 
 const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
@@ -61,9 +61,12 @@ const getTopSongs: GetTopSongsFn = async (type = SONG_TYPE.ALL) => {
 const getRecommendSongs: GetRecommendSongsFn = async () => {
   const response = await axios({
     url: '/recommend/songs',
+    params: {
+      timestamp: Date.now(),
+    },
   })
 
-  return response.recommend
+  return response.data?.dailySongs?.map((item: ISimpleMusic) => createMusicFromSimpleMusic(item)) || []
 }
 
 const getSimiSonglist: GetSimiSonglistFn = async ({ id, offset, limit }) => {
