@@ -1285,6 +1285,13 @@
     "@typescript-eslint/types" "4.6.0"
     eslint-visitor-keys "^2.0.0"
 
+"@uniquemo/mui@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.nlark.com/@uniquemo/mui/download/@uniquemo/mui-0.0.1.tgz?cache=0&sync_timestamp=1623597372474&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40uniquemo%2Fmui%2Fdownload%2F%40uniquemo%2Fmui-0.0.1.tgz#1050a598e7395cd5c2f9904807f8e7bf278ebf1d"
+  integrity sha1-EFClmOc5XNXC+ZBIB/jnvyeOvx0=
+  dependencies:
+    classnames "^2.2.6"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
