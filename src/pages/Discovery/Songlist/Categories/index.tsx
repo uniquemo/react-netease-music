@@ -1,5 +1,6 @@
 import React from 'react'
-import { Popover, Icon } from '@blueprintjs/core'
+import { Icon } from '@blueprintjs/core'
+import { Popover, TRIGGER } from '@mui/Popover'
 import cn from 'classnames'
 
 import { IGetSonglistCatsResponse, ICategory } from 'apis/types/songlist'
@@ -63,7 +64,7 @@ const Categories: React.FC<IProps> = ({ cats, hotCats, selectedCat, onCatSelect 
   return (
     <div className={styles.root}>
       <div className={styles.cats}>
-        <Popover content={renderCats()} interactionKind='click' position='bottom'>
+        <Popover content={renderCats()} placement='right' trigger={TRIGGER.CLICK}>
           <div className={styles.catsBtn}>
             {currentCat}
             <Icon icon='chevron-right' />

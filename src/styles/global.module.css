@@ -77,8 +77,3 @@ img {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-:global(.mo-toaster .bp3-toast) {
-  color: #fff;
-  background-color: red;
-}
