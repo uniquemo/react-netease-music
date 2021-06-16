@@ -1,3 +1,18 @@
+## [1.1.5](https://github.com/uniquemo/react-netease-music/compare/v1.1.4...v1.1.5) (2021-06-16)
+
+
+### Bug Fixes
+
+* get playlist songs api and recommend songs api logic ([4712336](https://github.com/uniquemo/react-netease-music/commit/471233697921555526f5523d7d199f95c638a20c))
+
+
+### Features
+
+* update service ip addr ([ac0eecb](https://github.com/uniquemo/react-netease-music/commit/ac0eecb384876c518791a817f95f1e944c302465))
+* upgrade @uniquemo/mui to v0.0.3 ([d1de22d](https://github.com/uniquemo/react-netease-music/commit/d1de22deaaebb65fae02c479a8f20125424289d5))
+
+
+
 ## [1.1.4](https://github.com/uniquemo/react-netease-music/compare/v1.1.3...v1.1.4) (2020-11-04)
 
 
