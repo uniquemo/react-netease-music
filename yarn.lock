@@ -1285,10 +1285,10 @@
     "@typescript-eslint/types" "4.6.0"
     eslint-visitor-keys "^2.0.0"
 
-"@uniquemo/mui@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.nlark.com/@uniquemo/mui/download/@uniquemo/mui-0.0.2.tgz#10ee7c0cfb2e0597def54aff41b8fd482298b227"
-  integrity sha1-EO58DPsuBZfe9Ur/Qbj9SCKYsic=
+"@uniquemo/mui@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.nlark.com/@uniquemo/mui/download/@uniquemo/mui-0.0.3.tgz#957dd219d2d430cadbc8f487eee885755dcfb041"
+  integrity sha1-lX3SGdLUMMrbyPSH7uiFdV3PsEE=
   dependencies:
     classnames "^2.2.6"
 

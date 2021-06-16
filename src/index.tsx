@@ -7,11 +7,7 @@ import '@blueprintjs/core/lib/css/blueprint.css'
 import './styles/global.module.css'
 
 const Root = () => {
-  return (
-    <div>
-      <App />
-    </div>
-  )
+  return <App />
 }
 
 const render = () => {

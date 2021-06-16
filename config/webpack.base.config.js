@@ -5,22 +5,24 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import TerserPlugin from 'terser-webpack-plugin'
 
+const rootPath = process.cwd()
+
 export default (env, argv) => {
   const isProd = argv.mode === 'production'
 
   const config = {
-    entry: './src/index.tsx',
+    entry: path.resolve(rootPath, 'src/index.tsx'),
     output: {
       // 因为开发环境中，chunkhash与HotModuleReplacementPlugin有冲突，所以两个环境分别设置
       filename: isProd ? '[name].[chunkhash:8].js' : '[name].[fullhash:8].js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(rootPath, 'dist'),
       publicPath: '/',
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      modules: [path.resolve(rootPath, 'src'), 'node_modules'],
       alias: {
-        '@mui': path.resolve(__dirname, 'node_modules/@uniquemo/mui/esm/components'),
+        '@mui': path.resolve(rootPath, 'node_modules/@uniquemo/mui/esm/components'),
       },
     },
     module: {
@@ -37,7 +39,7 @@ export default (env, argv) => {
                     libraryName: '@blueprintjs/core',
                     transformToDefaultImport: false,
                     customName: (name) => {
-                      const BASE_PATH = `${__dirname}/node_modules/@blueprintjs/core/lib/esm`
+                      const BASE_PATH = `${rootPath}/node_modules/@blueprintjs/core/lib/esm`
 
                       const PATH_MAP = {
                         button: ['button', 'buttons'],
@@ -88,8 +90,8 @@ export default (env, argv) => {
         'process.env': '{}', // 临时修复@blueprintjs报错“process is not defined”
       }),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'src/index.html'),
-        favicon: path.resolve(__dirname, 'favicon.ico'),
+        template: path.resolve(rootPath, 'src/index.html'),
+        favicon: path.resolve(rootPath, 'favicon.ico'),
       }),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash:8].css',

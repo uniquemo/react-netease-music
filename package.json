@@ -4,8 +4,8 @@
   "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "main": "index.js",
   "scripts": {
-    "dev": "node --trace-deprecation node_modules/.bin/webpack serve --mode=development",
-    "build": "webpack --mode=production",
+    "dev": "node --trace-deprecation node_modules/.bin/webpack serve --mode=development --config config/webpack.config.babel.js",
+    "build": "webpack --mode=production --config config/webpack.config.babel.js",
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
     "style-lint": "stylelint 'src/**/*.css' --fix",
@@ -101,7 +101,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.0",
-    "@uniquemo/mui": "^0.0.2",
+    "@uniquemo/mui": "^0.0.3",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "react": "^17.0.2",
