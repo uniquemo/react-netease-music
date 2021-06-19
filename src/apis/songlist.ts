@@ -1,32 +1,13 @@
 import axios from 'helpers/axios'
-import songApis from './song'
-import { IMyMusic, ISonglist } from './types/business'
+import { ISonglist } from './types/business'
 import { IGetSonglistsRequest, IGetSonglistCatsResponse, ICategory } from './types/songlist'
 import { PAGE_SIZE } from 'constants/pagination'
 
-type GetSonglistDetailFn = (id: number) => Promise<{ songlist: ISonglist; songs: IMyMusic[] }>
 type GetSonglistsFn = (params: IGetSonglistsRequest) => Promise<{ playlists: ISonglist[]; total: number }>
 type GetSonglistCatsFn = () => Promise<IGetSonglistCatsResponse>
 type GetSonglistHotCatsFn = () => Promise<ICategory[]>
 type GetHighQualitySonglistFn = (cat?: string) => Promise<ISonglist>
 type GetUserSonglistFn = (uid: number) => Promise<{ create: ISonglist[]; collect: ISonglist[] }>
-
-const getSonglistDetail: GetSonglistDetailFn = async (id) => {
-  const response = await axios({
-    url: '/playlist/detail',
-    params: {
-      id,
-    },
-  })
-
-  const songIds = response?.playlist?.trackIds?.map(({ id }: { id: number }) => id)
-  const songs: IMyMusic[] = await songApis.getSongDetail(songIds)
-
-  return {
-    songlist: response.playlist,
-    songs,
-  }
-}
 
 const getSonglists: GetSonglistsFn = async ({ cat, order, limit = PAGE_SIZE, offset }) => {
   const response = await axios({
@@ -90,7 +71,6 @@ const getUserSonglist: GetUserSonglistFn = async (uid) => {
 }
 
 export default {
-  getSonglistDetail,
   getSonglists,
   getSonglistCats,
   getSonglistHotCats,

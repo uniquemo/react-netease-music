@@ -17,7 +17,7 @@ export const formatTime = (interval?: number) => {
 }
 
 export const formatDatetime = (t?: string | number, detailed?: boolean) => {
-  const time = new Date(t || 0)
+  const time = new Date(Number(t) || 0)
 
   const year = time.getFullYear()
   const month = formatNum(time.getMonth() + 1)
