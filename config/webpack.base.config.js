@@ -88,6 +88,7 @@ export default (env, argv) => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': '{}', // 临时修复@blueprintjs报错“process is not defined”
+        __LOCALHOST__: process.env.LOCAL === 'true',
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(rootPath, 'src/index.html'),

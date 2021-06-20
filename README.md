@@ -47,13 +47,16 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 ## 技术栈
 - React，使用react hook做状态管理，没有使用额外的数据管理库。
 - TypeScript，用TypeScript确实可以提高效率😃（容易发现错误）。
+- Graphql，使用@apollo/client优化部分页面性能。
 - @blueprintjs组件库，主要使用其中的Icon、Dialog、Toast、Spinner等。
+- 逐渐使用[@uniquemo/mui](https://github.com/uniquemo/mui)替换@blueprinjs（Doing）。
 - CSS Modules。
 - Webpack。
 - Eslint做代码检查。
 
 ## API接口
 [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
+[Express Graphql Server](https://github.com/uniquemo/express-graphql-server)
 
 ## 播放器的相关截图
 ![01_个性推荐页](./resources/01_个性推荐页.png)
@@ -75,8 +78,10 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 ![09_搜索结果页](./resources/09_搜索结果页.png)
 
 ## 项目启动
+- 首先将上面👆提到的API接口部分，两个API服务代码拉到本地，并启动对应的服务；
+- 然后拉取本仓库代码，并执行以下命令：
 ```
 yarn
-yarn dev
+yarn dev:local
 ```
-然后在浏览器中访问：`http://localhost:8080`
+- 最后在浏览器中访问：`http://localhost:8080`

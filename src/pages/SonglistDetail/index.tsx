@@ -1,13 +1,14 @@
 import React from 'react'
 import { Spinner } from '@blueprintjs/core'
 import { useParams } from 'react-router-dom'
+import { useLazyQuery } from '@apollo/client'
+import { message } from '@mui/Notification'
 
 import Tabs from 'components/Tabs'
 import MusicList from 'components/MusicList'
 import BasicInfo from './BasicInfo'
-import useAsyncFn from 'hooks/useAsyncFn'
 import { createMusic } from 'helpers/business'
-import songlistApis from 'apis/songlist'
+import { getSonglistDetail } from 'graphql/music'
 import { IMusic } from 'apis/types/business'
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import styles from './style.module.css'
@@ -30,13 +31,21 @@ const SonglistDetail = () => {
   const params = useParams<IDictionary<string>>()
   const { songlistId } = params
 
-  const [state, getSonglistDetailFn] = useAsyncFn(songlistApis.getSonglistDetail)
-  const { value: result, loading } = state
+  const [getSonglistDetailGql, { loading, data }] = useLazyQuery(getSonglistDetail, {
+    onError: (error) => {
+      message.error(error.message)
+    },
+  })
 
+  const result = data?.getSonglistDetail
   const songs = result?.songs as IMusic[]
 
   useEffect(() => {
-    getSonglistDetailFn(Number(songlistId))
+    getSonglistDetailGql({
+      variables: {
+        id: songlistId,
+      },
+    })
   }, [songlistId])
 
   const playAll = (autoPlay?: boolean) => {

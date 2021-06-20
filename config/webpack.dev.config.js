@@ -29,5 +29,14 @@ export default {
     contentBase: './dist',
     historyApiFallback: true,
     hot: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api': '' },
+      },
+      '/graphql': {
+        target: 'http://localhost:4000',
+      },
+    },
   },
 }
