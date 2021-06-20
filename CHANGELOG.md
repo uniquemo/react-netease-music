@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/uniquemo/react-netease-music/compare/v1.1.6...v1.2.0) (2021-06-20)
+
+
+### Bug Fixes
+
+* graphql query params ([b33afca](https://github.com/uniquemo/react-netease-music/commit/b33afca9ca9d9d1dbbdfb24a92854e7d2bd9367a))
+
+
+
 ## [1.1.5](https://github.com/uniquemo/react-netease-music/compare/v1.1.4...v1.1.5) (2021-06-16)
 
 
