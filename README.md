@@ -55,8 +55,8 @@ React Netease Music——一个基于React、TypeScript的高仿网易云mac客�
 - Eslint做代码检查。
 
 ## API接口
-[NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
-[Express Graphql Server](https://github.com/uniquemo/express-graphql-server)
+- [NeteaseCloudMusicApi](https://binaryify.github.io/NeteaseCloudMusicApi)
+- [Express Graphql Server](https://github.com/uniquemo/express-graphql-server)
 
 ## 播放器的相关截图
 ![01_个性推荐页](./resources/01_个性推荐页.png)
