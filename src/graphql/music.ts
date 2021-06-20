@@ -25,9 +25,11 @@ export const getSonglistDetail = gql`
           name
         }
         album {
+          id
           name
         }
         duration
+        picUrl
       }
     }
   }
