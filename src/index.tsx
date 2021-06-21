@@ -20,7 +20,7 @@ const authLink = setContext((_, { headers }) => {
       ...headers,
       'netease-user-id': session.userId,
       'netease-token': session.token,
-      'netease-nick-name': session.profile?.nickname,
+      'netease-nick-name': session.profile?.nickname && encodeURIComponent(session.profile?.nickname),
     },
   }
 })
