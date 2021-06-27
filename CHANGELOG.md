@@ -1,3 +1,20 @@
+## [1.2.1](https://github.com/uniquemo/react-netease-music/compare/v1.2.0...v1.2.1) (2021-06-27)
+
+
+### Bug Fixes
+
+* apollo client header ([dc1de25](https://github.com/uniquemo/react-netease-music/commit/dc1de255ae2676dda7a9f720f5923ebe03139a6e))
+* readme ([139bf43](https://github.com/uniquemo/react-netease-music/commit/139bf4398cf22a92ad5293829ab03617932b8a9b))
+* recommend daily auto play music pic ([06074e4](https://github.com/uniquemo/react-netease-music/commit/06074e4ea663878d3c6da0e679078991d718efa4))
+
+
+### Features
+
+* add specific headers to graphql client ([db6abcd](https://github.com/uniquemo/react-netease-music/commit/db6abcdc77cbdf60275bb0fdfc1ab23b38f551db))
+* add useUpdate hook and fix clear play list and clear play history ([4ceb854](https://github.com/uniquemo/react-netease-music/commit/4ceb854d7179c09caaf129e2066f40a0aee49a5f))
+
+
+
 # [1.2.0](https://github.com/uniquemo/react-netease-music/compare/v1.1.6...v1.2.0) (2021-06-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "react-netease-music",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "main": "index.js",
   "scripts": {
