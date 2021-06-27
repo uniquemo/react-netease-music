@@ -4,10 +4,12 @@ import List from '../List'
 import { IMyMusic } from 'apis/types/business'
 import { PlayMusicDispatchContext, ACTIONS } from 'reducers/playMusic'
 import { playHistory as playHistoryLocalStorage } from 'helpers/play'
+import useUpdate from 'hooks/useUpdate'
 
 const { useContext } = React
 
 const PlayHistory = () => {
+  const forceUpdate = useUpdate()
   const dispatch = useContext(PlayMusicDispatchContext)
   const playHistory = playHistoryLocalStorage.getItem()
 
@@ -26,6 +28,7 @@ const PlayHistory = () => {
     dispatch({
       type: ACTIONS.CLEAR_PLAY_HISTORY,
     })
+    forceUpdate()
   }
 
   return <List data={playHistory} onDoubleClick={handleDoubleClick} onClear={clearPlayHistory} />
