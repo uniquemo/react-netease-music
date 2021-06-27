@@ -40,11 +40,7 @@ const RecommendDaily = () => {
         type: ACTIONS.PLAY,
         payload: {
           musicId: item.id,
-          music: createMusic({
-            ...item,
-            picUrl: item.album?.blurPicUrl,
-            duration: item.duration / 1000,
-          }),
+          music: createMusic(item),
         },
       })
     }
