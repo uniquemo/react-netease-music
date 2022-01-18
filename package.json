@@ -1,11 +1,11 @@
 {
   "name": "react-netease-music",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "description": "基于React、TypeScript的高仿网易云mac客户端播放器",
   "main": "index.js",
   "scripts": {
-    "dev:local": "LOCAL=true node --trace-deprecation node_modules/.bin/webpack serve --mode=development --config config/webpack.config.babel.js",
-    "dev": "node --trace-deprecation node_modules/.bin/webpack serve --mode=development --config config/webpack.config.babel.js",
+    "dev:local": "LOCAL=true webpack serve --mode=development --config config/webpack.config.babel.js",
+    "dev": "webpack serve --mode=development --config config/webpack.config.babel.js",
     "build": "webpack --mode=production --config config/webpack.config.babel.js",
     "type-check": "tsc --watch",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
@@ -13,11 +13,11 @@
     "release": "./deploy/bash.sh",
     "docker-release": "./deploy/docker.sh",
     "changelog-gen": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "version": "yarn changelog-gen && git add CHANGELOG.md",
+    "version": "pnpm run changelog-gen && git add CHANGELOG.md",
     "postversion": "git commit -m 'feat: update CHANGELOG.md' && git push",
-    "version-patch": "npm version patch && yarn version",
-    "version-minor": "npm version minor && yarn version",
-    "version-major": "npm version major && yarn version"
+    "version-patch": "npm version patch && pnpm run version",
+    "version-minor": "npm version minor && pnpm run version",
+    "version-major": "npm version major && pnpm run version"
   },
   "repository": {
     "type": "git",
@@ -64,7 +64,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
-    "@types/classnames": "^2.2.10",
+    "@babel/runtime": "^7.16.7",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.4",
@@ -104,9 +104,10 @@
     "@apollo/client": "^3.3.20",
     "@blueprintjs/core": "^3.26.0",
     "@uniquemo/mui": "^0.0.3",
-    "axios": "^0.19.2",
+    "axios": "^0.25.0",
     "classnames": "^2.2.6",
     "graphql": "^15.5.0",
+    "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.1.2"

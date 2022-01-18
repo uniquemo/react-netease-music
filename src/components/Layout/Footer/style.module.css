@@ -11,7 +11,7 @@
   padding: 10px;
   position: fixed;
   bottom: 0;
-  border-top: 2px solid rgb(245, 245, 245);
+  box-shadow: 0 3px 12px 0 rgb(0 0 0 / 12%);
   display: flex;
   justify-content: space-between;
   background-color: #fff;

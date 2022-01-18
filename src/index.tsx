@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+
 import App from './pages/App'
 import { GRAPHQL_SERVER } from 'constants/server'
 

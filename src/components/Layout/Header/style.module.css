@@ -6,6 +6,7 @@
   min-width: bodyMinWidth;
   height: headerHeight;
   background-color: rgba(248, 248, 248, 0.95);
+  box-shadow: 0 1px 10px 1px rgb(0 0 0 / 12%);
   position: fixed;
   top: 0;
   display: flex;
