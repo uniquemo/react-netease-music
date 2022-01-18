@@ -1,9 +1,12 @@
 FROM node:latest AS builder
+
 WORKDIR /usr/src/app
-COPY package.json yarn.lock ./
-RUN yarn
+
+RUN npm install -g pnpm
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install
 COPY . ./
-RUN yarn build
+RUN pnpm run build
 
 FROM nginx
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html

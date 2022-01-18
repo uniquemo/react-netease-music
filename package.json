@@ -13,11 +13,11 @@
     "release": "./deploy/bash.sh",
     "docker-release": "./deploy/docker.sh",
     "changelog-gen": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "version": "yarn changelog-gen && git add CHANGELOG.md",
+    "version": "pnpm run changelog-gen && git add CHANGELOG.md",
     "postversion": "git commit -m 'feat: update CHANGELOG.md' && git push",
-    "version-patch": "npm version patch && yarn version",
-    "version-minor": "npm version minor && yarn version",
-    "version-major": "npm version major && yarn version"
+    "version-patch": "npm version patch && pnpm run version",
+    "version-minor": "npm version minor && pnpm run version",
+    "version-major": "npm version major && pnpm run version"
   },
   "repository": {
     "type": "git",
